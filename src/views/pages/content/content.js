@@ -84,17 +84,20 @@ export default function Content() {
           </div>
         </div>
       </div>
-      <div className='row'>
+      <div className='row '>
         <h4
           style={{
             color: "#444444",
             fontWeight: "600",
             textTransform: "uppercase",
             fontSize: "17px",
-            margin: "35px 0px",
+            margin: "35px 0px 53px 0px",
           }}
         >
-          Can’t find your size ? <a href='#'>Click here</a>
+          Can’t find your size ?{" "}
+          <a href='#' style={{ color: "#1172b9", textDecoration: "underline" }}>
+            Click here
+          </a>
         </h4>
       </div>
     </div>

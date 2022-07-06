@@ -23,6 +23,7 @@ import { ProtectedRoute } from "./../routes/ProtectedRoute";
 import GlobalWrapper from "./global.style";
 import LayoutSettings from "components/layoutsetting/LayoutSettings";
 import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import DehazeIcon from "@mui/icons-material/Dehaze";
 import Content from "views/pages/content/content";
 import Detail from "views/pages/content/detail";
@@ -113,74 +114,95 @@ const DashboardLayout = (props) => {
           <div className='col-9 mx-auto'>
             <div className='row'>
               <div className='col-lg-3 col-md-12 col-sm-12 mb-3'>
-                <div className='collpase menu'>
-                  <Button
+                <div className='menu'>
+                  <div
                     onClick={() => {
                       toggle();
                     }}
+                    className='collpase '
                   >
-                    <DehazeIcon />
-                  </Button>
-                  <span>FRIDGE MAGNETS PRODUCTS</span>
-                  <Button
+                    <Button
+                    // onClick={() => {
+                    //   toggle();
+                    // }}
+                    >
+                      <DehazeIcon className='f-size' />
+                    </Button>
+                    <span>FRIDGE MAGNETS PRODUCTS</span>
+                    <Button
                     // color='primary'
-                    onClick={() => {
-                      toggle();
-                    }}
+                    // onClick={() => {
+                    //   toggle();
+                    // }}
                     // style={{ marginBottom: "1rem" }}
-                  >
-                    <AddIcon />
-                  </Button>
-                </div>
-                <div>
-                  <Collapse isOpen={toggle1.collapse}>
-                    <Card>
-                      <ul className='primary-menu'>
-                        <li>Calendar Fridge Magnets</li>
-                        <li>House Shaped Fridge Magnets</li>
-                        <li>Important/Emergency Number Fridge Magnets</li>
-                        <li>Business Card Magnets</li>
-                        <li>Kitchen Fridge Magnets</li>
-                        <li>First Aid / Medical Fridge Magnets</li>
-                        <li>Financial Year Calendar Magnets</li>
-                        <li>Shopping List / To Do Lists</li>
-                      </ul>
-                      <div className='collpase menu'>
-                        <Button
+                    >
+                      {toggle1.collapse === true ? (
+                        <RemoveIcon className='f-size' />
+                      ) : (
+                        <AddIcon className='f-size' />
+                      )}
+                    </Button>
+                  </div>
+                  <div>
+                    <Collapse isOpen={toggle1.collapse}>
+                      <Card>
+                        <ul className='primary-menu'>
+                          <li>Calendar Fridge Magnets</li>
+                          <li>House Shaped Fridge Magnets</li>
+                          <li>Important/Emergency Number Fridge Magnets</li>
+                          <li>Business Card Magnets</li>
+                          <li>Kitchen Fridge Magnets</li>
+                          <li>First Aid / Medical Fridge Magnets</li>
+                          <li>Financial Year Calendar Magnets</li>
+                          <li>Shopping List / To Do Lists</li>
+                        </ul>
+                        <div
                           onClick={() => {
                             toggleset();
                           }}
+                          className='collpase'
                         >
-                          <DehazeIcon />
-                        </Button>
-                        <span>MORE MAGNETS PRODUCTS</span>
-                        <Button
+                          {/* <Button
+                            onClick={() => {
+                              toggleset();
+                            }}
+                          >
+                            <DehazeIcon className='f-size' />
+                          </Button> */}
+                          <span>MORE FRIDGE MAGNETS</span>
+                          <Button
                           // color='primary'
-                          onClick={() => {
-                            toggleset();
-                          }}
+                          // onClick={() => {
+                          //   toggleset();
+                          // }}
                           // style={{ marginBottom: "1rem" }}
-                        >
-                          <AddIcon />
-                        </Button>
-                      </div>
-                    </Card>
-                  </Collapse>
-                </div>
-                <div>
-                  <Collapse isOpen={toggle2.collapse}>
-                    <Card>
-                      <ul className='primary-menu'>
-                        <li>Air Fresheners</li>
-                        <li>Christmas Cards</li>
-                        <li>DL Cardboard With Magnet Strip</li>
-                        <li>Information Fridge Magnets</li>
-                        <li>Photo Frame Fridge Magnets</li>
-                        <li>Promotional Fridge Magnets</li>
-                        <li>Invitations - Special Event Fridge Magnets</li>
-                      </ul>
-                    </Card>
-                  </Collapse>
+                          >
+                            {toggle2.collapse === true ? (
+                              <RemoveIcon className='f-size' />
+                            ) : (
+                              <AddIcon className='f-size' />
+                            )}
+                          </Button>
+                        </div>
+                      </Card>
+                    </Collapse>
+                  </div>
+
+                  <div className=''>
+                    <Collapse isOpen={toggle2.collapse}>
+                      <Card>
+                        <ul className='primary-menu'>
+                          <li>Air Fresheners</li>
+                          <li>Christmas Cards</li>
+                          <li>DL Cardboard With Magnet Strip</li>
+                          <li>Information Fridge Magnets</li>
+                          <li>Photo Frame Fridge Magnets</li>
+                          <li>Promotional Fridge Magnets</li>
+                          <li>Invitations - Special Event Fridge Magnets</li>
+                        </ul>
+                      </Card>
+                    </Collapse>
+                  </div>
                 </div>
               </div>
               <div className='col-lg-8 col-md-12 col-sm-12'>
@@ -194,7 +216,7 @@ const DashboardLayout = (props) => {
         </div>
         <div className='row footer'>
           <div className='col-lg-3 col-md-6 col-sm-12'>
-            <h2>LETS UP HELP</h2>
+            <h2>LET UP HELP</h2>
             <ul className='footer-menu'>
               <li>ARTWORK INFO & UPLOADS</li>
               <li>FAQ’S</li>
@@ -217,26 +239,43 @@ const DashboardLayout = (props) => {
             <h2>HEAD OFFICE</h2>
             <ul className='footer-menu1'>
               <li>
-                <div className='icon'>
-                  <img src='https://wholesale-magnets.com.au/wp-content/uploads/2020/06/mail-1.png'></img>
+                <div className='img-content'>
+                  <div className='icon'>
+                    <img src='https://wholesale-magnets.com.au/wp-content/uploads/2020/06/mail-1.png'></img>
+                  </div>
                 </div>
-                admin@wholesale-magnets.com.au
+                <div className='content1'>
+                  <div>admin@wholesale-magnets.com.au</div>
+                </div>
               </li>
               <li>
                 <div className='icon'>
                   <img src='https://wholesale-magnets.com.au/wp-content/uploads/2020/06/phone-1.png'></img>
                 </div>
-                1300 135 906
+                <div>1300 135 906</div>
               </li>
               <li>
                 <div className='icon'>
                   <img src='https://wholesale-magnets.com.au/wp-content/uploads/2020/06/pin-1.png'></img>
                 </div>
-                Shop 8a/1 Exchange Parade, Narellan NSW 2567
+                <div>Shop 8a/1 Exchange Parade, Narellan NSW 2567</div>
               </li>
             </ul>
           </div>
-          <div className='col-lg-3 col-md-6 col-sm-12'></div>
+          <div className='col-lg-3 col-md-6 col-sm-12'>
+            <div style={{ width: "300px", height: "240px" }}>
+              <iframe
+                src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613507864!3d-6.194741395493371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sPT%20Kulkul%20Teknologi%20Internasional!5e0!3m2!1sen!2sid!4v1601138221085!5m2!1sen!2sid'
+                width='100%'
+                height='100%'
+                frameBorder='0'
+                style={{ border: 0 }}
+                allowFullScreen=''
+                aria-hidden='false'
+                tabIndex='0'
+              />
+            </div>
+          </div>
           <div className='col-8 mx-auto text-center '>
             <div className='border-top'>
               <p>COPYRIGHT 2020. ALL RIGHTS RESERVED.</p>
