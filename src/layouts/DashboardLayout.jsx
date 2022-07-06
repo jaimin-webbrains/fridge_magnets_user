@@ -184,10 +184,10 @@ const DashboardLayout = (props) => {
                 </div>
               </div>
               <div className='col-lg-8 col-md-12 col-sm-12'>
-                {/* <Content /> */}
+                <Content />
                 {/* <Detail /> */}
                 {/* <Artwork /> */}
-                <Userdetail />
+                {/* <Userdetail /> */}
               </div>
             </div>
           </div>
@@ -215,10 +215,25 @@ const DashboardLayout = (props) => {
           </div>
           <div className='col-lg-3 col-md-6 col-sm-12'>
             <h2>HEAD OFFICE</h2>
-            <ul className='footer-menu'>
-              <li>admin@wholesale-magnets.com.au</li>
-              <li>1300 135 906</li>
-              <li>Shop 8a/1 Exchange Parade, Narellan NSW 2567</li>
+            <ul className='footer-menu1'>
+              <li>
+                <div className='icon'>
+                  <img src='https://wholesale-magnets.com.au/wp-content/uploads/2020/06/mail-1.png'></img>
+                </div>
+                admin@wholesale-magnets.com.au
+              </li>
+              <li>
+                <div className='icon'>
+                  <img src='https://wholesale-magnets.com.au/wp-content/uploads/2020/06/phone-1.png'></img>
+                </div>
+                1300 135 906
+              </li>
+              <li>
+                <div className='icon'>
+                  <img src='https://wholesale-magnets.com.au/wp-content/uploads/2020/06/pin-1.png'></img>
+                </div>
+                Shop 8a/1 Exchange Parade, Narellan NSW 2567
+              </li>
             </ul>
           </div>
           <div className='col-lg-3 col-md-6 col-sm-12'></div>

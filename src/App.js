@@ -1,5 +1,11 @@
 import React, { Fragment } from "react";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
+import {
+  Router,
+  Route,
+  Switch,
+  Redirect,
+  BrowserRouter,
+} from "react-router-dom";
 import { IntlProvider } from "react-intl";
 import { ThemeProvider } from "styled-components";
 // Redux store provider
@@ -22,7 +28,7 @@ import "react-toastify/dist/ReactToastify.css";
 const currentAppLocale =
   AppLocale[getCurrentLanguage(config.defaultLanguage || "english").locale];
 
-const App = props => {
+const App = (props) => {
   return (
     <Fragment>
       <IntlProvider
@@ -34,27 +40,29 @@ const App = props => {
             <Provider store={store}>
               <PersistGate loading={null} persistor={persistor}>
                 {/*Start layout routes */}
-                <Router history={history}>
-                  <Switch>
-                    <Route
-                      exact
-                      path="/"
-                      render={() => <Redirect to="/intro" />}
-                    />
-                    {layoutRoutes.map((prop, key) => {
-                      return (
-                        <Route
-                          path={prop.path}
-                          component={prop.component}
-                          key={key}
-                          history={history}
-                        />
-                      );
-                    })}
-                  </Switch>
-                </Router>
+                <BrowserRouter basename='/fridge-magnets'>
+                  <Router history={history}>
+                    <Switch>
+                      <Route
+                        exact
+                        path='/'
+                        render={() => <Redirect to='/intro' />}
+                      />
+                      {layoutRoutes.map((prop, key) => {
+                        return (
+                          <Route
+                            path={prop.path}
+                            component={prop.component}
+                            key={key}
+                            history={history}
+                          />
+                        );
+                      })}
+                    </Switch>
+                  </Router>
+                </BrowserRouter>
                 <ToastContainer
-                  position="top-right"
+                  position='top-right'
                   autoClose={5000}
                   hideProgressBar
                   newestOnTop
@@ -63,7 +71,7 @@ const App = props => {
                   pauseOnFocusLoss
                   draggable
                   pauseOnHover
-                  theme="colored"
+                  theme='colored'
                 />
                 {/*End layout routes */}
               </PersistGate>

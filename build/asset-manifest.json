@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.8bebded2.chunk.css",
-    "main.js": "/static/js/main.5ecd7d70.chunk.js",
-    "main.js.map": "/static/js/main.5ecd7d70.chunk.js.map",
+    "main.css": "/static/css/main.7affb121.chunk.css",
+    "main.js": "/static/js/main.b0529a23.chunk.js",
+    "main.js.map": "/static/js/main.b0529a23.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.e2245167.js",
     "runtime-main.js.map": "/static/js/runtime-main.e2245167.js.map",
     "static/css/2.5f50da12.chunk.css": "/static/css/2.5f50da12.chunk.css",
-    "static/js/2.fb7b1efe.chunk.js": "/static/js/2.fb7b1efe.chunk.js",
-    "static/js/2.fb7b1efe.chunk.js.map": "/static/js/2.fb7b1efe.chunk.js.map",
+    "static/js/2.34336390.chunk.js": "/static/js/2.34336390.chunk.js",
+    "static/js/2.34336390.chunk.js.map": "/static/js/2.34336390.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.be1afe7f422bcb4709147114923e55e9.js": "/precache-manifest.be1afe7f422bcb4709147114923e55e9.js",
+    "precache-manifest.6165a616d79372c5910ad8347780dd6d.js": "/precache-manifest.6165a616d79372c5910ad8347780dd6d.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.5f50da12.chunk.css.map": "/static/css/2.5f50da12.chunk.css.map",
-    "static/css/main.8bebded2.chunk.css.map": "/static/css/main.8bebded2.chunk.css.map",
-    "static/js/2.fb7b1efe.chunk.js.LICENSE.txt": "/static/js/2.fb7b1efe.chunk.js.LICENSE.txt",
-    "static/js/main.5ecd7d70.chunk.js.LICENSE.txt": "/static/js/main.5ecd7d70.chunk.js.LICENSE.txt",
+    "static/css/main.7affb121.chunk.css.map": "/static/css/main.7affb121.chunk.css.map",
+    "static/js/2.34336390.chunk.js.LICENSE.txt": "/static/js/2.34336390.chunk.js.LICENSE.txt",
+    "static/js/main.b0529a23.chunk.js.LICENSE.txt": "/static/js/main.b0529a23.chunk.js.LICENSE.txt",
     "static/media/6464Img.svg": "/static/media/6464Img.f1a69fda.svg",
     "static/media/app.scss": "/static/media/slick.f97e3bbf.svg",
     "static/media/brown-shoe.jpeg": "/static/media/brown-shoe.8881a235.jpeg",
@@ -104,8 +104,8 @@
   "entrypoints": [
     "static/js/runtime-main.e2245167.js",
     "static/css/2.5f50da12.chunk.css",
-    "static/js/2.fb7b1efe.chunk.js",
-    "static/css/main.8bebded2.chunk.css",
-    "static/js/main.5ecd7d70.chunk.js"
+    "static/js/2.34336390.chunk.js",
+    "static/css/main.7affb121.chunk.css",
+    "static/js/main.b0529a23.chunk.js"
   ]
 }
