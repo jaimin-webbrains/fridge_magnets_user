@@ -1,6 +1,6 @@
 import { api, handleResponse, handleError } from "./apiServices";
 
-export const getProducts = token =>
+export const getProducts = (token) =>
   api(token)
     .get("/products/list")
     .then(handleResponse)
@@ -8,7 +8,18 @@ export const getProducts = token =>
 
 export const getEditProduct = (token, data) =>
   api(token)
-    .post("/product/Edit",data)
+    .post("/product/Edit", data)
+    .then(handleResponse)
+    .catch(handleError);
+
+export const getSlugByProduct = (token, slug) =>
+  api(token)
+    .get(`/product/getProduct/${slug}`)
+    .then(handleResponse)
+    .catch(handleError);
+export const getSlugByProduct1 = (token, slug) =>
+  api(token)
+    .get(`/product/printing-products/${slug}`)
     .then(handleResponse)
     .catch(handleError);
 
@@ -18,7 +29,7 @@ export const addProduct = (token, data) =>
     .then(handleResponse)
     .catch(handleError);
 
-export const updateProduct = (token, id,data) =>
+export const updateProduct = (token, id, data) =>
   api(token)
     .put(`/products/update/${id}`, data)
     .then(handleResponse)

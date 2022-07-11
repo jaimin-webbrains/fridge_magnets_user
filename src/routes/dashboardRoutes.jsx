@@ -1,3 +1,4 @@
+import SideBarUser from "components/sidebar/SideBarUser";
 import DashboardLayout from "layouts/DashboardLayout";
 import Intro from "views/Intro";
 import products from "views/pages/AddProducts/products";
@@ -8,6 +9,9 @@ import categories from "views/pages/Categories/categories";
 import categoriesAddModal from "views/pages/Categories/categoriesAddModal";
 import colors from "views/pages/Colors/colors";
 import colorsAddModal from "views/pages/Colors/colorsAddModal";
+import content from "views/pages/content/content";
+import Content from "views/pages/content/content";
+import Size from "views/pages/content/size";
 import markers from "views/pages/Markers/markers";
 import markersAddModal from "views/pages/Markers/markersAddModal";
 import papers from "views/pages/Papers/papers";
@@ -17,30 +21,33 @@ import sizes from "views/pages/Sizes/sizes";
 import sizesAddModal from "views/pages/Sizes/sizesAddModal";
 
 const dashboardRoutes = [
-  { path: "/intro", component: DashboardLayout },
-  { path: "/categories", component: categories },
-  { path: "/categories/add", component: categoriesAddModal },
+  { path: "/", component: DashboardLayout },
+  { path: "/categories/:slug", component: Content },
+  { path: "/categories/size", component: Size },
+  { path: "/printing-products/:slug", component: content },
 
-  { path: "/brands", component: brands },
-  { path: "/brands/add", component: brandsAddModal },
+  // { path: "/categories/add", component: categoriesAddModal },
 
-  { path: "/colors", component: colors },
-  { path: "/colors/add", component: colorsAddModal },
+  // { path: "/brands", component: brands },
+  // { path: "/brands/add", component: brandsAddModal },
 
-  { path: "/papers", component: papers },
-  { path: "/papers/add", component: papersAddModal },
+  // { path: "/colors", component: colors },
+  // { path: "/colors/add", component: colorsAddModal },
 
-  { path: "/sizes", component: sizes },
-  { path: "/sizes/add", component: sizesAddModal },
+  // { path: "/papers", component: papers },
+  // { path: "/papers/add", component: papersAddModal },
 
-  { path: "/markers", component: markers },
-  { path: "/markers/add", component: markersAddModal },
+  // { path: "/sizes", component: sizes },
+  // { path: "/sizes/add", component: sizesAddModal },
 
-  { path: "/Products", component: products },
-  { path: "/Products/add", component: productsAddForm },
-  { path: "/Products/edit/:id", component: productsAddForm },
+  // { path: "/markers", component: markers },
+  // { path: "/markers/add", component: markersAddModal },
 
-  { path: "/Settings", component: settings },
+  // { path: "/Products", component: products },
+  // { path: "/Products/add", component: productsAddForm },
+  // { path: "/Products/edit/:id", component: productsAddForm },
+
+  // { path: "/Settings", component: settings },
 ];
 
 export default dashboardRoutes;

@@ -92,18 +92,24 @@ nav ul li a{
     margin: 0 0 20px;
 }
 .footer{
-  color: #999fa4 !IMPORTANT;
+  color: #999fa4 !important;
   background-color: #333f48;
   /* padding: 10px 50px; */
   font-size: 15px;
   padding: 35px 120px 10px 120px;
+}
+.footer a{
+  color: #999fa4 !important;
+}
+.footer a:hover{
+  text-decoration: none;
 }
 .footer .footer-menu1 li{
   font-family: Poppins,Helvetica,Arial,sans-serif !important;
   font-weight: 600;
   margin-bottom: 20px;
     margin-left: 0;
-    float: left !important;
+    /* float: left !important; */
     font-size: 14px;
     display: flex;
     align-items: center;
@@ -188,6 +194,14 @@ nav ul li a{
   margin-bottom: 40px !important;
   color: #ed1b20;
   font-weight: 600 !important;
+  text-transform: uppercase;
+}
+.sms-title1{
+  font-family: Poppins,Helvetica,Arial,sans-serif;;
+  /* margin: 0px auto 5px !important; */
+  margin-bottom: 13px !important;
+  color: #ed1b20;
+  font-weight: 500 !important;
   text-transform: uppercase;
 }
 .main-title{
@@ -275,8 +289,21 @@ nav ul li a{
   padding-left: 10px !important;
  }
 }
+@media screen and (max-width: 1126px) and (min-width: 990px)   {
+  .footer{
+    padding: 35px 50px 10px 50px;
+  }
+  .map{
+    width: 230px !important;
+    /* height: 0px !important; */
+  }
+ }
 
 @media only screen and (max-width: 600px) {
+  .map{
+    width: 230px !important;
+    /* height: 0px !important; */
+  }
   .title h3{
     font-size: 20px;
   }

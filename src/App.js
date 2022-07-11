@@ -40,7 +40,7 @@ const App = (props) => {
             <Provider store={store}>
               <PersistGate loading={null} persistor={persistor}>
                 {/*Start layout routes */}
-                <BrowserRouter basename='/fridge-magnets'>
+                <BrowserRouter basename='/fridge_magnets'>
                   <Router history={history}>
                     <Switch>
                       <Route

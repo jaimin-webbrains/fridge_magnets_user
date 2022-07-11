@@ -10,7 +10,11 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import CreatableSelect from "react-select/creatable";
 
-import { addProduct, getEditProduct, updateProduct } from "services/productServices";
+import {
+  addProduct,
+  getEditProduct,
+  updateProduct,
+} from "services/productServices";
 import { getCategories, getParentCategories } from "services/categoryServices";
 import { getBrands } from "services/brandServices";
 import { getColors } from "services/colorServices";
@@ -38,11 +42,11 @@ const ProductsAddModal = (props) => {
     handleBlur,
     errors,
     touched,
-    submitCount
+    submitCount,
   } = props;
 
-  const { id }= useParams()
-  console.log("values",values)
+  const { id } = useParams();
+  console.log("values", values);
   //USESTATE
 
   // const [inputValues, setInputValues] = useState({
@@ -148,21 +152,18 @@ const ProductsAddModal = (props) => {
     });
   };
 
-  const get_Product_list = async() => {
+  const get_Product_list = async () => {
+    const id_data = { id: id };
 
-    const id_data = {id:id}
-    
-    await getEditProduct(token,id_data).then((data) => {
+    await getEditProduct(token, id_data).then((data) => {
       if (data.success) {
         success();
-        setValues(data.data[0])       
-        
+        setValues(data.data[0]);
       } else {
         error(data.message);
       }
     });
-    
-  }
+  };
 
   const Error = (props) => {
     const field1 = props.field;
@@ -214,16 +215,15 @@ const ProductsAddModal = (props) => {
       color_id: values.color_id,
       size_id: values.size_id,
       paper_type_id: values.paper_type_id,
-      marker_id: values.marker_id
+      marker_id: values.marker_id,
     };
     if (isValid) {
       fetching();
       id
-        ? updateProduct(token,id,productData).then((data) => {
+        ? updateProduct(token, id, productData).then((data) => {
             if (data.success) {
-              success(data.message);  
-              props.history.push("/products")           
-
+              success(data.message);
+              props.history.push("/products");
             } else {
               error(data.message);
             }
@@ -231,7 +231,7 @@ const ProductsAddModal = (props) => {
         : addProduct(token, productData).then((data) => {
             if (data.success) {
               success(data.message);
-              props.history.push("/products")
+              props.history.push("/products");
             } else {
               error(data.message);
             }
@@ -242,8 +242,7 @@ const ProductsAddModal = (props) => {
   //USEEFFECTS
 
   useEffect(() => {
-    id &&
-    get_Product_list()
+    id && get_Product_list();
     // eslint-disable-next-line
   }, [id]);
 
@@ -252,41 +251,40 @@ const ProductsAddModal = (props) => {
     // eslint-disable-next-line
   }, []);
 
-
-  console.log("values",values)
+  console.log("values", values);
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-12 mb-2">
-          <span className="">{`${id ? "Edit" : "Add"} Product`}</span>
+    <div className='container'>
+      <div className='row'>
+        <div className='col-12 mb-2'>
+          <span className=''>{`${id ? "Edit" : "Add"} Product`}</span>
         </div>
       </div>
 
       {/* ADD PRODUCT */}
 
-      <div className="row">
-        <div className="col-md-4">
-          <div className="form-group">
+      <div className='row'>
+        <div className='col-md-4'>
+          <div className='form-group'>
             <label>
-              Product Name <span className="error-msg">*</span>
+              Product Name <span className='error-msg'>*</span>
             </label>
             <input
-              type="text"
-              className="form-control react-form-input"
-              placeholder="Enter The Product Name"
-              id="product_name"
+              type='text'
+              className='form-control react-form-input'
+              placeholder='Enter The Product Name'
+              id='product_name'
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.product_name}
             />
-            <Error field="product_name" />
+            <Error field='product_name' />
           </div>
         </div>
-        <div className="col-md-4">
-          <div className="form-group">
+        <div className='col-md-4'>
+          <div className='form-group'>
             <label>
-              Parent Category <span className="error-msg">*</span>
+              Parent Category <span className='error-msg'>*</span>
             </label>
             <CreatableSelect
               isClearable
@@ -297,13 +295,13 @@ const ProductsAddModal = (props) => {
               onInputChange={(val) => console.log(val)}
               options={parentCatOptions}
             />
-            <Error field="parent_category_id" />
+            <Error field='parent_category_id' />
           </div>
         </div>
-        <div className="col-md-4">
-          <div className="form-group">
+        <div className='col-md-4'>
+          <div className='form-group'>
             <label>
-              Category <span className="error-msg">*</span>
+              Category <span className='error-msg'>*</span>
             </label>
             <CreatableSelect
               isClearable
@@ -314,97 +312,89 @@ const ProductsAddModal = (props) => {
               onInputChange={(val) => console.log(val)}
               options={categoryOptions}
             />
-            <Error field="category_id" />
+            <Error field='category_id' />
           </div>
         </div>
       </div>
 
       {/* ATTRIBUTES */}
 
-      <div className="row">
-        <div className="col-12 mb-2">
+      <div className='row'>
+        <div className='col-12 mb-2'>
           <span>Attributes</span>
         </div>
 
-        <div className="col-md-3">
-          <div className="form-group">
+        <div className='col-md-3'>
+          <div className='form-group'>
             <label>
-              Color <span className="error-msg">*</span>
+              Color <span className='error-msg'>*</span>
             </label>
             <CreatableSelect
               isClearable
-              value={colorOptions.find(
-                (x) => x.value === values.color_id
-              )}              
+              value={colorOptions.find((x) => x.value === values.color_id)}
               onChange={(val) => setFieldValue("color_id", val.value)}
               onInputChange={(val) => console.log(val)}
               options={colorOptions}
             />
-            <Error field="color_id" />
+            <Error field='color_id' />
           </div>
         </div>
-        <div className="col-md-3">
-          <div className="form-group">
+        <div className='col-md-3'>
+          <div className='form-group'>
             <label>
-              Size <span className="error-msg">*</span>
+              Size <span className='error-msg'>*</span>
             </label>
             <CreatableSelect
               isClearable
-              value={sizeOptions.find(
-                (x) => x.value === values.size_id
-              )}
+              value={sizeOptions.find((x) => x.value === values.size_id)}
               onChange={(val) => setFieldValue("size_id", val.value)}
               onInputChange={(val) => console.log(val)}
               options={sizeOptions}
             />
-            <Error field="size_id" />
+            <Error field='size_id' />
           </div>
         </div>
-        <div className="col-md-3">
-          <div className="form-group">
+        <div className='col-md-3'>
+          <div className='form-group'>
             <label>
-              Paper Type<span className="error-msg">*</span>
+              Paper Type<span className='error-msg'>*</span>
             </label>
             <CreatableSelect
               isClearable
-              value={paperOptions.find(
-                (x) => x.value === values.paper_type_id
-              )}
+              value={paperOptions.find((x) => x.value === values.paper_type_id)}
               onChange={(val) => setFieldValue("paper_type_id", val.value)}
               onInputChange={(val) => console.log(val)}
               options={paperOptions}
             />
-            <Error field="paper_type_id" />
+            <Error field='paper_type_id' />
           </div>
         </div>
-        <div className="col-md-3">
-          <div className="form-group">
+        <div className='col-md-3'>
+          <div className='form-group'>
             <label>
-              Marker <span className="error-msg">*</span>
+              Marker <span className='error-msg'>*</span>
             </label>
             <CreatableSelect
               isClearable
-              value={markerOptions.find(
-                (x) => x.value === values.marker_id
-              )}
+              value={markerOptions.find((x) => x.value === values.marker_id)}
               onChange={(val) => setFieldValue("marker_id", val.value)}
               onInputChange={(val) => console.log(val)}
               options={markerOptions}
             />
-            <Error field="marker_id" />
+            <Error field='marker_id' />
           </div>
         </div>
       </div>
 
       {/* BRANDS */}
 
-      <div className="row mb-2">
-        <div className="col-9 ">
-          Brands <span className="error-msg">*</span>
+      <div className='row mb-2'>
+        <div className='col-9 '>
+          Brands <span className='error-msg'>*</span>
         </div>
-        <div className="col-3 text-center">
+        <div className='col-3 text-center'>
           <button
-            className="btn btn-white border-0"
+            className='btn btn-white border-0'
             onClick={() => {
               values.brands.push({
                 position: values.brands.length + 1,
@@ -421,27 +411,27 @@ const ProductsAddModal = (props) => {
       </div>
       {values.brands !== undefined &&
         values.brands.map((s, k) => (
-          <div className="row">
-            <div className="col-md-3">
+          <div className='row'>
+            <div className='col-md-3'>
               <CreatableSelect
                 isClearable
                 value={brandOptions.find(
                   (x) => x.value === values.brands[k].brand_name
                 )}
-                placeholder="Select or Create Brand"
+                placeholder='Select or Create Brand'
                 onChange={(val) =>
                   setFieldValue(`brands[${k}].brand_id`, val.value)
                 }
                 options={brandOptions}
               />
-              <BrandsError field="brand_name" index={k} />
+              <BrandsError field='brand_name' index={k} />
             </div>
 
-            <div className="col-md-3">
-              <div className="form-group">
+            <div className='col-md-3'>
+              <div className='form-group'>
                 <input
-                  type="file"
-                  className="mr-2"
+                  type='file'
+                  className='mr-2'
                   id={`brands[${k}].brandimgURL`}
                   onBlur={handleBlur}
                   onChange={(e) =>
@@ -449,14 +439,14 @@ const ProductsAddModal = (props) => {
                   }
                 />
               </div>
-              <BrandsError field="brandimgURL" index={k} />
+              <BrandsError field='brandimgURL' index={k} />
             </div>
 
-            <div className="col-md-3">
-              <div className="form-group">
+            <div className='col-md-3'>
+              <div className='form-group'>
                 <input
-                  type="checkbox"
-                  className="mr-2 react-form-input"
+                  type='checkbox'
+                  className='mr-2 react-form-input'
                   checked={s.product_show}
                   id={`brands[${k}].product_show`}
                   onBlur={handleBlur}
@@ -467,16 +457,16 @@ const ProductsAddModal = (props) => {
                 </label>
               </div>
             </div>
-            <div className="col-md-3">
-              <div className="text-center color-black">
+            <div className='col-md-3'>
+              <div className='text-center color-black'>
                 <button
-                  className="btn btn-link  btn-white border-0 react-form-input"
-                  type="button"
+                  className='btn btn-link  btn-white border-0 react-form-input'
+                  type='button'
                   disabled={values.brands.length <= 1}
                   onClick={() => {
-                    console.log("values",values.brands,id)
+                    console.log("values", values.brands, id);
                     // if (id) {
-                      values.deleted_brands.push(values.brands[k]);
+                    values.deleted_brands.push(values.brands[k]);
                     // }
                     values.brands.splice(k, 1);
                     setValues(values);
@@ -491,29 +481,27 @@ const ProductsAddModal = (props) => {
 
       {/* IMAGE */}
 
-      <div className="row">
-        <div className="col-12 mb-2">
+      <div className='row'>
+        <div className='col-12 mb-2'>
           <span>Image</span>
         </div>
       </div>
-      <div className="row">
-        <div className="col-md-6">
+      <div className='row'>
+        <div className='col-md-6'>
           <input
-            type="file"
-            className="mr-2"
-            id="brandimgURL2"
+            type='file'
+            className='mr-2'
+            id='brandimgURL2'
             onBlur={handleBlur}
-            onChange={(e) =>
-              setFieldValue("brandimgURL2", e.target.files[0])
-            }
+            onChange={(e) => setFieldValue("brandimgURL2", e.target.files[0])}
           />
         </div>
-        <div className="col-md-6">
-          <div className="form-group">
+        <div className='col-md-6'>
+          <div className='form-group'>
             <input
-              type="checkbox"
-              className="mr-2 react-form-input"
-              id="productimg2"
+              type='checkbox'
+              className='mr-2 react-form-input'
+              id='productimg2'
               onBlur={handleBlur}
               onChange={handleChange}
             />
@@ -525,12 +513,12 @@ const ProductsAddModal = (props) => {
       </div>
 
       {/* BUTTON */}
-      <div className="row">
-        <div className="col-12 text-center">
+      <div className='row'>
+        <div className='col-12 text-center'>
           <Button
-            className="btn c-primary px-5"
+            className='btn c-primary px-5'
             onClick={(e) => handleProductSubmit(e)}
-            type="button"
+            type='button'
             disabled={isFetching}
           >
             {id ? "Edit" : "Add"}
