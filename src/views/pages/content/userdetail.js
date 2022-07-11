@@ -5,6 +5,7 @@ import { useHistory, withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import AuthActions from "redux/auth/actions";
+import { addInquiry } from "services/inquiryServices";
 const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
 
@@ -41,19 +42,42 @@ function Userdetail(props) {
       return <span />;
     }
   };
-  const onsubmitdata = () => {
+
+  const onsubmitdata = async (e) => {
+    e.preventDefault();
+    console.log("values", values);
+    handleSubmit();
+    // setAlldata({
+    //   ...alldata,
+    //   name: values.name,
+    //   company: values.company,
+    //   mobile: values.mobile_no,
+    //   postcode: values.delivery_postcode,
+    //   email: values.email,
+    // });
+    let data = {
+      ...alldata,
+      name: values.name,
+      company: values.company,
+      mobile: values.mobile_no,
+      postcode: values.delivery_postcode,
+      email: values.email,
+    };
     if (isValid) {
-      setAlldata({
-        ...alldata,
-        name: values.name,
-        company: values.company,
-        mobile_no: values.mobile_no,
-        delivery_postcode: values.delivery_postcode,
-        email: values.email,
+      fetching();
+
+      await addInquiry(token, data).then((data) => {
+        if (data.success) {
+          success(data.message);
+          props.history.push("/products");
+        } else {
+          error(data.message);
+        }
       });
     }
   };
-  console.log(values, "jhhj");
+
+  console.log(alldata, "alldataalldata");
   const { step, setStep } = props.data;
   return (
     <>
@@ -153,8 +177,9 @@ function Userdetail(props) {
             <button
               type='button'
               class='btn btn-primary m-2'
-              onClick={() => {
-                onsubmitdata();
+              onClick={(e) => {
+                // handleSubmit();
+                onsubmitdata(e);
               }}
             >
               Get Price

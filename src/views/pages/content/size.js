@@ -80,7 +80,7 @@ function Size(props) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setAlldata({ size: "Small Business Card 70 by 50mm" });
+                  setAlldata({ category: "Small Business Card 70 by 50mm" });
                 }}
               />
               Small Business Card 70 by 50mm
@@ -92,7 +92,7 @@ function Size(props) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setAlldata({ size: "A6 magnet 148mm by 105mm" });
+                  setAlldata({ category: "A6 magnet 148mm by 105mm" });
                 }}
               />
               A6 magnet 148mm by 105mm
@@ -104,7 +104,7 @@ function Size(props) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setAlldata({ size: "DL magnet 210 by 97mm" });
+                  setAlldata({ category: "DL magnet 210 by 97mm" });
                 }}
               />
               DL magnet 210 by 97mm
@@ -116,7 +116,7 @@ function Size(props) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setAlldata({ size: "DLS 168mm by 78.5mm" });
+                  setAlldata({ category: "DLS 168mm by 78.5mm" });
                 }}
               />
               DLS 168mm by 78.5mm
@@ -128,7 +128,7 @@ function Size(props) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setAlldata({ size: "Business Card Magnet 90mm by 55mm" });
+                  setAlldata({ category: "Business Card Magnet 90mm by 55mm" });
                 }}
               />
               Business Card Magnet 90mm by 55mm
@@ -140,7 +140,7 @@ function Size(props) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setAlldata({ size: "Car" });
+                  setAlldata({ category: "Car" });
                 }}
               />
               Car
@@ -152,7 +152,7 @@ function Size(props) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setAlldata({ size: "House" });
+                  setAlldata({ category: "House" });
                 }}
               />
               House
@@ -164,7 +164,7 @@ function Size(props) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setAlldata({ size: "Light Bulb" });
+                  setAlldata({ category: "Light Bulb" });
                 }}
               />
               Light Bulb
@@ -176,7 +176,7 @@ function Size(props) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setAlldata({ size: "Truck" });
+                  setAlldata({ category: "Truck" });
                 }}
               />
               Truck
@@ -188,7 +188,7 @@ function Size(props) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setAlldata({ size: "Van" });
+                  setAlldata({ category: "Van" });
                 }}
               />
               Van
@@ -200,7 +200,7 @@ function Size(props) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setAlldata({ size: "Tooth" });
+                  setAlldata({ category: "Tooth" });
                 }}
               />
               Tooth
@@ -212,7 +212,7 @@ function Size(props) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setAlldata({ size: "Love Heart" });
+                  setAlldata({ category: "Love Heart" });
                 }}
               />
               Love Heart
@@ -224,7 +224,7 @@ function Size(props) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setAlldata({ size: "Others" });
+                  setAlldata({ category: "Others" });
                 }}
               />
               Others
@@ -238,7 +238,7 @@ function Size(props) {
               <textarea
                 className='form-control'
                 onChange={(e) => {
-                  setAlldata({ ...alldata, explain: e.target.value });
+                  setAlldata({ ...alldata, customer_notes: e.target.value });
                 }}
               ></textarea>
             </div>
@@ -251,7 +251,8 @@ function Size(props) {
                   // style={{ width: "450px" }}
                   onChange={(e) => {
                     // onhandlechange(e);
-                    setAlldata({ ...alldata, quntity: e.target.value });
+
+                    setAlldata({ ...alldata, quantity: e.target.value });
                   }}
                 >
                   <option>500</option>
@@ -281,7 +282,15 @@ function Size(props) {
                   class='btn btn-primary m-2'
                   onClick={() => {
                     setStep(step + 1);
-                    // setAlldata({ ...alldata, quntity: quntity.quntity1 });
+                    if (!alldata.quantity == "") {
+                      setAlldata({ ...alldata, cant_find_your_size: "true" });
+                    } else {
+                      setAlldata({
+                        ...alldata,
+                        quantity: 500,
+                        cant_find_your_size: "true",
+                      });
+                    }
                   }}
                 >
                   Next

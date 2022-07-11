@@ -39,6 +39,7 @@ function Content(props) {
   const [step, setStep] = useState(1);
   const [psize, setPsize] = useState("");
   const [alldata, setAlldata] = useState([
+    // { cant_find_your_size: "false" },
     // {
     //   quntity: "",
     //   artwork: "",
@@ -99,6 +100,11 @@ function Content(props) {
                       onClick={() => {
                         setStep(step + 1);
                         setPsize(val.size);
+                        setAlldata({
+                          ...alldata,
+                          cant_find_your_size: "false",
+                          category: val.name,
+                        });
                         console.log("val", val);
                       }}
                       style={{ cursor: "pointer" }}

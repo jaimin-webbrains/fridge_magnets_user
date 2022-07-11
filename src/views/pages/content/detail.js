@@ -2,12 +2,11 @@ import React, { useState } from "react";
 
 export default function Detail(prop) {
   const { step, setStep, product, alldata, setAlldata, psize } = prop.data;
-  const [quntity, setQuntity] = useState({ quntity1: "" });
+  const [quntity1, setQuntity] = useState({ quantity: "" });
 
   const onhandlechange = (e) => {
-    setQuntity({ quntity1: e.target.value });
+    setQuntity({ quantity: e.target.value });
   };
-
   return (
     <>
       <div className='row wanting'>
@@ -18,6 +17,7 @@ export default function Detail(prop) {
           <div className='my-2'>
             <h4 className='main-title'>How many are you wanting ?</h4>
             <select
+              defaultValue={product[0].product_quantity}
               onChange={(e) => {
                 onhandlechange(e);
               }}
@@ -42,7 +42,17 @@ export default function Detail(prop) {
               class='btn btn-primary m-2'
               onClick={() => {
                 setStep(step + 1);
-                setAlldata({ ...alldata, quntity: quntity.quntity1 });
+                if (quntity1.quantity == "") {
+                  setAlldata({
+                    ...alldata,
+                    quantity: product[0].product_quantity,
+                  });
+                } else {
+                  setAlldata({
+                    ...alldata,
+                    quantity: product[0].product_quantity,
+                  });
+                }
               }}
             >
               Next

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 export default function Artwork(prop) {
   const { step, setStep, alldata, setAlldata, psize } = prop.data;
-  const [artwork, setArtwork] = useState();
-
+  const [artwork1, setArtwork] = useState({ artwork: "" });
+  console.log(alldata, "hghjg");
   return (
     <>
       <div className='row wanting'>
@@ -20,7 +20,9 @@ export default function Artwork(prop) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setArtwork("artwork 1");
+                  setArtwork({
+                    artwork: "Complete artwork supplied by me",
+                  });
                 }}
               />
               I will supply my own artwork
@@ -32,7 +34,9 @@ export default function Artwork(prop) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setArtwork("artwork 2");
+                  setArtwork({
+                    artwork: "I want you to do the artwork",
+                  });
                 }}
               />
               Please create my artwork
@@ -53,7 +57,7 @@ export default function Artwork(prop) {
               class='btn btn-primary m-2'
               onClick={() => {
                 setStep(step + 1);
-                setAlldata({ ...alldata, artwork: artwork });
+                setAlldata({ ...alldata, artwork: artwork1.artwork });
               }}
             >
               Next

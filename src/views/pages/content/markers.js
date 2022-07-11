@@ -21,7 +21,7 @@ export default function Markers(prop) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setAlldata({ ...alldata, markers: "yes" });
+                  setAlldata({ ...alldata, marker: "yes" });
                 }}
               />
               Yes
@@ -33,7 +33,7 @@ export default function Markers(prop) {
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
-                  setAlldata({ ...alldata, markers: "no" });
+                  setAlldata({ ...alldata, marker: "no" });
                 }}
               />
               No
