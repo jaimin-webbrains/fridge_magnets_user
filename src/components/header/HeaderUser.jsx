@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
+
 import "../../assets/css/dashboardlayout.css";
 
 function HeaderUser() {
@@ -35,12 +36,12 @@ function HeaderUser() {
               <div class='collapse navbar-collapse' id='navbarNav'>
                 <ul class='navbar-nav'>
                   <li class='nav-item active'>
-                    <Link class='nav-link' to='/categories/:slug'>
+                    <Link class='nav-link' to='/categorie'>
                       HOME <span class='sr-only'>(current)</span>
                     </Link>
                   </li>
                   <li class='nav-item'>
-                    <Link class='nav-link' to='/categories/:slug'>
+                    <Link class='nav-link' to='/categories'>
                       FRIDGE MAGNETS
                     </Link>
                   </li>

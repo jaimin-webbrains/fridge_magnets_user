@@ -19,12 +19,14 @@ function FooterUser(props) {
         <div className='col-lg-3 col-md-6 col-sm-12'>
           <h2>WHAT WE OFFER</h2>
           <ul className='footer-menu'>
-            <li>FRIDGE MAGNETS</li>
+            <li>
+              <Link to='/categories'>FRIDGE MAGNETS</Link>
+            </li>
             <li>BUSINESS CARD MAGNETS</li>
             <li>CALENDAR MAGNETS</li>
             <li>GRAPHIC DESIGN</li>
             <li>
-              <Link to='/printing-products/:slug'>PRINTING & MORE</Link>
+              <Link to='/printing-products'>PRINTING & MORE</Link>
             </li>
           </ul>
         </div>

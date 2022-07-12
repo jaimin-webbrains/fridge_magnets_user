@@ -74,167 +74,195 @@ function Size(props) {
           </div>
           <div className='row'>
             <div className='label'>
-              <input
-                id='artwork1'
-                type='radio'
-                name='r1'
-                className='mr-1'
-                onChange={(e) => {
-                  setAlldata({ category: "Small Business Card 70 by 50mm" });
-                }}
-              />
-              Small Business Card 70 by 50mm
+              <label htmlFor='r1'>
+                <input
+                  id='r1'
+                  type='radio'
+                  name='r1'
+                  className='mr-1'
+                  onChange={(e) => {
+                    setAlldata({ category: "Small Business Card 70 by 50mm" });
+                  }}
+                />
+                Small Business Card 70 by 50mm
+              </label>
             </div>
             <div className='label'>
-              <input
-                id='artwork2'
-                type='radio'
-                name='r1'
-                className='mr-1'
-                onChange={(e) => {
-                  setAlldata({ category: "A6 magnet 148mm by 105mm" });
-                }}
-              />
-              A6 magnet 148mm by 105mm
+              <label htmlFor='r2'>
+                <input
+                  id='r2'
+                  type='radio'
+                  name='r1'
+                  className='mr-1'
+                  onChange={(e) => {
+                    setAlldata({ category: "A6 magnet 148mm by 105mm" });
+                  }}
+                />
+                A6 magnet 148mm by 105mm
+              </label>
             </div>
             <div className='label'>
-              <input
-                id='artwork2'
-                type='radio'
-                name='r1'
-                className='mr-1'
-                onChange={(e) => {
-                  setAlldata({ category: "DL magnet 210 by 97mm" });
-                }}
-              />
-              DL magnet 210 by 97mm
+              <label htmlFor='r3'>
+                <input
+                  id='r3'
+                  type='radio'
+                  name='r1'
+                  className='mr-1'
+                  onChange={(e) => {
+                    setAlldata({ category: "DL magnet 210 by 97mm" });
+                  }}
+                />
+                DL magnet 210 by 97mm
+              </label>
             </div>
             <div className='label'>
-              <input
-                id='artwork2'
-                type='radio'
-                name='r1'
-                className='mr-1'
-                onChange={(e) => {
-                  setAlldata({ category: "DLS 168mm by 78.5mm" });
-                }}
-              />
-              DLS 168mm by 78.5mm
+              <label htmlFor='r4'>
+                <input
+                  id='r4'
+                  type='radio'
+                  name='r1'
+                  className='mr-1'
+                  onChange={(e) => {
+                    setAlldata({ category: "DLS 168mm by 78.5mm" });
+                  }}
+                />
+                DLS 168mm by 78.5mm
+              </label>
             </div>
             <div className='label'>
-              <input
-                id='artwork2'
-                type='radio'
-                name='r1'
-                className='mr-1'
-                onChange={(e) => {
-                  setAlldata({ category: "Business Card Magnet 90mm by 55mm" });
-                }}
-              />
-              Business Card Magnet 90mm by 55mm
+              <label htmlFor='r5'>
+                <input
+                  id='r5'
+                  type='radio'
+                  name='r1'
+                  className='mr-1'
+                  onChange={(e) => {
+                    setAlldata({
+                      category: "Business Card Magnet 90mm by 55mm",
+                    });
+                  }}
+                />
+                Business Card Magnet 90mm by 55mm
+              </label>
             </div>
             <div className='label'>
-              <input
-                id='artwork2'
-                type='radio'
-                name='r1'
-                className='mr-1'
-                onChange={(e) => {
-                  setAlldata({ category: "Car" });
-                }}
-              />
-              Car
+              <label htmlFor='r6'>
+                <input
+                  id='r6'
+                  type='radio'
+                  name='r1'
+                  className='mr-1'
+                  onChange={(e) => {
+                    setAlldata({ category: "Car" });
+                  }}
+                />
+                Car
+              </label>
             </div>
             <div className='label'>
-              <input
-                id='artwork2'
-                type='radio'
-                name='r1'
-                className='mr-1'
-                onChange={(e) => {
-                  setAlldata({ category: "House" });
-                }}
-              />
-              House
+              <label htmlFor='r7'>
+                <input
+                  id='r7'
+                  type='radio'
+                  name='r1'
+                  className='mr-1'
+                  onChange={(e) => {
+                    setAlldata({ category: "House" });
+                  }}
+                />
+                House
+              </label>
             </div>
             <div className='label'>
-              <input
-                id='artwork2'
-                type='radio'
-                name='r1'
-                className='mr-1'
-                onChange={(e) => {
-                  setAlldata({ category: "Light Bulb" });
-                }}
-              />
-              Light Bulb
+              <label htmlFor='r8'>
+                <input
+                  id='r8'
+                  type='radio'
+                  name='r1'
+                  className='mr-1'
+                  onChange={(e) => {
+                    setAlldata({ category: "Light Bulb" });
+                  }}
+                />
+                Light Bulb
+              </label>
             </div>
             <div className='label'>
-              <input
-                id='artwork2'
-                type='radio'
-                name='r1'
-                className='mr-1'
-                onChange={(e) => {
-                  setAlldata({ category: "Truck" });
-                }}
-              />
-              Truck
+              <label htmlFor='r9'>
+                <input
+                  id='r9'
+                  type='radio'
+                  name='r1'
+                  className='mr-1'
+                  onChange={(e) => {
+                    setAlldata({ category: "Truck" });
+                  }}
+                />
+                Truck
+              </label>
             </div>
             <div className='label'>
-              <input
-                id='artwork2'
-                type='radio'
-                name='r1'
-                className='mr-1'
-                onChange={(e) => {
-                  setAlldata({ category: "Van" });
-                }}
-              />
-              Van
+              <label htmlFor='r10'>
+                <input
+                  id='r10'
+                  type='radio'
+                  name='r1'
+                  className='mr-1'
+                  onChange={(e) => {
+                    setAlldata({ category: "Van" });
+                  }}
+                />
+                Van
+              </label>
             </div>
             <div className='label'>
-              <input
-                id='artwork2'
-                type='radio'
-                name='r1'
-                className='mr-1'
-                onChange={(e) => {
-                  setAlldata({ category: "Tooth" });
-                }}
-              />
-              Tooth
+              <label htmlFor='r11'>
+                <input
+                  id='r11'
+                  type='radio'
+                  name='r1'
+                  className='mr-1'
+                  onChange={(e) => {
+                    setAlldata({ category: "Tooth" });
+                  }}
+                />
+                Tooth
+              </label>
             </div>
             <div className='label'>
-              <input
-                id='artwork2'
-                type='radio'
-                name='r1'
-                className='mr-1'
-                onChange={(e) => {
-                  setAlldata({ category: "Love Heart" });
-                }}
-              />
-              Love Heart
+              <label htmlFor='r12'>
+                <input
+                  id='r12'
+                  type='radio'
+                  name='r1'
+                  className='mr-1'
+                  onChange={(e) => {
+                    setAlldata({ category: "Love Heart" });
+                  }}
+                />
+                Love Heart
+              </label>
             </div>
             <div className='label'>
-              <input
-                id='artwork2'
-                type='radio'
-                name='r1'
-                className='mr-1'
-                onChange={(e) => {
-                  setAlldata({ category: "Others" });
-                }}
-              />
-              Others
+              <label htmlFor='r13'>
+                <input
+                  id='r13'
+                  type='radio'
+                  name='r1'
+                  className='mr-1'
+                  onChange={(e) => {
+                    setAlldata({ category: "Others" });
+                  }}
+                />
+                Others
+              </label>
             </div>
           </div>
           <div className='row title'>
             <h4>Still can't find what you are looking for ?</h4>
           </div>
           <div className='row title mb-4'>
-            <div className='col-8 pl-0'>
+            <div className='col-7 pl-0'>
               <textarea
                 className='form-control'
                 onChange={(e) => {
@@ -244,29 +272,29 @@ function Size(props) {
             </div>
           </div>
           <div className='row wanting'>
-            <div className='col-12 pl-0'>
-              <div className='my-2'>
-                <h4 className='main-title'>How many are you wanting ?</h4>
-                <select
-                  // style={{ width: "450px" }}
-                  onChange={(e) => {
-                    // onhandlechange(e);
+            <div className='col-11 pl-0'>
+              {/* <div className='my-2'> */}
+              <h4 className='main-title'>How many are you wanting ?</h4>
+              <select
+                // style={{ width: "450px" }}
+                onChange={(e) => {
+                  // onhandlechange(e);
 
-                    setAlldata({ ...alldata, quantity: e.target.value });
-                  }}
-                >
-                  <option>500</option>
-                  <option>1000</option>
-                  <option>1500</option>
-                  <option>2000</option>
-                  <option>2500</option>
-                  {/* {product.map((val) => {
+                  setAlldata({ ...alldata, quantity: e.target.value });
+                }}
+              >
+                <option>500</option>
+                <option>1000</option>
+                <option>1500</option>
+                <option>2000</option>
+                <option>2500</option>
+                {/* {product.map((val) => {
           return <option>{val.product_quantity}</option>;
         })} */}
-                </select>
-              </div>
+              </select>
+              {/* </div> */}
             </div>
-            <div className='col-8'>
+            <div className='col-7'>
               <div className='text-center mb-3'>
                 <button
                   type='button'

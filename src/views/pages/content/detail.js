@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 
 export default function Detail(prop) {
-  const { step, setStep, product, alldata, setAlldata, psize } = prop.data;
+  const { step, setStep, product, alldata, setAlldata, pdata } = prop.data;
   const [quntity1, setQuntity] = useState({ quantity: "" });
+
+  const ans = pdata?.pquantity?.split(",");
 
   const onhandlechange = (e) => {
     setQuntity({ quantity: e.target.value });
@@ -11,8 +13,8 @@ export default function Detail(prop) {
     <>
       <div className='row wanting'>
         <div className='col-lg-9 col-md-9 col-sm-12'>
-          <h4 className='p-title'>DL HOUSE SHAPE FRIDGE MAGNETS</h4>
-          <h5>{psize}</h5>
+          <h4 className='p-title'>{pdata.pname}</h4>
+          <h5>{pdata.size}</h5>
           <h3 className='sms-title'>Get An Instant Price By SMS Now</h3>
           <div className='my-2'>
             <h4 className='main-title'>How many are you wanting ?</h4>
@@ -22,8 +24,8 @@ export default function Detail(prop) {
                 onhandlechange(e);
               }}
             >
-              {product.map((val) => {
-                return <option>{val.product_quantity}</option>;
+              {ans.map((val) => {
+                return <option>{val}</option>;
               })}
             </select>
           </div>

@@ -4,12 +4,13 @@ import { getSlugCategories } from "services/categoryServices";
 import NavigationActions from "redux/navigation/actions";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import AuthActions from "redux/auth/actions";
 import { getSlugByProduct, getSlugByProduct1 } from "services/productServices";
 import Detail from "./detail";
 import Artwork from "./artwork";
 import Userdetail from "./userdetail";
+import imageAction from "redux/imageSetting/action";
 const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
 
@@ -31,13 +32,16 @@ function Content(props) {
     touched,
     submitCount,
   } = props;
+  const dispatch = useDispatch();
+
+  const image = imageAction;
   const { slug } = useParams();
   const history = useHistory();
   console.log(history);
   // console.log("hgh", useParams());
   const [product, setProduct] = useState([]);
   const [step, setStep] = useState(1);
-  const [psize, setPsize] = useState("");
+  const [pdata, setPdata] = useState([]);
   const [alldata, setAlldata] = useState([
     // { cant_find_your_size: "false" },
     // {
@@ -79,6 +83,7 @@ function Content(props) {
     getData();
     setStep(1);
   }, [slug]);
+  console.log("fadda", product);
   return (
     <div>
       {step === 1 ? (
@@ -99,12 +104,20 @@ function Content(props) {
                       className='card'
                       onClick={() => {
                         setStep(step + 1);
-                        setPsize(val.size);
+                        setPdata({
+                          size: val.size,
+                          pname: val.product_name,
+                          pquantity: val.product_quantity,
+                          category: val.name,
+                        });
                         setAlldata({
                           ...alldata,
                           cant_find_your_size: "false",
                           category: val.name,
+                          size: val.size,
                         });
+                        // dispatch({ type: "image" });
+                        // image("val.product_image");
                         console.log("val", val);
                       }}
                       style={{ cursor: "pointer" }}
@@ -121,7 +134,7 @@ function Content(props) {
                       </div>
                       <div className='card-body  text-center'>
                         <h5 className='card-title'>{val.product_name}</h5>
-                        <h5>{val.name}</h5>
+                        <h5>{val.parent_Category_name}</h5>
                       </div>
                     </div>
                   </div>
@@ -224,11 +237,11 @@ function Content(props) {
           ) : null}
         </>
       ) : step === 2 ? (
-        <Detail data={{ setStep, step, product, alldata, setAlldata, psize }} />
+        <Detail data={{ setStep, step, product, alldata, setAlldata, pdata }} />
       ) : step === 3 ? (
-        <Artwork data={{ setStep, step, alldata, setAlldata, psize }} />
+        <Artwork data={{ setStep, step, alldata, setAlldata, pdata }} />
       ) : (
-        <Userdetail data={{ setStep, step, alldata, setAlldata, psize }} />
+        <Userdetail data={{ setStep, step, alldata, setAlldata, pdata }} />
       )}
     </div>
   );
@@ -242,9 +255,14 @@ const mapStateToProps = (state) => {
     isFetching: state.navigation.isFetching,
   };
 };
+// const mapDispatchToProps = () => {};
 
 export default compose(
   withRouter,
   // enhancer,
-  connect(mapStateToProps, { success, error, fetching, setuser })
+  connect(
+    mapStateToProps,
+    { success, error, fetching, setuser }
+    // mapDispatchToProps
+  )
 )(Content);

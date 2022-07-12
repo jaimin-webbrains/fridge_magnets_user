@@ -89,7 +89,7 @@ function SideBarUser(props) {
     <>
       <div className='col-lg-3 col-md-12 col-sm-12 mb-3'>
         <div className='menu'>
-          {!history.location.pathname.includes("/printing-products/") ? (
+          {!history.location.pathname.includes("/printing-products") ? (
             <>
               {parentcate.map((val, ind) => {
                 var toggleid = `toggle${ind}`;
@@ -131,7 +131,7 @@ function SideBarUser(props) {
                   </>
                 ) : (
                   <>
-                    <div
+                    {/* <div
                       onClick={() => {
                         setflag(!flag);
                       }}
@@ -161,7 +161,7 @@ function SideBarUser(props) {
                           </ul>
                         </Card>
                       </UncontrolledCollapse>
-                    </div>
+                    </div> */}
                   </>
                 );
               })}
