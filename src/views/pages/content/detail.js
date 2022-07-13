@@ -9,6 +9,7 @@ export default function Detail(prop) {
   const onhandlechange = (e) => {
     setQuntity({ quantity: e.target.value });
   };
+  console.log(pdata, "hhkh");
   return (
     <>
       <div className='row wanting'>
@@ -59,6 +60,9 @@ export default function Detail(prop) {
             >
               Next
             </button>
+          </div>
+          <div className='my-4 '>
+            <span>{pdata.description}</span>
           </div>
         </div>
       </div>

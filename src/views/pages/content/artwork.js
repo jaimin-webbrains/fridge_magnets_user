@@ -73,6 +73,9 @@ export default function Artwork(prop) {
               Next
             </button>
           </div>
+          <div className='my-4 '>
+            <span>{pdata.description}</span>
+          </div>
         </div>
       </div>
     </>

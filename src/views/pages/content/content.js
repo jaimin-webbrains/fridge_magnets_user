@@ -6,13 +6,21 @@ import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { connect, useDispatch } from "react-redux";
 import AuthActions from "redux/auth/actions";
-import { getSlugByProduct, getSlugByProduct1 } from "services/productServices";
+import {
+  getBrandByProduct,
+  getBrandByProduct1,
+  getSlugByProduct,
+  getSlugByProduct1,
+} from "services/productServices";
 import Detail from "./detail";
 import Artwork from "./artwork";
 import Userdetail from "./userdetail";
-import imageAction from "redux/imageSetting/action";
+import productimageAction from "redux/productimage/actions";
+import SideBarUser from "components/sidebar/SideBarUser";
 const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
+
+const { image } = productimageAction;
 
 function Content(props) {
   const {
@@ -34,12 +42,12 @@ function Content(props) {
   } = props;
   const dispatch = useDispatch();
 
-  const image = imageAction;
-  const { slug } = useParams();
+  const { slug, brand } = useParams();
   const history = useHistory();
-  console.log(history);
   // console.log("hgh", useParams());
   const [product, setProduct] = useState([]);
+  const [productBrand, setProductBrand] = useState([]);
+
   const [step, setStep] = useState(1);
   const [pdata, setPdata] = useState([]);
   const [alldata, setAlldata] = useState([
@@ -58,22 +66,36 @@ function Content(props) {
   const getData = async () => {
     if (!history.location.pathname.includes("/printing-products")) {
       await getSlugByProduct(token, slug).then((data) => {
-        console.log(data.data, "jgjg");
         if (data.success) {
           setProduct(data.data);
           success();
         } else {
-          error(data.message);
+          error();
+        }
+      });
+      await getBrandByProduct(token, slug, brand).then((data) => {
+        if (data.success) {
+          setProductBrand(data.data);
+          success();
+        } else {
+          error();
         }
       });
     } else {
       await getSlugByProduct1(token, slug).then((data) => {
-        console.log("jgjg");
+        if (data.success) {
+          setProductBrand(data.data);
+          success();
+        } else {
+          error();
+        }
+      });
+      await getBrandByProduct1(token, slug, brand).then((data) => {
         if (data.success) {
           setProduct(data.data);
           success();
         } else {
-          error(data.message);
+          error();
         }
       });
     }
@@ -83,7 +105,7 @@ function Content(props) {
     getData();
     setStep(1);
   }, [slug]);
-  console.log("fadda", product);
+  console.log(product, "jjh");
   return (
     <div>
       {step === 1 ? (
@@ -96,51 +118,104 @@ function Content(props) {
             </h4>
           </div>
           <div className='row mb-3 mycard'>
-            {product.map((val) => {
-              return val.show_on_home_page === 1 ? (
-                <>
-                  <div className='col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-4'>
-                    <div
-                      className='card'
-                      onClick={() => {
-                        setStep(step + 1);
-                        setPdata({
-                          size: val.size,
-                          pname: val.product_name,
-                          pquantity: val.product_quantity,
-                          category: val.name,
-                        });
-                        setAlldata({
-                          ...alldata,
-                          cant_find_your_size: "false",
-                          category: val.name,
-                          size: val.size,
-                        });
-                        // dispatch({ type: "image" });
-                        // image("val.product_image");
-                        console.log("val", val);
-                      }}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <img
-                        className='card-img-top'
-                        src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${val?.product_image}`}
-                        alt='Card image cap'
-                        width='280px'
-                        height='90%'
-                      />
-                      <div className='prdsize'>
-                        <p>{val.size}</p>
+            {!history.location.pathname.includes(`/${slug}/${brand}`) ? (
+              <>
+                {product.map((val) => {
+                  return val.show_on_home_page === 1 ? (
+                    <>
+                      <div className='col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-4'>
+                        <div
+                          className='card'
+                          onClick={() => {
+                            setStep(step + 1);
+                            setPdata({
+                              size: val.size,
+                              pname: val.product_name,
+                              pquantity: val.product_quantity,
+                              category: val.name,
+                              description: val.description,
+                            });
+                            setAlldata({
+                              ...alldata,
+                              cant_find_your_size: "false",
+                              category: val.name,
+                              size: val.size,
+                            });
+                            // dispatch({ type: "image" });
+                            // image(val.product_image);
+                          }}
+                          style={{ cursor: "pointer" }}
+                        >
+                          <img
+                            className='card-img-top'
+                            src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${val?.product_image}`}
+                            alt='Card image cap'
+                            width='280px'
+                            height='90%'
+                          />
+                          <div className='prdsize'>
+                            <p>{val.size}</p>
+                          </div>
+                          <div className='card-body  text-center'>
+                            <h5 className='card-title'>{val.product_name}</h5>
+                            <h5>{val.parent_category_name}</h5>
+                          </div>
+                        </div>
                       </div>
-                      <div className='card-body  text-center'>
-                        <h5 className='card-title'>{val.product_name}</h5>
-                        <h5>{val.parent_Category_name}</h5>
+                    </>
+                  ) : null;
+                })}
+              </>
+            ) : (
+              <>
+                {productBrand.map((val) => {
+                  return (
+                    <>
+                      <div className='col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-4'>
+                        <div
+                          className='card'
+                          onClick={() => {
+                            setStep(step + 1);
+                            setPdata({
+                              size: val.size,
+                              pname: val.product_name,
+                              pquantity: val.product_quantity,
+                              category: val.name,
+                              description: val.description,
+                            });
+                            setAlldata({
+                              ...alldata,
+                              cant_find_your_size: "false",
+                              category: val.name,
+                              size: val.size,
+                            });
+                            // dispatch({ type: "image" });
+                            // image(val.product_image);
+                          }}
+                          style={{ cursor: "pointer" }}
+                        >
+                          <img
+                            className='card-img-top'
+                            src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${val?.brandimg}`}
+                            alt='Card image cap'
+                            width='280px'
+                            height='90%'
+                          />
+                          <div className='prdsize'>
+                            <p>{val.size}</p>
+                          </div>
+                          <div className='card-body  text-center'>
+                            <h5 className='card-title'>{val.product_name}</h5>
+                            <h5>{val.parent_category_name}</h5>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </>
-              ) : null;
-            })}
+                    </>
+                  );
+                })}
+              </>
+            )}
+
             {/* <div className='col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-4'>
           <div className='card'>
             <img

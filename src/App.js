@@ -40,27 +40,25 @@ const App = (props) => {
             <Provider store={store}>
               <PersistGate loading={null} persistor={persistor}>
                 {/*Start layout routes */}
-                <BrowserRouter basename='/fridge_magnets'>
-                  <Router history={history}>
-                    <Switch>
-                      <Route
-                        exact
-                        path='/'
-                        render={() => <Redirect to='/intro' />}
-                      />
-                      {layoutRoutes.map((prop, key) => {
-                        return (
-                          <Route
-                            path={prop.path}
-                            component={prop.component}
-                            key={key}
-                            history={history}
-                          />
-                        );
-                      })}
-                    </Switch>
-                  </Router>
-                </BrowserRouter>
+                <Router history={history}>
+                  <Switch>
+                    <Route
+                      exact
+                      path='/'
+                      render={() => <Redirect to='/intro' />}
+                    />
+                    {layoutRoutes.map((prop, key) => {
+                      return (
+                        <Route
+                          path={prop.path}
+                          component={prop.component}
+                          key={key}
+                          history={history}
+                        />
+                      );
+                    })}
+                  </Switch>
+                </Router>
                 <ToastContainer
                   position='top-right'
                   autoClose={5000}

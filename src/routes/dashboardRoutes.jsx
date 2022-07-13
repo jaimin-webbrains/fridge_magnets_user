@@ -1,6 +1,7 @@
 import SideBarUser from "components/sidebar/SideBarUser";
 import DashboardLayout from "layouts/DashboardLayout";
 import Intro from "views/Intro";
+import About_us from "views/pages/AboutUs/about_us";
 import products from "views/pages/AddProducts/products";
 import productsAddForm from "views/pages/AddProducts/productsAddForm";
 import brands from "views/pages/brands/brands";
@@ -14,6 +15,7 @@ import Content from "views/pages/content/content";
 import Size from "views/pages/content/size";
 import markers from "views/pages/Markers/markers";
 import markersAddModal from "views/pages/Markers/markersAddModal";
+import News from "views/pages/News/news";
 import papers from "views/pages/Papers/papers";
 import papersAddModal from "views/pages/Papers/papersAddModal";
 import settings from "views/pages/Settings/settings";
@@ -25,6 +27,12 @@ const dashboardRoutes = [
   { path: "/categories/:slug", component: Content },
   { path: "/categories/size", component: Size },
   { path: "/printing-products/:slug", component: content },
+
+  { path: "/categories/:slug/:brand", component: Content },
+  { path: "/printing-products/:slug/:brand", component: content },
+
+  { path: "/news", component: News },
+  { path: "/about-us", component: About_us },
 
   // { path: "/categories/add", component: categoriesAddModal },
 

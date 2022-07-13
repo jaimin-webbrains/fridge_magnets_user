@@ -67,10 +67,8 @@ function SideBarUser(props) {
       const subcat = data.data.filter((val) => {
         return val.parent_id !== 0;
       });
-      console.log(ans, "hgfhf");
       setparentcate(ans);
       setsubcate(subcat);
-      console.log(subcat, "hghg");
 
       if (data.success) {
         success();

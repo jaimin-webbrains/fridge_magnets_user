@@ -36,7 +36,7 @@ function HeaderUser() {
               <div class='collapse navbar-collapse' id='navbarNav'>
                 <ul class='navbar-nav'>
                   <li class='nav-item active'>
-                    <Link class='nav-link' to='/categorie'>
+                    <Link class='nav-link' to='/categories'>
                       HOME <span class='sr-only'>(current)</span>
                     </Link>
                   </li>
@@ -51,14 +51,14 @@ function HeaderUser() {
                     </a>
                   </li>
                   <li class='nav-item'>
-                    <a class='nav-link' href='#'>
+                    <Link class='nav-link' to='/news'>
                       NEWS
-                    </a>
+                    </Link>
                   </li>
                   <li class='nav-item'>
-                    <a class='nav-link' href='#'>
+                    <Link className='nav-link' to='/about-us'>
                       ABOUT US
-                    </a>
+                    </Link>
                   </li>
                   <li class='nav-item'>
                     <a class='nav-link' href='#'>

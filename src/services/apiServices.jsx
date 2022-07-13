@@ -32,7 +32,7 @@ export const handleResponse = (res) => {
 };
 
 export const handleError = (err) => {
-  if (err.response?.status === 401) {
+  if (err?.response?.status === 401) {
     localStorage.setItem("isLogin", false);
     localStorage.setItem("accessToken", null);
     document.cookie = document.cookie = `token= ;SameSite=strict;max-age=0}`;
@@ -40,5 +40,5 @@ export const handleError = (err) => {
       window.location = "/login";
     }
   }
-  return err.response.data;
+  return err?.response?.data;
 };

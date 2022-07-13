@@ -23,6 +23,17 @@ export const getSlugByProduct1 = (token, slug) =>
     .then(handleResponse)
     .catch(handleError);
 
+export const getBrandByProduct = (token, slug, brand) =>
+  api(token)
+    .get(`/product/categories/${slug}/${brand}`)
+    .then(handleResponse)
+    .catch(handleError);
+export const getBrandByProduct1 = (token, slug, brand) =>
+  api(token)
+    .get(`/product/printing-products/${slug}/${brand}`)
+    .then(handleResponse)
+    .catch(handleError);
+
 export const addProduct = (token, data) =>
   api(token)
     .post("/products/add", data)
