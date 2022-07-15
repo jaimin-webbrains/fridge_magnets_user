@@ -105,7 +105,7 @@ function NewsDetails(props) {
             </div>
           </div>
         </div>
-        <div className='row detail'>
+        {/* <div className='row detail'>
           <div className='col-12'>
             <h4 className='title-mb'>Leave a Comment</h4>
           </div>
@@ -159,7 +159,7 @@ function NewsDetails(props) {
               </div>
             </form>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 import { api, handleResponse, handleError } from "./apiServices";
 
-export const getGallery = (token) =>
+export const getGallery = (token, data) =>
   api(token)
-    .get("/gallerys/list")
+    .post("/gallery/list", data)
     .then(handleResponse)
     .catch(handleError);

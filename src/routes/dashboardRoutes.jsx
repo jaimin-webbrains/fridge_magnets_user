@@ -34,7 +34,7 @@ const dashboardRoutes = [
 
   { path: "/news", component: News },
   { path: "/about-us", component: About_us },
-  { path: "/gallerys", component: Gallery },
+  { path: "/gallery", component: Gallery },
 
   // { path: "/categories/add", component: categoriesAddModal },
 

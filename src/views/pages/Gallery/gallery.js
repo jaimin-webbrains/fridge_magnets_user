@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getGallery } from "services/galleryService";
 import NavigationActions from "redux/navigation/actions";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import AuthActions from "redux/auth/actions";
@@ -31,44 +31,43 @@ function Gallery(props) {
   } = props;
 
   const [parentcate, setparentcate] = useState([]);
-  const [subcate, setsubcate] = useState([]);
+  const [catvalue, setcatvalue] = useState("");
+  const [photos, setphotos] = useState([]);
+  const [cate, setcat] = useState([]);
 
-  const getData = async () => {
+  const getcategarise = async () => {
     await getCategories(token).then((data) => {
       console.log(data.data, "jjhh");
-      // const ans = data.data.filter((val) => {
-      //   return val.parent_id === 0;
-      // });
-      // const subcat = data.data.filter((val) => {
-      //   return val.parent_id !== 0;
-      // });
-      // setparentcate(ans);
-      // setsubcate(subcat);
+
       setparentcate(data.data);
       if (data.success) {
         success();
-        // setCategoryOptions(
-        //   data.data.map((val) => ({ value: val.id, label: val.name }))
-        // );
       } else {
         error();
       }
     });
-    await getGallery(token).then((data) => {
+  };
+  useEffect(() => {
+    getcategarise();
+  }, []);
+
+  const getData = async () => {
+    var cat_data = { category_name: catvalue };
+
+    await getGallery(token, { data: catvalue }).then((data) => {
       if (data.success) {
         console.log("hgjj", data.data);
-        // setSetting(data.data[0]);
+        setphotos(data.data);
         // success();
       } else {
         // error();
       }
     });
   };
-  console.log(parentcate, subcate, "nkhkh");
-
   useEffect(() => {
     getData();
-  }, []);
+  }, [catvalue]);
+  console.log("cat", cate);
   return (
     <>
       <div className='row'>
@@ -76,7 +75,8 @@ function Gallery(props) {
         <select
           className='sstyle'
           onChange={(e) => {
-            console.log(e.target.value, "ggygy");
+            setcatvalue(e.target.value);
+            setcat(e.target.value.replaceAll(" ", "-"));
           }}
         >
           {parentcate.map((val) => {
@@ -90,14 +90,29 @@ function Gallery(props) {
         {/* </div> */}
       </div>
       <div className='row'>
-        <div className='col-lg-6 col-md-6 col-sm-12'>
-          <h3 className='h3style'>Gallery page</h3>
+        <div className='col-lg-8 col-md-6 col-sm-12'>
+          <h3 className='h3style'>{catvalue}</h3>
         </div>
-        <div className='col-lg-6 col-md-6 col-sm-12'>
-          <button>Get a Price</button>
+        <div className='col-lg-4 col-md-6 col-sm-12'>
+          <Link to={`/categories/${cate}`}>Get a Price</Link>
         </div>
       </div>
-      <div className='row'>{/* <div className='b-gallery'></div> */}</div>
+      <div className='row'>
+        {photos?.map((val) => {
+          return (
+            <>
+              <div className='col-6'>
+                <div className=''>
+                  <img
+                    src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${val.product_Images}`}
+                    className='myimgstyle'
+                  />
+                </div>
+              </div>
+            </>
+          );
+        })}
+      </div>
     </>
   );
 }

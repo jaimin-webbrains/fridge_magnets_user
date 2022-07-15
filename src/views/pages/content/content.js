@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useLocation, useParams } from "react-router-dom";
 import { getSlugCategories } from "services/categoryServices";
 import NavigationActions from "redux/navigation/actions";
 import { withRouter } from "react-router-dom";
@@ -44,6 +44,7 @@ function Content(props) {
 
   const { slug, brand } = useParams();
   const history = useHistory();
+  const location = useLocation();
   // console.log("hgh", useParams());
   const [product, setProduct] = useState([]);
   const [productBrand, setProductBrand] = useState([]);
