@@ -106,7 +106,7 @@ function Content(props) {
   useEffect(() => {
     getData();
     setStep(1);
-  }, [slug]);
+  }, [location]);
 
   useEffect(() => {
     step === 1 && dispatch(image());

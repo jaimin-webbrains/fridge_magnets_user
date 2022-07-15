@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Detail(prop) {
   const { step, setStep, product, alldata, setAlldata, pdata } = prop.data;
   const [quntity1, setQuntity] = useState({ quantity: "" });
 
   const ans = pdata?.pquantity?.split(",");
-
+  setAlldata(Object.assign(alldata, {}, { quantity: ans[0] }));
   const onhandlechange = (e) => {
     setQuntity({ quantity: e.target.value });
   };
-  console.log(pdata, "hhkh");
+  // console.log(pdata, "hhkh");
+  console.log(alldata, "alldata");
   return (
     <>
       <div className='row wanting'>
@@ -20,13 +21,15 @@ export default function Detail(prop) {
           <div className='my-2'>
             <h4 className='main-title'>How many are you wanting ?</h4>
             <select
-              defaultValue={product[0].product_quantity}
+              value={product[0].product_quantity}
               onChange={(e) => {
-                onhandlechange(e);
+                setAlldata(
+                  Object.assign(alldata, {}, { quantity: e.target.value })
+                );
               }}
             >
               {ans.map((val) => {
-                return <option>{val}</option>;
+                return <option value={val}>{val}</option>;
               })}
             </select>
           </div>
@@ -45,17 +48,6 @@ export default function Detail(prop) {
               class='btn btn-primary m-2'
               onClick={() => {
                 setStep(step + 1);
-                if (quntity1.quantity == "") {
-                  setAlldata({
-                    ...alldata,
-                    quantity: product[0].product_quantity,
-                  });
-                } else {
-                  setAlldata({
-                    ...alldata,
-                    quantity: product[0].product_quantity,
-                  });
-                }
               }}
             >
               Next

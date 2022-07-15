@@ -11,7 +11,9 @@ const formikEnhancer = withFormik({
       .max(10, "mobile number must be at most 10 characters")
       .required("Please Enter Mobile Number"),
     delivery_postcode: Yup.string().required("Please Enter Delivery Postcode"),
-    email: Yup.string().email(),
+    email: Yup.string()
+      .required("Please Enter Email")
+      .email(),
   }),
   validateOnMount: true,
   mapPropsToValues: (props) => ({
