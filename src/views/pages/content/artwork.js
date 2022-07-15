@@ -1,8 +1,33 @@
 import { padStart } from "lodash";
 import React, { useState } from "react";
+import NavigationActions from "redux/navigation/actions";
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import AuthActions from "redux/auth/actions";
+const { success, error, fetching } = NavigationActions;
+const { setuser } = AuthActions;
 
-export default function Artwork(prop) {
-  const { step, setStep, alldata, setAlldata, pdata } = prop.data;
+function Artwork(props) {
+  const {
+    token,
+    success,
+    fetching,
+    isFetching,
+    error,
+    setFieldValue,
+    values,
+    settingdata,
+    handleChange,
+    handleSubmit,
+    setValues,
+    isValid,
+    handleBlur,
+    errors,
+    touched,
+    submitCount,
+  } = props;
+  const { step, setStep, alldata, setAlldata, pdata } = props.data;
   const [artwork1, setArtwork] = useState({ artwork: "" });
   console.log(alldata, "hghjg");
   return (
@@ -28,7 +53,7 @@ export default function Artwork(prop) {
                     });
                   }}
                 />
-                I will supply my own artwork
+                {settingdata.artwork_label1}
               </label>
             </div>
             <div className='label'>
@@ -44,7 +69,7 @@ export default function Artwork(prop) {
                     });
                   }}
                 />
-                Please create my artwork
+                {settingdata.artwork_label2}
               </label>
             </div>
           </div>
@@ -81,3 +106,25 @@ export default function Artwork(prop) {
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  console.log("hjhjhj", state);
+  return {
+    ...state.themeChanger,
+    token: state.auth.accessToken,
+    user: state.auth.user,
+    isFetching: state.navigation.isFetching,
+    settingdata: state.settingdata.sdata,
+  };
+};
+// const mapDispatchToProps = () => {};
+
+export default compose(
+  withRouter,
+  // enhancer,
+  connect(
+    mapStateToProps,
+    { success, error, fetching, setuser }
+    // mapDispatchToProps
+  )
+)(Artwork);

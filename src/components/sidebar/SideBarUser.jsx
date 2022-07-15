@@ -32,6 +32,7 @@ function SideBarUser(props) {
     error,
     setFieldValue,
     values,
+    image,
     handleChange,
     handleSubmit,
     setValues,
@@ -80,6 +81,7 @@ function SideBarUser(props) {
       }
     });
   };
+  console.log(image, "hkh");
   useEffect(() => {
     getcategorise();
   }, []);
@@ -312,6 +314,17 @@ function SideBarUser(props) {
             </Collapse>
           </div> */}
         </div>
+        {console.log("gjhgj", image !== undefined)}
+        {image !== undefined ? (
+          <div className='img-bg'>
+            <img
+              src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${image}`}
+              className='img-style'
+            />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );
@@ -323,6 +336,7 @@ const mapStateToProps = (state) => {
     token: state.auth.accessToken,
     user: state.auth.user,
     isFetching: state.navigation.isFetching,
+    image: state.productimage.image_src,
   };
 };
 

@@ -9,6 +9,7 @@ import AuthActions from "redux/auth/actions";
 
 import productimageAction from "redux/productimage/actions";
 import Newsdetail from "./newsdetail";
+import { getNews } from "services/newsServices";
 const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
 
@@ -37,7 +38,10 @@ function News(props) {
   const { slug, brand } = useParams();
   const history = useHistory();
   // console.log("hgh", useParams());
-  const [product, setProduct] = useState([]);
+  const [news, setNews] = useState([]);
+  const [newsdata, setNewsData] = useState([]);
+  console.log(newsdata, "jkljk");
+
   const [productBrand, setProductBrand] = useState([]);
 
   const [step, setStep] = useState(1);
@@ -56,21 +60,21 @@ function News(props) {
   ]);
 
   const getData = async () => {
-    // await getSlugByProduct(token, slug).then((data) => {
-    //   if (data.success) {
-    //     setProduct(data.data);
-    //     success();
-    //   } else {
-    //     error();
-    //   }
-    // });
+    await getNews(token).then((data) => {
+      if (data.success) {
+        setNews(data.data);
+        success();
+      } else {
+        error();
+      }
+    });
   };
 
   useEffect(() => {
     getData();
     setStep(1);
   }, [slug]);
-  console.log(product, "jjh");
+  console.log(news, "jjh");
   return (
     <>
       {step === 1 ? (
@@ -79,35 +83,35 @@ function News(props) {
             <img src='https://wholesale-magnets.com.au/wp-content/uploads/2020/07/rsz_11wholesale_magnets_website-05_2.png' />
           </div>
           <div className='container'>
-            <div className='my-5 new-block'>
-              <div className='mb-3'>
-                <h4>Now Saving Agents On Printing Too</h4>
-              </div>
-              <div className='mb-3'>
-                <p>
-                  Now Selling General Printing to ALL customers. Most of our
-                  customers would be unaware that during the past few years we
-                  have been selling general printing to a select few long term
-                  customers. We've kept it under wraps whilst we built our
-                  backend IT infrastructure, which will allow us to offer the
-                  very BEST PRICES
-                </p>
-              </div>
-              <div>
-                <button
-                  onClick={() => {
-                    setStep(step + 1);
-                  }}
-                >
-                  Read More
-                </button>
-              </div>
+            <div className='row'>
+              {news.map((val) => {
+                return (
+                  <div className='my-5 new-block'>
+                    <div className='mb-3'>
+                      <h4>{val.news}</h4>
+                    </div>
+                    <div className='mb-3'>
+                      <p>{val.news_description.substring(0, 280)} [...]</p>
+                    </div>
+                    <div>
+                      <button
+                        onClick={() => {
+                          setStep(step + 1);
+                          setNewsData(val);
+                        }}
+                      >
+                        Read More
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </>
       ) : step === 2 ? (
         <>
-          <Newsdetail />
+          <Newsdetail data={newsdata} />
         </>
       ) : null}
     </>

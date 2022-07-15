@@ -84,7 +84,7 @@ function Content(props) {
     } else {
       await getSlugByProduct1(token, slug).then((data) => {
         if (data.success) {
-          setProductBrand(data.data);
+          setProduct(data.data);
           success();
         } else {
           error();
@@ -92,7 +92,8 @@ function Content(props) {
       });
       await getBrandByProduct1(token, slug, brand).then((data) => {
         if (data.success) {
-          setProduct(data.data);
+          console.log(data.data);
+          setProductBrand(data.data);
           success();
         } else {
           error();
@@ -105,6 +106,11 @@ function Content(props) {
     getData();
     setStep(1);
   }, [slug]);
+
+  useEffect(() => {
+    step === 1 && dispatch(image());
+  }, [step]);
+
   console.log(product, "jjh");
   return (
     <div>
@@ -141,8 +147,9 @@ function Content(props) {
                               category: val.name,
                               size: val.size,
                             });
+
                             // dispatch({ type: "image" });
-                            // image(val.product_image);
+                            dispatch(image(val.product_image));
                           }}
                           style={{ cursor: "pointer" }}
                         >

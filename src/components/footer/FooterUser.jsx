@@ -1,8 +1,37 @@
 import React from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
+
 import "../../assets/css/dashboardlayout.css";
+import NavigationActions from "redux/navigation/actions";
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import AuthActions from "redux/auth/actions";
+
+import settingAction from "redux/settingdata/actions";
+const { settingdata } = settingAction;
+const { success, error, fetching } = NavigationActions;
+const { setuser } = AuthActions;
 
 function FooterUser(props) {
+  const {
+    token,
+    success,
+    fetching,
+    isFetching,
+    error,
+    setFieldValue,
+    values,
+    settingdata,
+    handleChange,
+    handleSubmit,
+    setValues,
+    isValid,
+    handleBlur,
+    errors,
+    touched,
+    submitCount,
+  } = props;
   return (
     <div>
       <div className='row footer'>
@@ -40,14 +69,14 @@ function FooterUser(props) {
                 </div>
               </div>
               <div className='content1'>
-                <div>admin@wholesale-magnets.com.au</div>
+                <div>{settingdata.email}</div>
               </div>
             </li>
             <li>
               <div className='icon'>
                 <img src='https://wholesale-magnets.com.au/wp-content/uploads/2020/06/phone-1.png'></img>
               </div>
-              <div>1300 135 906</div>
+              <div>{settingdata.phone_no}</div>
             </li>
             <li>
               <div className='icon'>
@@ -81,4 +110,24 @@ function FooterUser(props) {
   );
 }
 
-export default FooterUser;
+const mapStateToProps = (state) => {
+  console.log("hjhjhj", state);
+  return {
+    ...state.themeChanger,
+    token: state.auth.accessToken,
+    user: state.auth.user,
+    isFetching: state.navigation.isFetching,
+    settingdata: state.settingdata.sdata,
+  };
+};
+// const mapDispatchToProps = () => {};
+
+export default compose(
+  withRouter,
+  // enhancer,
+  connect(
+    mapStateToProps,
+    { success, error, fetching, setuser }
+    // mapDispatchToProps
+  )
+)(FooterUser);

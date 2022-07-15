@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { connect, useDispatch } from "react-redux";
 import AuthActions from "redux/auth/actions";
+import moment from "moment";
 
 import productimageAction from "redux/productimage/actions";
 const { success, error, fetching } = NavigationActions;
@@ -31,6 +32,9 @@ function NewsDetails(props) {
     touched,
     submitCount,
   } = props;
+
+  const news = props.data;
+  console.log(news, "jhjhj");
   const dispatch = useDispatch();
 
   const { slug, brand } = useParams();
@@ -61,39 +65,44 @@ function NewsDetails(props) {
       </div>
       <div className='container'>
         <div className='row my-5'>
-          <div className='col-6'>
+          <div className='col-lg-6 col-md-6 col-sm-12'>
             <div className='cbody'>
-              <h4 className='entrytitle'>Now Saving Agents On Printing Too</h4>
+              <h4 className='entrytitle'>{news.news}</h4>
               <div style={{ marginBottom: "20px" }} className='d-flex autohor'>
                 <div style={{ textTransform: "uppercase" }}>
                   <span style={{ fontStyle: "italic" }}>by</span> MANAGER{" "}
                 </div>
                 <div>/</div>
-                <div>March 1, 2021</div>
+                <div>{moment(news.created_at).format("MMMM DD,YYYY")}</div>
               </div>
               <div>
                 <img
-                  src='https://wholesale-magnets.com.au/wp-content/uploads/2020/07/flyers.jpg'
+                  src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${news?.news_image}`}
                   className='myimg'
                 />
-                <h4 style={{ fontSize: "19px", margin: "13px 0" }}>
+                {/* <h4 style={{ fontSize: "19px", margin: "13px 0" }}>
                   Now Selling General Printing to ALL customers.
-                </h4>
+                </h4> */}
                 <p className='autohor' style={{ margin: "13px 0" }}>
-                  Most of our customers would be unaware that during the past
-                  few years we have been selling general printing to a select
-                  few long term customers. We’ve kept it under wraps whilst we
-                  built our backend IT infrastructure, which will allow us to
-                  offer the very BEST PRICES and GREAT SERVICE to our customers.
+                  {news.news_description}
                 </p>
               </div>
             </div>
           </div>
         </div>
         <div className='row my-4'>
-          <div className='col-12 justify-content-between'>
-            <span className='entry-tag'>WSM-Blogs</span>
-            <div></div>
+          <div className='col-12 '>
+            <div className='row justify-content-between'>
+              <span className='entry-tag'>WSM-Blogs</span>
+              <div className='icon-style'>
+                <i class='fab fa-facebook-f'></i>
+                <i class='fab fa-twitter'></i>
+                <i class='fab fa-linkedin-in'></i>
+                <i class='fab fa-tumblr'></i>
+                <i class='fab fa-google-plus-g'></i>
+                <i class='fab fa-pinterest'></i>
+              </div>
+            </div>
           </div>
         </div>
         <div className='row detail'>
@@ -106,14 +115,14 @@ function NewsDetails(props) {
                 Your email address will not be published.
               </div>
               <div className='row'>
-                <div className='col-6'>
+                <div className='col-lg-6 col-md-6 col-sm-12'>
                   <input
                     type='text'
                     placeholder='name*'
                     className='form-control marginb'
                   />
                 </div>
-                <div className='col-6'>
+                <div className='col-lg-6 col-md-6 col-sm-12'>
                   <input
                     type='text'
                     placeholder='Email*'
@@ -123,15 +132,12 @@ function NewsDetails(props) {
               </div>
               <div className='row'>
                 <div className='col-12'>
-                  <label htmlFor='c1'>
-                    <input
-                      type='checkbox'
-                      name='c1'
-                      id='c1'
-                      className='mr-2 marginb'
-                    />
-                    Save my name, email, and website in this browser for the
-                    next time I comment.
+                  <label htmlFor='c1' className='marginb'>
+                    <input type='checkbox' name='c1' id='c1' className='mr-2' />
+                    <span>
+                      Save my name, email, and website in this browser for the
+                      next time I comment.
+                    </span>
                   </label>
                 </div>
               </div>

@@ -1,19 +1,67 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-
+import NavigationActions from "redux/navigation/actions";
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import AuthActions from "redux/auth/actions";
 import "../../assets/css/dashboardlayout.css";
+import { getsetting } from "services/settingservices";
+import { useDispatch } from "react-redux";
+import settingAction from "redux/settingdata/actions";
+const { settingdata } = settingAction;
+const { success, error, fetching } = NavigationActions;
+const { setuser } = AuthActions;
 
-function HeaderUser() {
+function HeaderUser(props) {
+  const {
+    token,
+    success,
+    fetching,
+    isFetching,
+    error,
+    setFieldValue,
+    values,
+    image,
+    handleChange,
+    handleSubmit,
+    setValues,
+    isValid,
+    handleBlur,
+    errors,
+    touched,
+    submitCount,
+  } = props;
+
+  const [setting, setSetting] = useState();
+  const dispatch = useDispatch();
+
+  const getData = async () => {
+    await getsetting(token).then((data) => {
+      if (data.success) {
+        setSetting(data.data[0]);
+        dispatch(settingdata(data.data[0]));
+        success();
+      } else {
+        error();
+      }
+    });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+  console.log("gdsgd", setting);
   return (
     <>
       <div className='sticky-nav'>
         <div className='row'>
           <a>
             <img
-              src='https://wholesale-magnets.com.au/wp-content/uploads/2021/03/WM_website_banner-01-scaled.jpg'
+              src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${setting?.logo}`}
               width='100%'
               height='auto'
-            ></img>
+            />
           </a>
         </div>
         <div className='row main-menu'>
@@ -74,5 +122,18 @@ function HeaderUser() {
     </>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    ...state.themeChanger,
+    token: state.auth.accessToken,
+    user: state.auth.user,
+    isFetching: state.navigation.isFetching,
+    image: state.productimage.image_src,
+  };
+};
 
-export default HeaderUser;
+export default compose(
+  withRouter,
+  // enhancer,
+  connect(mapStateToProps, { success, error, fetching, setuser })
+)(HeaderUser);

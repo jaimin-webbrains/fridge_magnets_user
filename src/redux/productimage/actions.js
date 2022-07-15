@@ -1,11 +1,10 @@
 const productimageAction = {
-  IMAGE: "",
+  IMAGE: "IMAGE",
 
   image: (data) => {
-    console.log(data, "gggj");
     return {
       type: productimageAction.IMAGE,
-      image_src: data,
+      payload: data,
     };
   },
 };
