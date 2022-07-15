@@ -15,7 +15,7 @@ import {
   miniDrawerWidth,
   themeSettingDrawerWidth,
 } from "helper/constant";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { IntlProvider } from "react-intl";
 import { ProtectedRoute } from "./../routes/ProtectedRoute";
@@ -36,10 +36,20 @@ const { changeTheme } = themeActions;
 const { sidebarMini } = settingactions;
 
 const DashboardLayout = (props) => {
+  const history = useHistory();
+  console.log("jhjgg", history.location.pathname.includes("/gallery"));
   return (
     <>
       <div className='container-fuild full-height'>
         <HeaderUser />
+        {history.location.pathname.includes("/gallery") ? (
+          <div className='row'>
+            <img
+              src='https://wholesale-magnets.com.au/wp-content/uploads/2020/07/rsz_11wholesale_magnets_website-05_2-1.png'
+              className='myimg'
+            />
+          </div>
+        ) : null}
         <div className='row mt-3 content'>
           <div className='col-9 mx-auto'>
             <div className='row'>

@@ -13,6 +13,7 @@ import colorsAddModal from "views/pages/Colors/colorsAddModal";
 import content from "views/pages/content/content";
 import Content from "views/pages/content/content";
 import Size from "views/pages/content/size";
+import Gallery from "views/pages/Gallery/gallery";
 import markers from "views/pages/Markers/markers";
 import markersAddModal from "views/pages/Markers/markersAddModal";
 import News from "views/pages/News/news";
@@ -33,6 +34,7 @@ const dashboardRoutes = [
 
   { path: "/news", component: News },
   { path: "/about-us", component: About_us },
+  { path: "/gallerys", component: Gallery },
 
   // { path: "/categories/add", component: categoriesAddModal },
 

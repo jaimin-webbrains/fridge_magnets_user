@@ -315,7 +315,7 @@ function SideBarUser(props) {
           </div> */}
         </div>
         {console.log("gjhgj", image !== undefined)}
-        {image !== undefined ? (
+        {image ? (
           <div className='img-bg'>
             <img
               src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${image}`}
