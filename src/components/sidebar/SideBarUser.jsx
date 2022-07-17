@@ -4,54 +4,39 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DehazeIcon from "@mui/icons-material/Dehaze";
 import { Collapse } from "reactstrap";
+import { UncontrolledCollapse } from "reactstrap";
+
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
+  // BrowserRouter as Router,
+  // Switch,
+  // Route,
   Link,
   useHistory,
-  useParams,
+  // useParams,
 } from "react-router-dom";
-import { UncontrolledCollapse, Button, CardBody, Card } from "reactstrap";
-import { getCategories, getSlugCategories } from "services/categoryServices";
+import { Card } from "reactstrap";
+import { getCategories } from "services/categoryServices";
 import NavigationActions from "redux/navigation/actions";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import AuthActions from "redux/auth/actions";
-import dashboardRoutes from "routes/dashboardRoutes";
 const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
 
 function SideBarUser(props) {
-  const {
-    token,
-    success,
-    fetching,
-    isFetching,
-    error,
-    setFieldValue,
-    values,
-    image,
-    handleChange,
-    handleSubmit,
-    setValues,
-    isValid,
-    handleBlur,
-    errors,
-    touched,
-    submitCount,
-  } = props;
+  const { token, success, error, image } = props;
 
   const [toggle1, settoggle] = useState({ collapse: true });
   const [toggle2, settoggle2] = useState({ collapse: false });
   const [parentcate, setparentcate] = useState([]);
   const [subcate, setsubcate] = useState([]);
-  const [flag, setflag] = useState(false);
+  const [subprinting, setsubprinting] = useState([]);
+  const [flag, setflag] = useState(true);
 
   let history = useHistory();
   // let slug = useParams();
-  let { slug } = useParams();
+  // let { slug } = useParams();
 
   const toggle = () => {
     settoggle({ collapse: !toggle1.collapse });
@@ -68,6 +53,10 @@ function SideBarUser(props) {
       const subcat = data.data.filter((val) => {
         return val.parent_id !== 0;
       });
+      const subcatprinting = data.data.filter((val) => {
+        return val.parent_id === 2;
+      });
+      setsubprinting(subcatprinting);
       setparentcate(ans);
       setsubcate(subcat);
 
@@ -85,6 +74,12 @@ function SideBarUser(props) {
   useEffect(() => {
     getcategorise();
   }, []);
+  console.log(
+    "khgj",
+    subprinting.filter((val) => {
+      return val.parent_id == 2 ? val : null;
+    })
+  );
   return (
     <>
       <div className='col-lg-3 col-md-12 col-sm-12 mb-3'>
@@ -115,7 +110,7 @@ function SideBarUser(props) {
                       <Collapse isOpen={toggle1.collapse}>
                         <Card>
                           <ul className='primary-menu'>
-                            {subcate.map((val1) => {
+                            {subcate.slice(0, 8).map((val1) => {
                               return val.id === val1.parent_id ? (
                                 <>
                                   <Link to={`/categories/${val1.slug}`}>
@@ -131,14 +126,14 @@ function SideBarUser(props) {
                   </>
                 ) : (
                   <>
-                    {/* <div
+                    <div
                       onClick={() => {
                         setflag(!flag);
                       }}
                       className='collpase'
                       id={toggleid}
                     >
-                      <span>{val.name}</span>
+                      <span>MORE FRIDGE MAGNETS</span>
                       {togglehash === "" ? (
                         <RemoveIcon className='f-size' />
                       ) : (
@@ -149,8 +144,9 @@ function SideBarUser(props) {
                       <UncontrolledCollapse toggler={togglehash}>
                         <Card>
                           <ul className='primary-menu'>
-                            {subcate.map((val1) => {
-                              return val.id === val1.parent_id ? (
+                            {subcate.slice(8, 16).map((val1) => {
+                              console.log("jhjhj", val1, val.id);
+                              return 1 === val1.parent_id ? (
                                 <>
                                   <Link to={`/categories/${val1.slug}`}>
                                     <li>{val1.name}</li>
@@ -161,7 +157,7 @@ function SideBarUser(props) {
                           </ul>
                         </Card>
                       </UncontrolledCollapse>
-                    </div> */}
+                    </div>
                   </>
                 );
               })}
@@ -171,7 +167,7 @@ function SideBarUser(props) {
               {parentcate.map((val, ind) => {
                 var toggleid = `toggle${ind}`;
                 var togglehash = `#toggle${ind}`;
-                return val.name == "Printing Products" ? (
+                return val.name === "Printing Products" ? (
                   <>
                     <div
                       onClick={() => {
@@ -180,6 +176,7 @@ function SideBarUser(props) {
                       className='collpase'
                     >
                       <DehazeIcon className='f-size' />
+                      {console.log(val.name, "kjukj;kklk;")}
                       <span>{val.name}</span>
 
                       {toggle1.collapse === true ? (
@@ -192,8 +189,8 @@ function SideBarUser(props) {
                       <Collapse isOpen={toggle1.collapse}>
                         <Card>
                           <ul className='primary-menu'>
-                            {subcate.map((val1) => {
-                              return val.id === val1.parent_id ? (
+                            {subprinting.slice(0, 2).map((val1) => {
+                              return val1.parent_id === 2 ? (
                                 <>
                                   <Link to={`/printing-products/${val1.slug}`}>
                                     <li>{val1.name}</li>
@@ -205,41 +202,74 @@ function SideBarUser(props) {
                         </Card>
                       </Collapse>
                     </div>
+                    <div
+                      onClick={() => {
+                        setflag(!flag);
+                      }}
+                      className='collpase'
+                      id={toggleid}
+                    >
+                      <span>MORE PRINTING PRODUCT</span>
+                      {togglehash === "" ? (
+                        <RemoveIcon className='f-size' />
+                      ) : (
+                        <AddIcon className='f-size' />
+                      )}
+                    </div>
+                    <div className=''>
+                      <UncontrolledCollapse toggler={togglehash}>
+                        <Card>
+                          <ul className='primary-menu'>
+                            {subprinting.slice(2, 4).map((val1) => {
+                              return 2 === val1.parent_id ? (
+                                <>
+                                  <Link to={`/categories/${val1.slug}`}>
+                                    <li>{val1.name}</li>
+                                  </Link>
+                                </>
+                              ) : null;
+                            })}
+                          </ul>
+                        </Card>
+                      </UncontrolledCollapse>
+                    </div>
                   </>
                 ) : null;
-                // <>
-                //   <div
-                //     onClick={() => {
-                //       setflag(!flag);
-                //     }}
-                //     className='collpase'
-                //     id={toggleid}
-                //   >
-                //     <span>{val.name}</span>
-                //     {togglehash === "" ? (
-                //       <RemoveIcon className='f-size' />
-                //     ) : (
-                //       <AddIcon className='f-size' />
-                //     )}
-                //   </div>
-                //   <div className=''>
-                //     <UncontrolledCollapse toggler={togglehash}>
-                //       <Card>
-                //         <ul className='primary-menu'>
-                //           {subcate.map((val1) => {
-                //             return 2 === val1.parent_id ? (
-                //               <>
-                //                 <Link to={`/categories/${val1.slug}`}>
-                //                   <li>{val1.name}</li>
-                //                 </Link>
-                //               </>
-                //             ) : null;
-                //           })}
-                //         </ul>
-                //       </Card>
-                //     </UncontrolledCollapse>
-                //   </div>
-                // </>
+                // (
+                //   <>
+                //     <div
+                //       onClick={() => {
+                //         setflag(!flag);
+                //       }}
+                //       className='collpase'
+                //       id={toggleid}
+                //     >
+                //       <span>MORE PRINTING PRODUCT</span>
+                //       {togglehash === "" ? (
+                //         <RemoveIcon className='f-size' />
+                //       ) : (
+                //         <AddIcon className='f-size' />
+                //       )}
+                //     </div>
+                //     <div className=''>
+                //       <UncontrolledCollapse toggler={togglehash}>
+                //         <Card>
+                //           <ul className='primary-menu'>
+                //             {subprinting.slice(2, 4).map((val1) => {
+                //               return 2 === val1.parent_id ? (
+                //                 <>
+                //                   <Link to={`/categories/${val1.slug}`}>
+                //                     <li>{val1.name}</li>
+                //                   </Link>
+                //                 </>
+                //               ) : null;
+                //             })}
+                //           </ul>
+                //         </Card>
+                //       </UncontrolledCollapse>
+                //     </div>
+                //   </>
+                // )
               })}
             </>
           )}
@@ -320,6 +350,7 @@ function SideBarUser(props) {
             <img
               src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${image}`}
               className='img-style'
+              alt=''
             />
           </div>
         ) : (

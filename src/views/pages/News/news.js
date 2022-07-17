@@ -1,63 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
-import { getSlugCategories } from "services/categoryServices";
+import { useParams } from "react-router-dom";
 import NavigationActions from "redux/navigation/actions";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import AuthActions from "redux/auth/actions";
 
-import productimageAction from "redux/productimage/actions";
 import Newsdetail from "./newsdetail";
 import { getNews } from "services/newsServices";
 const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
 
-const { image } = productimageAction;
-
 function News(props) {
-  const {
-    token,
-    success,
-    fetching,
-    isFetching,
-    error,
-    setFieldValue,
-    values,
-    handleChange,
-    handleSubmit,
-    setValues,
-    isValid,
-    handleBlur,
-    errors,
-    touched,
-    submitCount,
-  } = props;
-  const dispatch = useDispatch();
+  const { token, success, error } = props;
 
-  const { slug, brand } = useParams();
-  const history = useHistory();
+  const { slug } = useParams();
   // console.log("hgh", useParams());
   const [news, setNews] = useState([]);
   const [newsdata, setNewsData] = useState([]);
-  console.log(newsdata, "jkljk");
-
-  const [productBrand, setProductBrand] = useState([]);
 
   const [step, setStep] = useState(1);
-  const [pdata, setPdata] = useState([]);
-  const [alldata, setAlldata] = useState([
-    // { cant_find_your_size: "false" },
-    // {
-    //   quntity: "",
-    //   artwork: "",
-    //   name: "",
-    //   company: "",
-    //   mobile_no: "",
-    //   delivery_postcode: "",
-    //   email: "",
-    // }
-  ]);
 
   const getData = async () => {
     await getNews(token).then((data) => {
@@ -74,13 +36,15 @@ function News(props) {
     getData();
     setStep(1);
   }, [slug]);
-  console.log(news, "jjh");
   return (
     <>
       {step === 1 ? (
         <>
           <div className='apus-breadscrumb'>
-            <img src='https://wholesale-magnets.com.au/wp-content/uploads/2020/07/rsz_11wholesale_magnets_website-05_2.png' />
+            <img
+              src='https://wholesale-magnets.com.au/wp-content/uploads/2020/07/rsz_11wholesale_magnets_website-05_2.png'
+              alt=''
+            />
           </div>
           <div className='container'>
             <div className='row'>

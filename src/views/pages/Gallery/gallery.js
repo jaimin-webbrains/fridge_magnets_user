@@ -6,29 +6,11 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import AuthActions from "redux/auth/actions";
 import { getCategories } from "services/categoryServices";
-import { sub } from "date-fns";
 const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
 
 function Gallery(props) {
-  const {
-    token,
-    success,
-    fetching,
-    isFetching,
-    error,
-    setFieldValue,
-    values,
-    image,
-    handleChange,
-    handleSubmit,
-    setValues,
-    isValid,
-    handleBlur,
-    errors,
-    touched,
-    submitCount,
-  } = props;
+  const { token, success, error } = props;
 
   const [parentcate, setparentcate] = useState([]);
   const [catvalue, setcatvalue] = useState("");
@@ -38,7 +20,13 @@ function Gallery(props) {
   const getcategarise = async () => {
     await getCategories(token).then((data) => {
       console.log(data.data, "jjhh");
-
+      if (catvalue === "") {
+        const ans = data.data?.filter((val) => {
+          return val.parent_id !== 0;
+        });
+        setcatvalue(ans[0]?.name);
+        // console.log("jhhj", ans[0].name);
+      }
       setparentcate(data.data);
       if (data.success) {
         success();
@@ -52,8 +40,6 @@ function Gallery(props) {
   }, []);
 
   const getData = async () => {
-    var cat_data = { category_name: catvalue };
-
     await getGallery(token, { data: catvalue }).then((data) => {
       if (data.success) {
         console.log("hgjj", data.data);
@@ -71,30 +57,32 @@ function Gallery(props) {
   return (
     <>
       <div className='row'>
-        {/* <div className='divstyle'> */}
-        <select
-          className='sstyle'
-          onChange={(e) => {
-            setcatvalue(e.target.value);
-            setcat(e.target.value.replaceAll(" ", "-"));
-          }}
-        >
-          {parentcate.map((val) => {
-            return (
-              <option className={val.parent_id == 0 ? "text-bold" : ""}>
-                {val.name}
-              </option>
-            );
-          })}
-        </select>
-        {/* </div> */}
+        <div className='col-12'>
+          <select
+            className='sstyle'
+            onChange={(e) => {
+              setcatvalue(e.target.value);
+              setcat(e.target.value.replaceAll(" ", "-"));
+            }}
+          >
+            {parentcate.map((val) => {
+              return (
+                <option className={val.parent_id === 0 ? "text-bold" : ""}>
+                  {val.name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
       </div>
-      <div className='row'>
-        <div className='col-lg-8 col-md-6 col-sm-12'>
+      <div className='row mb-4'>
+        <div className='col-lg-8 col-md-8 col-sm-12'>
           <h3 className='h3style'>{catvalue}</h3>
         </div>
-        <div className='col-lg-4 col-md-6 col-sm-12'>
-          <Link to={`/categories/${cate}`}>Get a Price</Link>
+        <div className='col-lg-4 col-md-4 col-sm-12'>
+          <Link to={`/categories/${cate}`} className='btn gallery-btn'>
+            Get a Price
+          </Link>
         </div>
       </div>
       <div className='row'>
@@ -105,6 +93,7 @@ function Gallery(props) {
                 <div className=''>
                   <img
                     src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${val.product_Images}`}
+                    alt=''
                     className='myimgstyle'
                   />
                 </div>

@@ -5,15 +5,14 @@ import { Link, withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import AuthActions from "redux/auth/actions";
-import { ModalHeader, ModalBody, Button } from "reactstrap";
+import { Button } from "reactstrap";
 
-import { addColor, updateColor } from "services/colorServices";
 import {
-  addsetting,
+  // addsetting,
   getsetting,
   updatesetting,
 } from "services/settingservices";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
@@ -23,23 +22,18 @@ const Settings = (props) => {
   const {
     token,
     success,
-    fetching,
-    isFetching,
+
     error,
-    isEdit,
-    onClose,
     values,
     handleChange,
     handleSubmit,
     setValues,
-    isValid,
+    // isValid,
     handleBlur,
     errors,
     touched,
     submitCount,
-    toggleRefresh,
     setFieldValue,
-    editData,
   } = props;
 
   // const Error = (props) => {
@@ -69,7 +63,7 @@ const Settings = (props) => {
   const handlesettingSubmit = async (e) => {
     e.preventDefault();
     handleSubmit();
-    var data = { ...values };
+    // var data = { ...values };
     var formData = new FormData();
     for (const val in values) {
       console.log(val, "ghf");

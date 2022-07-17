@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useLocation, useParams } from "react-router-dom";
-import { getSlugCategories } from "services/categoryServices";
+import { getCategories } from "services/categoryServices";
 import NavigationActions from "redux/navigation/actions";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
@@ -16,30 +16,13 @@ import Detail from "./detail";
 import Artwork from "./artwork";
 import Userdetail from "./userdetail";
 import productimageAction from "redux/productimage/actions";
-import SideBarUser from "components/sidebar/SideBarUser";
 const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
 
 const { image } = productimageAction;
 
 function Content(props) {
-  const {
-    token,
-    success,
-    fetching,
-    isFetching,
-    error,
-    setFieldValue,
-    values,
-    handleChange,
-    handleSubmit,
-    setValues,
-    isValid,
-    handleBlur,
-    errors,
-    touched,
-    submitCount,
-  } = props;
+  const { token, success, error } = props;
   const dispatch = useDispatch();
 
   const { slug, brand } = useParams();
@@ -51,55 +34,74 @@ function Content(props) {
 
   const [step, setStep] = useState(1);
   const [pdata, setPdata] = useState([]);
-  const [alldata, setAlldata] = useState([
-    // { cant_find_your_size: "false" },
-    // {
-    //   quntity: "",
-    //   artwork: "",
-    //   name: "",
-    //   company: "",
-    //   mobile_no: "",
-    //   delivery_postcode: "",
-    //   email: "",
-    // }
-  ]);
-
+  const [alldata, setAlldata] = useState([]);
   const getData = async () => {
-    if (!history.location.pathname.includes("/printing-products")) {
-      await getSlugByProduct(token, slug).then((data) => {
+    var sub_cat = "";
+    await getCategories(token).then((data) => {
+      if (!history.location.pathname.includes("/printing-products")) {
+        const subcat = data.data?.filter((val) => {
+          return val?.parent_id !== 0;
+        });
+        sub_cat = subcat[0]?.slug;
+      } else {
+        const subcat = data.data?.filter((val) => {
+          return val?.parent_id === 2;
+        });
+        sub_cat = subcat[0]?.slug;
+      }
+
+      if (data.success) {
+        success();
+      } else {
+        error();
+      }
+    });
+    if (slug === "" || slug === undefined) {
+      await getSlugByProduct(token, sub_cat).then((data) => {
         if (data.success) {
           setProduct(data.data);
-          success();
-        } else {
-          error();
-        }
-      });
-      await getBrandByProduct(token, slug, brand).then((data) => {
-        if (data.success) {
-          setProductBrand(data.data);
           success();
         } else {
           error();
         }
       });
     } else {
-      await getSlugByProduct1(token, slug).then((data) => {
-        if (data.success) {
-          setProduct(data.data);
-          success();
-        } else {
-          error();
-        }
-      });
-      await getBrandByProduct1(token, slug, brand).then((data) => {
-        if (data.success) {
-          console.log(data.data);
-          setProductBrand(data.data);
-          success();
-        } else {
-          error();
-        }
-      });
+      if (!history.location.pathname.includes("/printing-products")) {
+        await getSlugByProduct(token, slug).then((data) => {
+          if (data.success) {
+            setProduct(data.data);
+            success();
+          } else {
+            error();
+          }
+        });
+        await getBrandByProduct(token, slug, brand).then((data) => {
+          if (data.success) {
+            setProductBrand(data.data);
+            success();
+          } else {
+            error();
+          }
+        });
+      } else {
+        await getSlugByProduct1(token, slug).then((data) => {
+          if (data.success) {
+            setProduct(data.data);
+            success();
+          } else {
+            error();
+          }
+        });
+        await getBrandByProduct1(token, slug, brand).then((data) => {
+          if (data.success) {
+            console.log(data.data);
+            setProductBrand(data.data);
+            success();
+          } else {
+            error();
+          }
+        });
+      }
     }
   };
 
@@ -112,7 +114,6 @@ function Content(props) {
     step === 1 && dispatch(image());
   }, [step]);
 
-  console.log(product, "jjh");
   return (
     <div>
       {step === 1 ? (
@@ -157,7 +158,7 @@ function Content(props) {
                           <img
                             className='card-img-top'
                             src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${val?.product_image}`}
-                            alt='Card image cap'
+                            alt='Card cap'
                             width='280px'
                             height='90%'
                           />
@@ -205,7 +206,7 @@ function Content(props) {
                           <img
                             className='card-img-top'
                             src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${val?.brandimg}`}
-                            alt='Card image cap'
+                            alt='Card cap'
                             width='280px'
                             height='90%'
                           />

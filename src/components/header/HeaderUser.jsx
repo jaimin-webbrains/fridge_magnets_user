@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import NavigationActions from "redux/navigation/actions";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
@@ -14,24 +14,7 @@ const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
 
 function HeaderUser(props) {
-  const {
-    token,
-    success,
-    fetching,
-    isFetching,
-    error,
-    setFieldValue,
-    values,
-    image,
-    handleChange,
-    handleSubmit,
-    setValues,
-    isValid,
-    handleBlur,
-    errors,
-    touched,
-    submitCount,
-  } = props;
+  const { token, success, error } = props;
 
   const [setting, setSetting] = useState();
   const dispatch = useDispatch();
@@ -51,18 +34,18 @@ function HeaderUser(props) {
   useEffect(() => {
     getData();
   }, []);
-  console.log("gdsgd", setting);
   return (
     <>
       <div className='sticky-nav'>
         <div className='row'>
-          <a>
-            <img
-              src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${setting?.logo}`}
-              width='100%'
-              height='auto'
-            />
-          </a>
+          {/* <a> */}
+          <img
+            src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${setting?.logo}`}
+            alt=''
+            width='100%'
+            height='auto'
+          />
+          {/* </a> */}
         </div>
         <div className='row main-menu'>
           <div className='col-10 mx-auto'>
@@ -109,9 +92,9 @@ function HeaderUser(props) {
                     </Link>
                   </li>
                   <li class='nav-item'>
-                    <a class='nav-link' href='#'>
+                    <Link className='nav-link' to=''>
                       CONTACT US
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

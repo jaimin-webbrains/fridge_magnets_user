@@ -4,7 +4,7 @@ import {
   Route,
   Switch,
   Redirect,
-  BrowserRouter,
+  // BrowserRouter,
 } from "react-router-dom";
 import { IntlProvider } from "react-intl";
 import { ThemeProvider } from "styled-components";
@@ -45,7 +45,7 @@ const App = (props) => {
                     <Route
                       exact
                       path='/'
-                      render={() => <Redirect to='/intro' />}
+                      render={() => <Redirect to='/categories' />}
                     />
                     {layoutRoutes.map((prop, key) => {
                       return (

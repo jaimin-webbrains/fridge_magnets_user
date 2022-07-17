@@ -1,40 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getSlugCategories } from "services/categoryServices";
+import React, { useState } from "react";
 import NavigationActions from "redux/navigation/actions";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import AuthActions from "redux/auth/actions";
-import { getSlugByProduct } from "services/productServices";
-import Detail from "./detail";
-import Artwork from "./artwork";
 import Userdetail from "./userdetail";
 import Markers from "./markers";
 const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
 
 function Size(props) {
-  const {
-    token,
-    success,
-    fetching,
-    isFetching,
-    error,
-    setFieldValue,
-    values,
-    handleChange,
-    handleSubmit,
-    setValues,
-    isValid,
-    handleBlur,
-    errors,
-    touched,
-    submitCount,
-  } = props;
-  const { slug } = useParams();
+  // const {
+  //   token,
+  //   success,
+  //   fetching,
+  //   isFetching,
+  //   error,
+  //   setFieldValue,
+  //   values,
+  //   handleChange,
+  //   handleSubmit,
+  //   setValues,
+  //   isValid,
+  //   handleBlur,
+  //   errors,
+  //   touched,
+  //   submitCount,
+  // } = props;
   // console.log("hgh", useParams());
-  const [product, setProduct] = useState([]);
   const [step, setStep] = useState(1);
   const [alldata, setAlldata] = useState([
     // {
@@ -310,7 +303,7 @@ function Size(props) {
                   class='btn btn-primary m-2'
                   onClick={() => {
                     setStep(step + 1);
-                    if (!alldata.quantity == "") {
+                    if (!alldata.quantity === "") {
                       setAlldata({ ...alldata, cant_find_your_size: "true" });
                     } else {
                       setAlldata({

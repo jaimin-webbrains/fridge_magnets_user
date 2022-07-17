@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function Markers(prop) {
   const { step, setStep, alldata, setAlldata } = prop.data;
-  const [artwork, setArtwork] = useState();
   console.log(alldata, "hghg");
 
   return (

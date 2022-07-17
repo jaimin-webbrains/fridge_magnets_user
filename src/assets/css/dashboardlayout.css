@@ -48,6 +48,13 @@ nav ul li a{
   border: none !important;
  border-color:unset !important;
 }
+.collapse a{
+  color: #252525;
+}
+.collapse a:hover{
+  text-decoration: none;
+  color: #484848;
+}
 .collpase .btn{
   padding: 0;
 }
@@ -59,6 +66,11 @@ nav ul li a{
 }
 .content .btn-secondary:focus,.btn:focus,.btn-secondary:not(:disabled):not(.disabled):active:focus{
   box-shadow: none !important;
+}
+.gallery-btn{
+  background: #1172b9 !important;
+    border: none;
+    color: #fff !important;
 }
 .primary-menu{
   padding: 0;
@@ -453,7 +465,7 @@ margin-bottom: 30px;
   border: #000 1px solid;
   margin: 10px 0px;
   width: 100%;
-  height: 400px;
+  height: 300px;
 }
 
 
@@ -473,9 +485,18 @@ margin-bottom: 30px;
     width: 230px !important;
     /* height: 0px !important; */
   }
+  
  }
 
+@media screen and (max-width: 1250px)   {
+  .myimgstyle{
+    height: 250px;
+  }
+}
 @media only screen and (max-width: 600px) {
+  .myimgstyle{
+    height: 150px;
+  }
   .map{
     width: 230px !important;
     /* height: 0px !important; */

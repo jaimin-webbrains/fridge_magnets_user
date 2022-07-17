@@ -1,63 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
-import { getSlugCategories } from "services/categoryServices";
+import React from "react";
 import NavigationActions from "redux/navigation/actions";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import AuthActions from "redux/auth/actions";
 
-import productimageAction from "redux/productimage/actions";
 const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
 
-const { image } = productimageAction;
-
 function AboutUs(props) {
-  const {
-    token,
-    success,
-    fetching,
-    isFetching,
-    error,
-    setFieldValue,
-    values,
-    handleChange,
-    handleSubmit,
-    setValues,
-    isValid,
-    handleBlur,
-    errors,
-    touched,
-    submitCount,
-  } = props;
-  const dispatch = useDispatch();
-
-  const { slug, brand } = useParams();
-  const history = useHistory();
-  // console.log("hgh", useParams());
-  const [product, setProduct] = useState([]);
-  const [productBrand, setProductBrand] = useState([]);
-
-  const [step, setStep] = useState(1);
-  const [pdata, setPdata] = useState([]);
-  const [alldata, setAlldata] = useState([
-    // { cant_find_your_size: "false" },
-    // {
-    //   quntity: "",
-    //   artwork: "",
-    //   name: "",
-    //   company: "",
-    //   mobile_no: "",
-    //   delivery_postcode: "",
-    //   email: "",
-    // }
-  ]);
-
   return (
     <>
       <div className='apus-breadscrumb'>
-        <img src='http://wholesale-magnets.com.au/wp-content/uploads/2020/07/rsz_11wholesale_magnets_website-05_2-2.png' />
+        <img
+          src='http://wholesale-magnets.com.au/wp-content/uploads/2020/07/rsz_11wholesale_magnets_website-05_2-2.png'
+          alt=''
+        />
       </div>
       <div className='container'>
         <div className='row about my-4'>

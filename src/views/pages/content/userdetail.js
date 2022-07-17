@@ -10,19 +10,15 @@ const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
 
 function Userdetail(props) {
-  console.log(props);
-  const { alldata, setAlldata, pdata } = props.data;
+  const { alldata, pdata } = props.data;
   const {
     token,
-    success,
+    // success,
     fetching,
-    isFetching,
-    error,
-    setFieldValue,
+    // isFetching,
     values,
     handleChange,
     handleSubmit,
-    setValues,
     isValid,
     handleBlur,
     errors,

@@ -1,4 +1,3 @@
-import { padStart } from "lodash";
 import React, { useState } from "react";
 import NavigationActions from "redux/navigation/actions";
 import { withRouter } from "react-router-dom";
@@ -9,24 +8,7 @@ const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
 
 function Artwork(props) {
-  const {
-    token,
-    success,
-    fetching,
-    isFetching,
-    error,
-    setFieldValue,
-    values,
-    settingdata,
-    handleChange,
-    handleSubmit,
-    setValues,
-    isValid,
-    handleBlur,
-    errors,
-    touched,
-    submitCount,
-  } = props;
+  const { settingdata } = props;
   const { step, setStep, alldata, setAlldata, pdata } = props.data;
   const [artwork1, setArtwork] = useState({ artwork: "" });
   console.log(alldata, "hghjg");
@@ -88,7 +70,7 @@ function Artwork(props) {
               class='btn btn-primary m-2'
               onClick={() => {
                 setStep(step + 1);
-                if (artwork1.artwork == "") {
+                if (artwork1.artwork === "") {
                   setAlldata({ ...alldata, artwork: "Yes" });
                 } else {
                   setAlldata({ ...alldata, artwork: artwork1.artwork });

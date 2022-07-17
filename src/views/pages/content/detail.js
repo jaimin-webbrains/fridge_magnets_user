@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 export default function Detail(prop) {
   const { step, setStep, product, alldata, setAlldata, pdata } = prop.data;
-  const [quntity1, setQuntity] = useState({ quantity: "" });
 
   const ans = pdata?.pquantity?.split(",");
   setAlldata(Object.assign(alldata, {}, { quantity: ans[0] }));
-  const onhandlechange = (e) => {
-    setQuntity({ quantity: e.target.value });
-  };
+
   // console.log(pdata, "hhkh");
   console.log(alldata, "alldata");
   return (
