@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import enhancer from "./enhancer/contentenhancer";
 import NavigationActions from "redux/navigation/actions";
 import { useHistory, withRouter } from "react-router-dom";
@@ -25,7 +25,7 @@ function Userdetail(props) {
     touched,
     submitCount,
   } = props;
-  const [data, setdata] = useState("");
+  // const [data, setdata] = useState("");
 
   const history = useHistory();
   const Error = (props) => {
@@ -66,12 +66,12 @@ function Userdetail(props) {
 
       await addInquiry(token, data).then((data) => {
         if (data.success) {
-          setdata(data.message);
-          // success(data.message);
+          // setdata(data.message);
+          success(data.message);
           // props.history.push("/products");
         } else {
-          setdata(data.message);
-          // error(data.message);
+          // setdata(data.message);
+          error(data.message);
         }
       });
     }
@@ -85,8 +85,11 @@ function Userdetail(props) {
         <div className='col-lg-9 col-md-12 col-sm-12 pl-0'>
           {!history.location.pathname.includes("/size") ? (
             <>
-              <h4 className='p-title'>{pdata.pname}</h4>
-              <h5>{pdata.size}</h5>
+              <h4 className='p-title'>{pdata.category}</h4>
+              <h5>
+                <span className='mr-2'>{pdata.pname}</span>
+                {pdata.size}
+              </h5>
               <h3 className='sms-title'>Get An Instant Price By SMS Now</h3>
             </>
           ) : (
@@ -94,7 +97,6 @@ function Userdetail(props) {
               <h3 className='sms-title1'>Looking for something different ?</h3>
             </>
           )}
-          <h3>{data}</h3>
           <div className='my-2'>
             <h4 className='mb-4 y-title'>Your Details</h4>
             <form>

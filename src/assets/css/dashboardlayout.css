@@ -30,11 +30,12 @@ nav ul li a{
 }
 .collpase span{
   white-space: nowrap;
+  padding-left: 10px;
 }
 .collpase{
   cursor: pointer;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 10px 6px;
   align-items: center;
   font-size: 14px !important;
@@ -468,6 +469,20 @@ margin-bottom: 30px;
   height: 300px;
 }
 
+.isCatNameTag h4:before {
+  width: 0;
+  height: 0;
+  border-top: 20px solid #ffffff;
+  border-bottom: 20px solid #ffffff;
+  border-right: 0px solid #7d5f5f;
+  content: '';
+  position: relative;
+  right: 0;
+  top: -8px;
+  border-left: 20px solid #1172b9;
+  font-size: 0px;
+  margin-right: 15px;
+}
 
 
 @media only screen and (max-width: 1412px) {
@@ -488,6 +503,18 @@ margin-bottom: 30px;
   
  }
 
+
+ @media screen and (min-width: 1200px) {
+  .instant-price-main > .col-lg-4 {
+    flex: 0 0 28%;
+    max-width: 28%;
+  }
+  .instant-price-main > .col-lg-8 {
+    flex: 0 0 72%;
+    max-width: 72%;
+  }
+ }
+ 
 @media screen and (max-width: 1250px)   {
   .myimgstyle{
     height: 250px;

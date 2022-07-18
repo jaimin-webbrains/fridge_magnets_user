@@ -28,7 +28,7 @@ function SideBarUser(props) {
   const { token, success, error, image } = props;
 
   const [toggle1, settoggle] = useState({ collapse: true });
-  const [toggle2, settoggle2] = useState({ collapse: false });
+  // const [toggle2, settoggle2] = useState({ collapse: false });
   const [parentcate, setparentcate] = useState([]);
   const [subcate, setsubcate] = useState([]);
   const [subprinting, setsubprinting] = useState([]);
@@ -41,9 +41,9 @@ function SideBarUser(props) {
   const toggle = () => {
     settoggle({ collapse: !toggle1.collapse });
   };
-  const toggleset = () => {
-    settoggle2({ collapse: !toggle2.collapse });
-  };
+  // const toggleset = () => {
+  //   settoggle2({ collapse: !toggle2.collapse });
+  // };
 
   const getcategorise = async () => {
     await getCategories(token).then((data) => {
@@ -74,15 +74,10 @@ function SideBarUser(props) {
   useEffect(() => {
     getcategorise();
   }, []);
-  console.log(
-    "khgj",
-    subprinting.filter((val) => {
-      return val.parent_id == 2 ? val : null;
-    })
-  );
+
   return (
     <>
-      <div className='col-lg-3 col-md-12 col-sm-12 mb-3'>
+      <div className='col-lg-4 col-md-12 col-sm-12 mb-3'>
         <div className='menu'>
           {!history.location.pathname.includes("/printing-products") ? (
             <>
@@ -101,9 +96,9 @@ function SideBarUser(props) {
                       <span>{val.name}</span>
 
                       {toggle1.collapse === true ? (
-                        <RemoveIcon className='f-size' />
+                        <RemoveIcon className='f-size ml-auto' />
                       ) : (
-                        <AddIcon className='f-size' />
+                        <AddIcon className='f-size ml-auto' />
                       )}
                     </div>
                     <div>
@@ -135,16 +130,16 @@ function SideBarUser(props) {
                     >
                       <span>MORE FRIDGE MAGNETS</span>
                       {togglehash === "" ? (
-                        <RemoveIcon className='f-size' />
+                        <RemoveIcon className='f-size ml-auto' />
                       ) : (
-                        <AddIcon className='f-size' />
+                        <AddIcon className='f-size ml-auto' />
                       )}
                     </div>
                     <div className=''>
                       <UncontrolledCollapse toggler={togglehash}>
                         <Card>
                           <ul className='primary-menu'>
-                            {subcate.slice(8, 16).map((val1) => {
+                            {subcate.slice(8, subcate.length).map((val1) => {
                               console.log("jhjhj", val1, val.id);
                               return 1 === val1.parent_id ? (
                                 <>
@@ -180,16 +175,16 @@ function SideBarUser(props) {
                       <span>{val.name}</span>
 
                       {toggle1.collapse === true ? (
-                        <RemoveIcon className='f-size' />
+                        <RemoveIcon className='f-size ml-auto' />
                       ) : (
-                        <AddIcon className='f-size' />
+                        <AddIcon className='f-size ml-auto' />
                       )}
                     </div>
                     <div>
                       <Collapse isOpen={toggle1.collapse}>
                         <Card>
                           <ul className='primary-menu'>
-                            {subprinting.slice(0, 2).map((val1) => {
+                            {subprinting.slice(0, 8).map((val1) => {
                               return val1.parent_id === 2 ? (
                                 <>
                                   <Link to={`/printing-products/${val1.slug}`}>
@@ -211,17 +206,17 @@ function SideBarUser(props) {
                     >
                       <span>MORE PRINTING PRODUCT</span>
                       {togglehash === "" ? (
-                        <RemoveIcon className='f-size' />
+                        <RemoveIcon className='f-size ml-auto' />
                       ) : (
-                        <AddIcon className='f-size' />
+                        <AddIcon className='f-size ml-auto' />
                       )}
                     </div>
                     <div className=''>
                       <UncontrolledCollapse toggler={togglehash}>
                         <Card>
                           <ul className='primary-menu'>
-                            {subprinting.slice(2, 4).map((val1) => {
-                              return 2 === val1.parent_id ? (
+                            {subprinting.slice(8, 16).map((val1) => {
+                              return 2 === val1.parent_id16 ? (
                                 <>
                                   <Link to={`/categories/${val1.slug}`}>
                                     <li>{val1.name}</li>

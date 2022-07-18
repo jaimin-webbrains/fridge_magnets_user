@@ -16,8 +16,11 @@ function Artwork(props) {
     <>
       <div className='row wanting'>
         <div className='col-lg-9 col-md-9 col-sm-12'>
-          <h4 className='p-title'>{pdata.pname}</h4>
-          <h5>{pdata.size}</h5>
+          <h4 className='p-title'>{pdata.category}</h4>
+          <h5>
+            <span className='mr-2'>{pdata.pname}</span>
+            {pdata.size}
+          </h5>
           <h3 className='sms-title'>Get An Instant Price By SMS Now</h3>
           <div className='my-2'>
             <h4 className='art'>Artwork ?</h4>
