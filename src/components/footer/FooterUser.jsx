@@ -18,9 +18,9 @@ function FooterUser(props) {
   //   const scrollFromTop = window.pageYOffset + 100;
   //   console.log(scrollFromTop, "jhjjh");
   // });
-  // useEffect(() => {
-  //   window.scrollTo({ top: 100, left: 0, behavior: "smooth" });
-  // }, [pathname]);
+  useEffect(() => {
+    window.scrollTo({ top: 100, left: 0, behavior: "smooth" });
+  }, [pathname]);
   return (
     <div>
       <div className='row footer'>
@@ -71,13 +71,13 @@ function FooterUser(props) {
                   alt=''
                 ></img>
               </div>
-              <div>{`${settingdata?.phone_no.substring(
+              <div>{`${settingdata?.phone_no?.substring(
                 0,
                 4
-              )} ${settingdata?.phone_no.substring(
+              )} ${settingdata?.phone_no?.substring(
                 4,
                 7
-              )} ${settingdata?.phone_no.substring(7, 10)}`}</div>
+              )} ${settingdata?.phone_no?.substring(7, 10)}`}</div>
             </li>
             <li>
               <div className='icon'>
@@ -105,20 +105,6 @@ function FooterUser(props) {
             />
           </div>
         </div>
-        {/* <div>
-          <a
-            href='#top'
-            onClick={() => {
-              setpathname(!pathname);
-            }}
-            className='add-fix-top active'
-            // className={
-            //   scroll1?.scrollHeight ? "add-fix-top active" : "add-fix-top"
-            // }
-          >
-            <i class='fas fa-angle-up'></i>
-          </a>
-        </div> */}
         <div className='col-8 mx-auto text-center '>
           <div className='border-top'>
             <p>COPYRIGHT 2022. ALL RIGHTS RESERVED.</p>

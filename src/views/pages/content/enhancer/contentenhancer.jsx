@@ -11,13 +11,13 @@ const formikEnhancer = withFormik({
       .matches(/^[a-zA-Z ]*$/, "Please enter valid company name"),
     mobile_no: Yup.string()
       .matches(/^[0-9]*$/, "Please enter valid mobile number")
-      .min(9, "mobile number must be at least 9 characters")
-      .max(10, "mobile number must be at most 10 characters")
+      .min(9, "mobile number must be at least 9 digits")
+      .max(10, "mobile number must be at most 10 digits")
       .required("Please Enter Mobile Number"),
     delivery_postcode: Yup.string()
       .matches(/^[0-9]*$/, "Please enter valid  delivery postcode")
-      .min(4, "delivery postcode must be at least 4 characters")
-      .max(4, "delivery postcode must be at most 4 characters")
+      .min(4, "delivery postcode must be at least 4 digits")
+      .max(4, "delivery postcode must be at most 4 digits")
       .required("Please Enter Delivery Postcode"),
     email: Yup.string()
       .required("Please Enter Email")

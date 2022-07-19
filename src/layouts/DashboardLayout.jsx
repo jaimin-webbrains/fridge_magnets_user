@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import dashboardRoutes from "routes/dashboardRoutes";
 
@@ -10,13 +10,39 @@ import { ProtectedRoute } from "./../routes/ProtectedRoute";
 import HeaderUser from "components/header/HeaderUser";
 import SideBarUser from "components/sidebar/SideBarUser";
 import FooterUser from "components/footer/FooterUser";
+import { useState } from "react";
 
 const DashboardLayout = (props) => {
   const history = useHistory();
-  console.log("jhjgg", history.location.pathname.includes("/gallery"));
+  // console.log("jhjgg", history.location.pathname.includes("/gallery"));
+  const [show, setshow] = useState(false);
+  const scrollRef = useRef();
+  const btnshow = useRef();
+  const scrollTo = () => scrollRef.current?.scrollTo(0, 0);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 400) {
+        setshow(true);
+      } else {
+        setshow(false);
+      }
+    });
+    // if (btnshow.current.offsetTop - 100) {
+    //   setshow(!show);
+    // }
+  }, [btnshow.current]);
+  useEffect(() => {
+    if (!scrollRef) {
+      scrollTo();
+    }
+
+    console.log(btnshow.current.offsetTop - 100, "kjghv");
+    // eslint-disable-next-line
+  }, [scrollRef.current]);
+  console.log(show, "hjkjk");
   return (
     <>
-      <div className='container-fuild full-height'>
+      <div className='container-fuild full-height' ref={scrollRef}>
         <HeaderUser />
         {history.location.pathname.includes("/gallery") ? (
           <div className='row mb-4'>
@@ -55,7 +81,19 @@ const DashboardLayout = (props) => {
             </div>
           </div>
         </div>
+        <div ref={btnshow}></div>
         <FooterUser />
+        <div>
+          <a
+            // href='#top'
+            onClick={() => {
+              scrollTo();
+            }}
+            className={show ? "add-fix-top active" : "add-fix-top"}
+          >
+            <i class='fas fa-angle-up'></i>
+          </a>
+        </div>
       </div>
     </>
   );
