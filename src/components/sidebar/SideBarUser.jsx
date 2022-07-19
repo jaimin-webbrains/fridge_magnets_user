@@ -51,10 +51,10 @@ function SideBarUser(props) {
         return val.parent_id === 0;
       });
       const subcat = data.data.filter((val) => {
-        return val.parent_id !== 0;
+        return val.parent_id === 1;
       });
       const subcatprinting = data.data.filter((val) => {
-        return val.parent_id !== 0;
+        return val.parent_id === 2;
       });
       setsubprinting(subcatprinting);
       setparentcate(ans);
@@ -74,7 +74,13 @@ function SideBarUser(props) {
   useEffect(() => {
     getcategorise();
   }, []);
-  console.log("hghg", subcate, subprinting);
+  console.log(
+    "hghg",
+    subcate,
+    subprinting.filter((val) => {
+      return val.parent_id === 2;
+    })
+  );
   return (
     <>
       <div className='col-lg-4 col-md-12 col-sm-12 mb-3'>
@@ -227,6 +233,7 @@ function SideBarUser(props) {
                         <Card>
                           <ul className='primary-menu'>
                             {subprinting.slice(0, 8).map((val1) => {
+                              // console.log(val1.parent_id, "kjhjkh");
                               return val1.parent_id === 2 ? (
                                 <>
                                   <Link to={`/printing-products/${val1.slug}`}>
@@ -258,7 +265,7 @@ function SideBarUser(props) {
                         <Card>
                           <ul className='primary-menu'>
                             {subprinting.slice(8, 16).map((val1) => {
-                              return 2 === val1.parent_id16 ? (
+                              return 2 === val1.parent_id ? (
                                 <>
                                   <Link to={`/categories/${val1.slug}`}>
                                     <li>{val1.name}</li>
