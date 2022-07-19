@@ -119,7 +119,6 @@ function Content(props) {
         });
         await getBrandByProduct1(token, slug, brand).then((data) => {
           if (data.success) {
-            console.log(data.data);
             setProductBrand(data.data);
             success();
           } else {
@@ -138,12 +137,11 @@ function Content(props) {
   useEffect(() => {
     step === 1 && dispatch(image());
   }, [step]);
-  console.log("ddds", product);
   return (
     <div>
       {step === 1 ? (
         <>
-          <div id='top' ref={scroll1}>
+          <div ref={scroll1}>
             {history.location.pathname.includes(`/${slug}`) ? (
               <div className='isCatNameTag'>
                 <h4 className='p-title'>{slug?.replace(/-/g, " ")}</h4>
@@ -330,19 +328,7 @@ function Content(props) {
         </div> */}
             </div>
           </div>
-          <div>
-            {console.log(scroll1?.scrollHeight, "lhfgh")}
-            {/* <a
-              href='#top'
-              // onClick={executeScroll}
-              className='add-fix-top active'
-              // className={
-              //   scroll1?.scrollHeight ? "add-fix-top active" : "add-fix-top"
-              // }
-            >
-              <i class='fas fa-angle-up'></i>
-            </a> */}
-          </div>
+
           {!history.location.pathname.includes("/size") ? (
             <div className='row '>
               <h4

@@ -7,10 +7,7 @@ import { connect } from "react-redux";
 import AuthActions from "redux/auth/actions";
 import { ModalHeader, ModalBody, Button } from "reactstrap";
 
-import {
-  addSize,
-  updateSize,
-} from "services/sizeServices";
+import { addSize, updateSize } from "services/sizeServices";
 
 const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
@@ -38,7 +35,6 @@ const SizesAddModal = (props) => {
     editData,
   } = props;
 
-
   const Error = (props) => {
     const field1 = props.field;
     if ((errors[field1] && touched[field1]) || submitCount > 0) {
@@ -52,12 +48,11 @@ const SizesAddModal = (props) => {
     }
   };
 
-
   const handleSizeSubmit = async (e) => {
     e.preventDefault();
     handleSubmit();
     var sizeData = {
-      id:editData.id,
+      id: editData.id,
       size: values.size,
     };
     if (isValid) {
@@ -86,15 +81,12 @@ const SizesAddModal = (props) => {
 
   //USEEFFECTS
 
-  
-
   useEffect(() => {
     isEdit &&
       setValues({
-        ...editData
+        ...editData,
       });
 
-      console.log("editData",editData)
     // eslint-disable-next-line
   }, [editData]);
 
@@ -104,27 +96,26 @@ const SizesAddModal = (props) => {
         {`${isEdit ? "Edit" : "Add"} Size`}
       </ModalHeader>
       <ModalBody>
-        
-        <div className="form-group">
+        <div className='form-group'>
           <label>
-            Size  <span className="error-msg">*</span>
+            Size <span className='error-msg'>*</span>
           </label>
           <input
-            type="text"
-            className="form-control react-form-input"
-            placeholder=" Enter The Size"
-            id="size"
+            type='text'
+            className='form-control react-form-input'
+            placeholder=' Enter The Size'
+            id='size'
             onBlur={handleBlur}
             onChange={handleChange}
             value={values.size}
           />
-          <Error field="size" />
+          <Error field='size' />
         </div>
 
         <Button
-          className="btn c-primary btn-block"
+          className='btn c-primary btn-block'
           onClick={(e) => handleSizeSubmit(e)}
-          type="button"
+          type='button'
           disabled={isFetching}
         >
           {isEdit ? "Update" : "Add"}

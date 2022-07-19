@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "../../assets/css/dashboardlayout.css";
 import NavigationActions from "redux/navigation/actions";
 import { withRouter } from "react-router-dom";
@@ -12,6 +12,15 @@ const { setuser } = AuthActions;
 
 function FooterUser(props) {
   const { settingdata } = props;
+  const [pathname, setpathname] = useState(true);
+  // const { pathname } = useLocation();
+  // window.addEventListener("scroll", function() {
+  //   const scrollFromTop = window.pageYOffset + 100;
+  //   console.log(scrollFromTop, "jhjjh");
+  // });
+  // useEffect(() => {
+  //   window.scrollTo({ top: 100, left: 0, behavior: "smooth" });
+  // }, [pathname]);
   return (
     <div>
       <div className='row footer'>
@@ -96,6 +105,20 @@ function FooterUser(props) {
             />
           </div>
         </div>
+        {/* <div>
+          <a
+            href='#top'
+            onClick={() => {
+              setpathname(!pathname);
+            }}
+            className='add-fix-top active'
+            // className={
+            //   scroll1?.scrollHeight ? "add-fix-top active" : "add-fix-top"
+            // }
+          >
+            <i class='fas fa-angle-up'></i>
+          </a>
+        </div> */}
         <div className='col-8 mx-auto text-center '>
           <div className='border-top'>
             <p>COPYRIGHT 2022. ALL RIGHTS RESERVED.</p>

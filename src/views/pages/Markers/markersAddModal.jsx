@@ -7,10 +7,7 @@ import { connect } from "react-redux";
 import AuthActions from "redux/auth/actions";
 import { ModalHeader, ModalBody, Button } from "reactstrap";
 
-import {
-  addMarker,
-  updateMarker,
-} from "services/markerServices";
+import { addMarker, updateMarker } from "services/markerServices";
 
 const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
@@ -38,7 +35,6 @@ const MarkersAddModal = (props) => {
     editData,
   } = props;
 
-
   const Error = (props) => {
     const field1 = props.field;
     if ((errors[field1] && touched[field1]) || submitCount > 0) {
@@ -52,12 +48,11 @@ const MarkersAddModal = (props) => {
     }
   };
 
-
   const handleMarkerSubmit = async (e) => {
     e.preventDefault();
     handleSubmit();
     var markerData = {
-      id:editData.id,
+      id: editData.id,
       marker: values.marker,
     };
     if (isValid) {
@@ -86,15 +81,12 @@ const MarkersAddModal = (props) => {
 
   //USEEFFECTS
 
-  
-
   useEffect(() => {
     isEdit &&
       setValues({
-        ...editData
+        ...editData,
       });
 
-      console.log("editData",editData)
     // eslint-disable-next-line
   }, [editData]);
 
@@ -104,27 +96,26 @@ const MarkersAddModal = (props) => {
         {`${isEdit ? "Edit" : "Add"} Marker`}
       </ModalHeader>
       <ModalBody>
-        
-        <div className="form-group">
+        <div className='form-group'>
           <label>
-            Marker Name <span className="error-msg">*</span>
+            Marker Name <span className='error-msg'>*</span>
           </label>
           <input
-            type="text"
-            className="form-control react-form-input"
-            placeholder="Enter The Marker Name"
-            id="marker"
+            type='text'
+            className='form-control react-form-input'
+            placeholder='Enter The Marker Name'
+            id='marker'
             onBlur={handleBlur}
             onChange={handleChange}
             value={values.marker}
           />
-          <Error field="marker" />
+          <Error field='marker' />
         </div>
 
         <Button
-          className="btn c-primary btn-block"
+          className='btn c-primary btn-block'
           onClick={(e) => handleMarkerSubmit(e)}
-          type="button"
+          type='button'
           disabled={isFetching}
         >
           {isEdit ? "Update" : "Add"}

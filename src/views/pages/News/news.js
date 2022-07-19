@@ -15,7 +15,6 @@ function News(props) {
   const { token, success, error } = props;
 
   const { slug } = useParams();
-  // console.log("hgh", useParams());
   const [news, setNews] = useState([]);
   const [newsdata, setNewsData] = useState([]);
 

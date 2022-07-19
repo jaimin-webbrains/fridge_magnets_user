@@ -66,7 +66,6 @@ const Settings = (props) => {
     // var data = { ...values };
     var formData = new FormData();
     for (const val in values) {
-      console.log(val, "ghf");
       // if (val === "logo") {
       //   formData.append(val, JSON(values[val]));
       // } else {
@@ -111,7 +110,6 @@ const Settings = (props) => {
     await getsetting(token).then((data) => {
       if (data.success) {
         success(data.message);
-        console.log("getdata", data.data);
         setValues(data.data[0]);
       } else {
         error(data.message);
@@ -125,8 +123,6 @@ const Settings = (props) => {
 
     // eslint-disable-next-line
   }, []);
-  console.log(values, "hgh");
-  console.log(process.env.REACT_APP_BACKEND_URI_UPLOAD, "ghgj");
   return (
     <>
       <div class='card'>
@@ -188,7 +184,6 @@ const Settings = (props) => {
                     id='logo'
                     onBlur={handleBlur}
                     onChange={(e) => {
-                      console.log(e.target.files, "jjk");
                       setFieldValue("logo", e.target.files[0]);
                     }}
                     // value={values?.logo}

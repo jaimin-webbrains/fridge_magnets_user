@@ -17,6 +17,7 @@ export default function Markers(prop) {
               <input
                 id='artwork1'
                 type='radio'
+                checked='true'
                 name='r1'
                 className='mr-1'
                 onChange={(e) => {
@@ -53,6 +54,9 @@ export default function Markers(prop) {
               class='btn btn-primary m-2'
               onClick={() => {
                 setStep(step + 1);
+                if (alldata.marker === undefined) {
+                  setAlldata({ ...alldata, marker: "yes" });
+                }
                 // setAlldata({ ...alldata, artwork: artwork });
               }}
             >

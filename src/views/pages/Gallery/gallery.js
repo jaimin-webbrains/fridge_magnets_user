@@ -23,7 +23,6 @@ function Gallery(props) {
 
   const getcategarise = async () => {
     await getCategories(token).then((data) => {
-      console.log(data.data, "jjhh");
       if (catvalue === "") {
         const ans = data.data?.filter((val) => {
           return val.parent_id !== 0;
@@ -46,7 +45,6 @@ function Gallery(props) {
   const getData = async () => {
     await getGallery(token, { data: catvalue }).then((data) => {
       if (data.success) {
-        console.log("hgjj", data.data);
         setphotos(data.data);
         const photoarray = data.data.map((val) => {
           return {
@@ -64,7 +62,6 @@ function Gallery(props) {
   useEffect(() => {
     getData();
   }, [catvalue]);
-  console.log("cat", data);
   return (
     <>
       <div className='row'>

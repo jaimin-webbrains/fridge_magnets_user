@@ -7,10 +7,7 @@ import { connect } from "react-redux";
 import AuthActions from "redux/auth/actions";
 import { ModalHeader, ModalBody, Button } from "reactstrap";
 
-import {
-  addPaper,
-  updatePaper,
-} from "services/paperServices";
+import { addPaper, updatePaper } from "services/paperServices";
 
 const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
@@ -38,7 +35,6 @@ const PapersAddModal = (props) => {
     editData,
   } = props;
 
-
   const Error = (props) => {
     const field1 = props.field;
     if ((errors[field1] && touched[field1]) || submitCount > 0) {
@@ -52,12 +48,11 @@ const PapersAddModal = (props) => {
     }
   };
 
-
   const handlePaperSubmit = async (e) => {
     e.preventDefault();
     handleSubmit();
     var paperData = {
-      id:editData.id,
+      id: editData.id,
       paper: values.paper,
     };
     if (isValid) {
@@ -86,15 +81,12 @@ const PapersAddModal = (props) => {
 
   //USEEFFECTS
 
-  
-
   useEffect(() => {
     isEdit &&
       setValues({
-        ...editData
+        ...editData,
       });
 
-      console.log("editData",editData)
     // eslint-disable-next-line
   }, [editData]);
 
@@ -104,28 +96,27 @@ const PapersAddModal = (props) => {
         {`${isEdit ? "Edit" : "Add"} Paper`}
       </ModalHeader>
       <ModalBody>
-        
-        <div className="form-group">
+        <div className='form-group'>
           <label>
-            Paper Name <span className="error-msg">*</span>
+            Paper Name <span className='error-msg'>*</span>
           </label>
           <input
-            type="text"
-            className="form-control react-form-input"
-            placeholder="Enter The Paper Name"
-            id="paper"
+            type='text'
+            className='form-control react-form-input'
+            placeholder='Enter The Paper Name'
+            id='paper'
             onBlur={handleBlur}
             onChange={handleChange}
             value={values.paper}
           />
-          <Error field="paper" />
+          <Error field='paper' />
         </div>
 
         <Button
-          className="btn c-primary btn-block"
+          className='btn c-primary btn-block'
           onClick={(e) => handlePaperSubmit(e)}
-          type="button"
-          disabled={ isFetching }
+          type='button'
+          disabled={isFetching}
         >
           {isEdit ? "Update" : "Add"}
         </Button>

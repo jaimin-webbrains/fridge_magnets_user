@@ -14,12 +14,10 @@ import ConformationModal from "components/common/ConformationModal";
 import { Edit3, Plus, Trash } from "react-feather";
 import SizesAddModal from "./sizesAddModal";
 
-
 const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
 
-
-const Sizes = props => {
+const Sizes = (props) => {
   const { token, success, error, fetching } = props;
   const [isOpen, setOpenModal] = useState();
   const [isEdit, setIsEdit] = useState(false);
@@ -29,17 +27,16 @@ const Sizes = props => {
   const [openDeleteModal, toggleDeleteModalOpen] = useState();
   const [deleteId, setDeleteID] = useState("");
 
-
-  const HeaderComponent = props => {
+  const HeaderComponent = (props) => {
     let classes = {
       "-sort-asc": props.isSortedDesc !== undefined && !props.isSortedDesc,
-      "-sort-desc": props.isSortedDesc !== undefined && props.isSortedDesc
+      "-sort-desc": props.isSortedDesc !== undefined && props.isSortedDesc,
     };
     return <div className={classNames(classes)}>{props.title}</div>;
   };
   const getSizesList = useCallback(async () => {
     fetching();
-    await getSizes(token).then(data => {
+    await getSizes(token).then((data) => {
       if (data.success) {
         setSizesList(data.data);
         success();
@@ -57,11 +54,11 @@ const Sizes = props => {
   const columns = useMemo(
     () => [
       {
-        Header: tableInstance => {
+        Header: (tableInstance) => {
           return (
             <HeaderComponent
               isSortedDesc={tableInstance.column.isSortedDesc}
-              title="Size"
+              title='Size'
             />
           );
         },
@@ -69,53 +66,51 @@ const Sizes = props => {
         placeholder: "Size",
         disableFilters: true,
         accessor: "size",
-        Cell: tableInstance => (
-          <span className="text-capitalize">
+        Cell: (tableInstance) => (
+          <span className='text-capitalize'>
             {tableInstance.row.values.size}
           </span>
-        )
+        ),
       },
-     
-      
+
       {
-        Header: tableInstance => {
+        Header: (tableInstance) => {
           return (
             <HeaderComponent
               isSortedDesc={tableInstance.column.isSortedDesc}
-              title="Action"
+              title='Action'
             />
           );
         },
         accessor: "id",
         disableSortBy: true,
         disableFilters: true,
-        Cell: tableInstance => {
+        Cell: (tableInstance) => {
           return (
-            <div className="react-action-class">
+            <div className='react-action-class'>
               <button
-                className="table-action action-edit"
+                className='table-action action-edit'
                 onClick={() => {
                   setEditData(tableInstance.row.original);
                   setIsEdit(true);
                   setOpenModal(true);
                 }}
               >
-                <Edit3 className="table-icon-edit" />
+                <Edit3 className='table-icon-edit' />
               </button>
               <button
-                className="table-action action-delete"
+                className='table-action action-delete'
                 onClick={() => {
                   toggleDeleteModalOpen(true);
-                  console.log(tableInstance.row.original,"tableInstance.row.original")
                   setDeleteID(tableInstance.row.original.id);
                 }}
               >
-                <Trash className="table-icon-edit" />
+                <Trash className='table-icon-edit' />
               </button>
             </div>
           );
-        }
-      }
+        },
+      },
     ],
     // eslint-disable-next-line
     [getSizesList]
@@ -128,23 +123,22 @@ const Sizes = props => {
     headerGroups,
     pageCount,
     gotoPage,
-    state: { pageIndex }
+    state: { pageIndex },
   } = useTable(
     {
       data: sizesList,
       columns: columns,
       initialState: {
         pageSize: 10,
-        pageIndex: 0
-      }
+        pageIndex: 0,
+      },
     },
     useFilters,
     useSortBy,
     usePagination
   );
   const deleteClick = () => {
-    
-    deleteSize(token, { id: deleteId }).then(res => {
+    deleteSize(token, { id: deleteId }).then((res) => {
       if (res.success) {
         toggleRefresh(true);
         toggleDeleteModalOpen(false);
@@ -155,24 +149,23 @@ const Sizes = props => {
     });
   };
   return (
-    <div className="container-fluid">
-      <div className="row title-sec align-items-center">
-        <div className="col-sm headline">Sizes</div>
-        <div className="col-sm-auto ml-auto">
-          <button className="btn btn-blue" onClick={() => setOpenModal(true)}>
-            <Plus className="mr-2" /> Add Size
+    <div className='container-fluid'>
+      <div className='row title-sec align-items-center'>
+        <div className='col-sm headline'>Sizes</div>
+        <div className='col-sm-auto ml-auto'>
+          <button className='btn btn-blue' onClick={() => setOpenModal(true)}>
+            <Plus className='mr-2' /> Add Size
           </button>
         </div>
       </div>
-      <div className="div-container">
+      <div className='div-container'>
         <ReactTableWrapper {...props}>
-
-          <div className="table-responsive common-table">
-            <table className="table border-0" {...getTableProps()}>
-              <thead className="thead-dark">
-                {headerGroups.map(headerGroup => (
+          <div className='table-responsive common-table'>
+            <table className='table border-0' {...getTableProps()}>
+              <thead className='thead-dark'>
+                {headerGroups.map((headerGroup) => (
                   <tr {...headerGroup.getHeaderGroupProps()}>
-                    {headerGroup.headers.map(header => (
+                    {headerGroup.headers.map((header) => (
                       <th
                         {...header.getHeaderProps(
                           header.getSortByToggleProps()
@@ -206,11 +199,11 @@ const Sizes = props => {
                                       })}
                                   </tr>
                               ))} */}
-                {page.map(row => {
+                {page.map((row) => {
                   prepareRow(row);
                   return (
                     <tr {...row.getRowProps()}>
-                      {row.cells.map(cell => (
+                      {row.cells.map((cell) => (
                         <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                       ))}
                     </tr>
@@ -236,30 +229,30 @@ const Sizes = props => {
             }}
             isEdit={isEdit}
             editData={editData}
-            toggleRefresh={e => toggleRefresh(e)}
+            toggleRefresh={(e) => toggleRefresh(e)}
           />
         )}
       </Modal>
       <Modal isOpen={openDeleteModal} backdrop={true}>
-      {openDeleteModal && (
-        <ConformationModal
-          isOpen={openDeleteModal}
-          onClose={() => toggleDeleteModalOpen(false)}
-          confirmText={"Delete"}
-          message={"Are you sure to delete size ?"}
-          handleConfirm={() => deleteClick()}
-        />
-      )}
+        {openDeleteModal && (
+          <ConformationModal
+            isOpen={openDeleteModal}
+            onClose={() => toggleDeleteModalOpen(false)}
+            confirmText={"Delete"}
+            message={"Are you sure to delete size ?"}
+            handleConfirm={() => deleteClick()}
+          />
+        )}
       </Modal>
     </div>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     ...state.themeChanger,
     token: state.auth.accessToken,
-    user: state.auth.user
+    user: state.auth.user,
   };
 };
 export default compose(

@@ -11,7 +11,6 @@ const { setuser } = AuthActions;
 
 function NewsDetails(props) {
   const news = props.data;
-  console.log(news, "jhjhj");
 
   return (
     <>

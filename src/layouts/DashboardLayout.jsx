@@ -8,8 +8,8 @@ import { connect } from "react-redux";
 import { ProtectedRoute } from "./../routes/ProtectedRoute";
 
 import HeaderUser from "components/header/HeaderUser";
-import FooterUser from "components/footer/FooterUser";
 import SideBarUser from "components/sidebar/SideBarUser";
+import FooterUser from "components/footer/FooterUser";
 
 const DashboardLayout = (props) => {
   const history = useHistory();

@@ -293,12 +293,11 @@ function Size(props) {
                   type='button'
                   class='btn btn-primary m-2'
                   onClick={() => {
-                    setStep(step - 1);
+                    props.history.push("/categories");
                   }}
                 >
                   Previous
                 </button>
-                {console.log("lkjjijik", !alldata.quantity === undefined)}
                 <button
                   type='button'
                   class='btn btn-primary m-2'
