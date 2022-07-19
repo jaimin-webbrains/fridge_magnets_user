@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import NavigationActions from "redux/navigation/actions";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
@@ -18,6 +18,7 @@ function HeaderUser(props) {
 
   const [setting, setSetting] = useState();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const getData = async () => {
     await getsetting(token).then((data) => {
@@ -42,19 +43,18 @@ function HeaderUser(props) {
           <img
             src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${setting?.logo}`}
             alt=''
-            width='100%'
-            height='auto'
+            className='main-logo'
           />
           {/* </a> */}
         </div>
         <div className='row main-menu'>
           <div className='col-10 mx-auto'>
-            <nav class='navbar navbar-expand-lg navbar-light'>
-              {/* <a class='navbar-brand' href='#'>
+            <nav className='navbar navbar-expand-lg navbar-light'>
+              {/* <a className='navbar-brand' href='#'>
                 Navbar
               </a> */}
               <button
-                class='navbar-toggler my-2'
+                className='navbar-toggler my-2'
                 type='button'
                 data-toggle='collapse'
                 data-target='#navbarNav'
@@ -62,37 +62,81 @@ function HeaderUser(props) {
                 aria-expanded='false'
                 aria-label='Toggle navigation'
               >
-                <span class='navbar-toggler-icon'></span>
+                <span className='navbar-toggler-icon'></span>
               </button>
-              <div class='collapse navbar-collapse' id='navbarNav'>
-                <ul class='navbar-nav'>
-                  <li class='nav-item active'>
-                    <Link class='nav-link' to='/categories'>
-                      HOME <span class='sr-only'>(current)</span>
+              <div className='collapse navbar-collapse' id='navbarNav'>
+                <ul className='navbar-nav'>
+                  <li className='nav-item'>
+                    <Link
+                      className={
+                        history.location.pathname.includes("home")
+                          ? "nav-link is-active"
+                          : "nav-link"
+                      }
+                      to='/home'
+                    >
+                      HOME
                     </Link>
                   </li>
-                  <li class='nav-item'>
-                    <Link class='nav-link' to='/categories'>
+                  <li className='nav-item'>
+                    <Link
+                      class={
+                        history.location.pathname.includes("/categories/")
+                          ? "nav-link is-active"
+                          : "nav-link"
+                      }
+                      to='/categories/'
+                    >
                       FRIDGE MAGNETS
                     </Link>
                   </li>
-                  <li class='nav-item'>
-                    <Link class='nav-link' to='/gallery'>
+                  <li className='nav-item'>
+                    <Link
+                      className={
+                        history.location.pathname.includes("gallery")
+                          ? "nav-link is-active"
+                          : "nav-link"
+                      }
+                      to='/gallery'
+                    >
                       GALLERY
                     </Link>
                   </li>
-                  <li class='nav-item'>
-                    <Link class='nav-link' to='/news'>
+
+                  <li className='nav-item'>
+                    <Link
+                      className={
+                        history.location.pathname.includes("news")
+                          ? "nav-link is-active"
+                          : "nav-link"
+                      }
+                      to='/news'
+                    >
                       NEWS
                     </Link>
                   </li>
-                  <li class='nav-item'>
-                    <Link className='nav-link' to='/about-us'>
+                  <li className='nav-item'>
+                    <Link
+                      className={
+                        history.location.pathname.includes("about-us")
+                          ? "nav-link is-active"
+                          : "nav-link"
+                      }
+                      to='/about-us'
+                    >
                       ABOUT US
                     </Link>
                   </li>
-                  <li class='nav-item'>
-                    <Link className='nav-link' to=''>
+                  <li className='nav-item'>
+                    <Link
+                      className='nav-link'
+                      // className={
+                      //   history.location.pathname.includes("categories")
+                      //     ? "nav-link is-active"
+                      //     : "nav-link"
+                      // }
+                      to=''
+                    >
                       CONTACT US
                     </Link>
                   </li>

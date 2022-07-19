@@ -12,7 +12,7 @@ import {
   // Route,
   Link,
   useHistory,
-  // useParams,
+  useParams,
 } from "react-router-dom";
 import { Card } from "reactstrap";
 import { getCategories } from "services/categoryServices";
@@ -35,7 +35,7 @@ function SideBarUser(props) {
   const [flag, setflag] = useState(true);
 
   let history = useHistory();
-  // let slug = useParams();
+  let slug = useParams();
   // let { slug } = useParams();
 
   const toggle = () => {
@@ -70,7 +70,7 @@ function SideBarUser(props) {
       }
     });
   };
-  console.log(image, "hkh");
+
   useEffect(() => {
     getcategorise();
   }, []);
@@ -108,9 +108,19 @@ function SideBarUser(props) {
                             {subcate.slice(0, 8).map((val1) => {
                               return val.id === val1.parent_id ? (
                                 <>
-                                  <Link to={`/categories/${val1.slug}`}>
-                                    <li>{val1.name}</li>
-                                  </Link>
+                                  <li
+                                    className={
+                                      history.location.pathname.includes(
+                                        `${val1.slug}`
+                                      ) === true
+                                        ? "catsWrap"
+                                        : ""
+                                    }
+                                  >
+                                    <Link to={`/categories/${val1.slug}`}>
+                                      {val1.name}
+                                    </Link>
+                                  </li>
                                 </>
                               ) : null;
                             })}
@@ -339,7 +349,6 @@ function SideBarUser(props) {
             </Collapse>
           </div> */}
         </div>
-        {console.log("gjhgj", image !== undefined)}
         {image ? (
           <div className='img-bg'>
             <img

@@ -38,10 +38,11 @@ function Content(props) {
 
   const scrollToRef = (ref) => {
     console.log("scroll", ref.current.offsetTop);
-    window.scrollTo(0, ref.current.offsetTop - 0);
+    // document.body.scrollTop = 30;
+    window.scrollTo(0, ref.current.offsetTop - 100);
   };
-  const scroll = useRef(null);
-  const executeScroll = () => scrollToRef(scroll);
+  const scroll1 = useRef(null);
+  const executeScroll = () => scrollToRef(scroll1);
 
   const getData = async () => {
     var sub_cat = "";
@@ -67,7 +68,12 @@ function Content(props) {
     if (slug === "" || slug === undefined) {
       await getSlugByProduct(token, sub_cat).then((data) => {
         if (data.success) {
-          setProduct(data.data);
+          const arrayUniqueByKey = [
+            ...new Map(
+              data.data.map((item) => [item["product_name"], item])
+            ).values(),
+          ];
+          setProduct(arrayUniqueByKey);
           success();
         } else {
           error();
@@ -77,7 +83,12 @@ function Content(props) {
       if (!history.location.pathname.includes("/printing-products")) {
         await getSlugByProduct(token, slug).then((data) => {
           if (data.success) {
-            setProduct(data.data);
+            const arrayUniqueByKey = [
+              ...new Map(
+                data.data.map((item) => [item["product_name"], item])
+              ).values(),
+            ];
+            setProduct(arrayUniqueByKey);
             success();
           } else {
             error();
@@ -94,7 +105,13 @@ function Content(props) {
       } else {
         await getSlugByProduct1(token, slug).then((data) => {
           if (data.success) {
-            setProduct(data.data);
+            const arrayUniqueByKey = [
+              ...new Map(
+                data.data.map((item) => [item["product_name"], item])
+              ).values(),
+            ];
+            setProduct(arrayUniqueByKey);
+            // setProduct(data.data);
             success();
           } else {
             error();
@@ -126,20 +143,13 @@ function Content(props) {
     <div>
       {step === 1 ? (
         <>
-          <div>
-            {/* <button
-              onClick={() => {
-                executeScroll();
-              }}
-            >
-              scroll button
-            </button> */}
+          <div id='top' ref={scroll1}>
             {history.location.pathname.includes(`/${slug}`) ? (
               <div className='isCatNameTag'>
                 <h4 className='p-title'>{slug?.replace(/-/g, " ")}</h4>
               </div>
             ) : null}
-            <div className='title' ref={scroll}>
+            <div className='title'>
               <h3>Get An Instant Price By SMS Now</h3>
               <h4>
                 What size fridge magnet are you looking for ?{" "}
@@ -319,6 +329,19 @@ function Content(props) {
           </div>
         </div> */}
             </div>
+          </div>
+          <div>
+            {console.log(scroll1?.scrollHeight, "lhfgh")}
+            {/* <a
+              href='#top'
+              // onClick={executeScroll}
+              className='add-fix-top active'
+              // className={
+              //   scroll1?.scrollHeight ? "add-fix-top active" : "add-fix-top"
+              // }
+            >
+              <i class='fas fa-angle-up'></i>
+            </a> */}
           </div>
           {!history.location.pathname.includes("/size") ? (
             <div className='row '>

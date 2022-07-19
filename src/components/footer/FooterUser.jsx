@@ -62,7 +62,13 @@ function FooterUser(props) {
                   alt=''
                 ></img>
               </div>
-              <div>{settingdata?.phone_no}</div>
+              <div>{`${settingdata?.phone_no.substring(
+                0,
+                4
+              )} ${settingdata?.phone_no.substring(
+                4,
+                7
+              )} ${settingdata?.phone_no.substring(7, 10)}`}</div>
             </li>
             <li>
               <div className='icon'>
@@ -92,7 +98,7 @@ function FooterUser(props) {
         </div>
         <div className='col-8 mx-auto text-center '>
           <div className='border-top'>
-            <p>COPYRIGHT 2020. ALL RIGHTS RESERVED.</p>
+            <p>COPYRIGHT 2022. ALL RIGHTS RESERVED.</p>
           </div>
         </div>
       </div>

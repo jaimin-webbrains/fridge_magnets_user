@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Viewer from "react-viewer";
 import { getGallery } from "services/galleryService";
 import NavigationActions from "redux/navigation/actions";
 import { Link, withRouter } from "react-router-dom";
@@ -15,7 +16,10 @@ function Gallery(props) {
   const [parentcate, setparentcate] = useState([]);
   const [catvalue, setcatvalue] = useState("");
   const [photos, setphotos] = useState([]);
+  const [data, setdata] = useState([]);
+
   const [cate, setcat] = useState([]);
+  const [visible, setVisible] = useState(false);
 
   const getcategarise = async () => {
     await getCategories(token).then((data) => {
@@ -44,6 +48,13 @@ function Gallery(props) {
       if (data.success) {
         console.log("hgjj", data.data);
         setphotos(data.data);
+        const photoarray = data.data.map((val) => {
+          return {
+            src: `${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${val.product_Images}`,
+            alt: `${val.product_Images}`,
+          };
+        });
+        setdata(photoarray);
         // success();
       } else {
         // error();
@@ -53,7 +64,7 @@ function Gallery(props) {
   useEffect(() => {
     getData();
   }, [catvalue]);
-  console.log("cat", cate);
+  console.log("cat", data);
   return (
     <>
       <div className='row'>
@@ -67,7 +78,10 @@ function Gallery(props) {
           >
             {parentcate.map((val) => {
               return (
-                <option className={val.parent_id === 0 ? "text-bold" : ""}>
+                <option
+                  className={val.parent_id === 0 ? "text-bold" : ""}
+                  disabled={val.parent_id === 0 ? true : null}
+                >
                   {val.name}
                 </option>
               );
@@ -92,6 +106,9 @@ function Gallery(props) {
               <div className='col-6'>
                 <div className=''>
                   <img
+                    onClick={() => {
+                      setVisible(true);
+                    }}
                     src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${val.product_Images}`}
                     alt=''
                     className='myimgstyle'
@@ -101,6 +118,17 @@ function Gallery(props) {
             </>
           );
         })}
+      </div>
+      <div className='row'>
+        <div className='col-8 mx-auto'>
+          <Viewer
+            visible={visible}
+            onClose={() => {
+              setVisible(false);
+            }}
+            images={data}
+          />
+        </div>
       </div>
     </>
   );

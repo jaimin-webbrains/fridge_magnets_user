@@ -298,19 +298,20 @@ function Size(props) {
                 >
                   Previous
                 </button>
+                {console.log("lkjjijik", !alldata.quantity === undefined)}
                 <button
                   type='button'
                   class='btn btn-primary m-2'
                   onClick={() => {
                     setStep(step + 1);
-                    if (!alldata.quantity === "") {
-                      setAlldata({ ...alldata, cant_find_your_size: "true" });
-                    } else {
+                    if (alldata.quantity === undefined) {
                       setAlldata({
                         ...alldata,
-                        quantity: 500,
+                        quantity: "500",
                         cant_find_your_size: "true",
                       });
+                    } else {
+                      setAlldata({ ...alldata, cant_find_your_size: "true" });
                     }
                   }}
                 >

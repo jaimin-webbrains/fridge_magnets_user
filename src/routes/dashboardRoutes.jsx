@@ -9,6 +9,7 @@ import News from "views/pages/News/news";
 
 const dashboardRoutes = [
   // { path: "/", component: DashboardLayout },
+  { path: "/home", component: content },
   { path: "/categories", component: content },
   { path: "/categories/:slug", component: Content },
   { path: "/categories/size", component: Size },

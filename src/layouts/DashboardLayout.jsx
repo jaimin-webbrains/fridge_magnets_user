@@ -19,7 +19,7 @@ const DashboardLayout = (props) => {
       <div className='container-fuild full-height'>
         <HeaderUser />
         {history.location.pathname.includes("/gallery") ? (
-          <div className='row'>
+          <div className='row mb-4'>
             <img
               src='https://wholesale-magnets.com.au/wp-content/uploads/2020/07/rsz_11wholesale_magnets_website-05_2-1.png'
               className='myimg'

@@ -16,7 +16,9 @@ function Artwork(props) {
     <>
       <div className='row wanting'>
         <div className='col-lg-9 col-md-9 col-sm-12'>
-          <h4 className='p-title'>{pdata.category}</h4>
+          <div className='isCatNameTag'>
+            <h4 className='p-title'>{pdata.category}</h4>
+          </div>
           <h5>
             <span className='mr-2'>{pdata.pname}</span>
             {pdata.size}
@@ -83,8 +85,15 @@ function Artwork(props) {
               Next
             </button>
           </div>
-          <div className='my-4 '>
-            <span>{pdata.description}</span>
+          <div className='my-4'>
+            <span>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: pdata.description,
+                }}
+                className='notes-text'
+              />
+            </span>
           </div>
         </div>
       </div>

@@ -85,7 +85,9 @@ function Userdetail(props) {
         <div className='col-lg-9 col-md-12 col-sm-12 pl-0'>
           {!history.location.pathname.includes("/size") ? (
             <>
-              <h4 className='p-title'>{pdata.category}</h4>
+              <div className='isCatNameTag'>
+                <h4 className='p-title'>{pdata.category}</h4>
+              </div>
               <h5>
                 <span className='mr-2'>{pdata.pname}</span>
                 {pdata.size}
@@ -100,7 +102,11 @@ function Userdetail(props) {
           <div className='my-2'>
             <h4 className='mb-4 y-title'>Your Details</h4>
             <form>
-              <label className='d-block mt-2 mb-0 label'>Name:</label>
+              <label className='d-block mt-2 mb-0 label'>
+                Name
+                {/* <span className='error-msg'>*</span>: */}
+              </label>
+
               <input
                 id='name'
                 type='text'
@@ -112,7 +118,11 @@ function Userdetail(props) {
                 value={values?.name}
               />
               <Error field='name' />
-              <label className='d-block mt-2 mb-0 label'>Company:</label>
+              <label className='d-block mt-2 mb-0 label'>
+                Company
+                {/* <span className='error-msg'>*</span>: */}
+              </label>
+
               <input
                 id='company'
                 type='text'
@@ -125,8 +135,10 @@ function Userdetail(props) {
               />
               <Error field='company' />
               <label className='d-block mt-2 mb-0 label'>
-                Mobile(for SMS Quote):
+                Mobile(for SMS Quote)
+                {/* <span className='error-msg'>*</span>: */}
               </label>
+
               <input
                 id='mobile_no'
                 type='text'
@@ -139,8 +151,10 @@ function Userdetail(props) {
               />
               <Error field='mobile_no' />
               <label className='d-block mt-2 mb-0 label'>
-                Delivery Postcode:
+                Delivery Postcode
+                {/* <span className='error-msg'>*</span>: */}
               </label>
+
               <input
                 id='delivery_postcode'
                 type='text'
@@ -152,7 +166,11 @@ function Userdetail(props) {
                 value={values?.delivery_postcode}
               />
               <Error field='delivery_postcode' />
-              <label className='d-block mt-2 mb-0 label'>Email:</label>
+              <label className='d-block mt-2 mb-0 label'>
+                Email
+                {/* <span className='error-msg'>*</span>: */}
+              </label>
+
               <input
                 id='email'
                 type='text'
