@@ -29,9 +29,15 @@ function FooterUser(props) {
           <ul className='footer-menu'>
             <li>ARTWORK INFO & UPLOADS</li>
             <li>FAQ’S</li>
-            <li>GALLERY</li>
-            <li>NEWS</li>
-            <li>ABOUT US</li>
+            <li>
+              <Link to='/gallery'>GALLERY</Link>
+            </li>
+            <li>
+              <Link to='/news'>NEWS</Link>
+            </li>
+            <li>
+              <Link to='/about-us'>ABOUT US</Link>
+            </li>
           </ul>
         </div>
         <div className='col-lg-3 col-md-6 col-sm-12'>
@@ -94,7 +100,7 @@ function FooterUser(props) {
           <div style={{ width: "300px", height: "240px" }} className='map'>
             <iframe
               title='map'
-              src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613507864!3d-6.194741395493371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sPT%20Kulkul%20Teknologi%20Internasional!5e0!3m2!1sen!2sid!4v1601138221085!5m2!1sen!2sid'
+              src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13224.425236895639!2d150.748564!3d-34.041144!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12f1c1330b92db%3A0xeddccc08d1080aa9!2s8a%2F1%20Exchange%20Parade%2C%20Narellan%20NSW%202567%2C%20Australia!5e0!3m2!1sen!2sin!4v1658325147198!5m2!1sen!2sin'
               width='100%'
               height='100%'
               frameBorder='0'

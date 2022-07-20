@@ -54,7 +54,7 @@ const DashboardLayout = (props) => {
           </div>
         ) : null}
         <div className='row mt-3 content'>
-          <div className='col-9 mx-auto'>
+          <div className='col-9 mx-auto main-block'>
             <div className='row instant-price-main'>
               <SideBarUser />
               <div className='col-lg-8 col-md-12 col-sm-12'>

@@ -185,13 +185,12 @@ function Content(props) {
                             }}
                             style={{ cursor: "pointer" }}
                           >
-                            <div className='prodSingImg'>
+                            <div className=''>
                               <img
                                 className='card-img-top'
                                 src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${val?.product_image}`}
                                 alt='Card cap'
                                 width='100%'
-                                height='100%'
                               />
                             </div>
                             <div className='prdsize'>
@@ -346,23 +345,25 @@ function Content(props) {
 
           {!history.location.pathname.includes("/size") ? (
             <div className='row '>
-              <h4
-                style={{
-                  color: "#444444",
-                  fontWeight: "600",
-                  textTransform: "uppercase",
-                  fontSize: "17px",
-                  margin: "35px 0px 53px 0px",
-                }}
-              >
-                Can’t find your size ?{" "}
-                <Link
-                  to='/categories/size'
-                  style={{ color: "#1172b9", textDecoration: "underline" }}
+              <div className='col-12'>
+                <h4
+                  style={{
+                    color: "#444444",
+                    fontWeight: "600",
+                    textTransform: "uppercase",
+                    fontSize: "17px",
+                    margin: "35px 0px 53px 0px",
+                  }}
                 >
-                  Click here
-                </Link>
-              </h4>
+                  Can’t find your size ?{" "}
+                  <Link
+                    to='/categories/size'
+                    style={{ color: "#1172b9", textDecoration: "underline" }}
+                  >
+                    Click here
+                  </Link>
+                </h4>
+              </div>
             </div>
           ) : null}
         </>

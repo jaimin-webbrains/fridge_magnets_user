@@ -100,7 +100,7 @@ function Gallery(props) {
         {photos?.map((val) => {
           return (
             <>
-              <div className='col-6'>
+              <div className='col-lg-6 col-md-6 col-sm-12'>
                 <div className=''>
                   <img
                     onClick={() => {

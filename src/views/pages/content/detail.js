@@ -23,7 +23,6 @@ export default function Detail(prop) {
           <div className='my-2'>
             <h4 className='main-title'>How many are you wanting ?</h4>
             <select
-              // value={product[0].product_quantity}
               onChange={(e) => {
                 setAlldata(
                   Object.assign(alldata, {}, { quantity: e.target.value })
