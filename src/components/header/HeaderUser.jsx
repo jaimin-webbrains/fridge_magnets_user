@@ -129,13 +129,12 @@ function HeaderUser(props) {
                   </li>
                   <li className='nav-item'>
                     <Link
-                      className='nav-link'
-                      // className={
-                      //   history.location.pathname.includes("categories")
-                      //     ? "nav-link is-active"
-                      //     : "nav-link"
-                      // }
-                      to=''
+                      className={
+                        history.location.pathname.includes("contact-us")
+                          ? "nav-link is-active"
+                          : "nav-link"
+                      }
+                      to='/contact-us'
                     >
                       CONTACT US
                     </Link>

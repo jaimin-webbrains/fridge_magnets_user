@@ -22,6 +22,7 @@ const indexRoutes = [
   { path: "/forgotPassword", component: ForgotPassword },
   { path: "/news", component: NewsLayout },
   { path: "/about-us", component: NewsLayout },
+  { path: "/contact-us", component: NewsLayout },
   { path: "/", component: Layout },
 ];
 

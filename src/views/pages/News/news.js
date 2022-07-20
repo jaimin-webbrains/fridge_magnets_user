@@ -49,24 +49,23 @@ function News(props) {
             <div className='row'>
               {news.map((val) => {
                 return (
-                  <div className='my-5 new-block'>
-                    <div className='col-12'>
-                      <div className='mb-3'>
-                        <h4>{val.news}</h4>
-                      </div>
-                      <div className='mb-3'>
-                        <p>{val.news_description.substring(0, 280)} [...]</p>
-                      </div>
-                      <div>
-                        <button
-                          onClick={() => {
-                            setStep(step + 1);
-                            setNewsData(val);
-                          }}
-                        >
-                          Read More
-                        </button>
-                      </div>
+                  <div className='col-12 my-5 new-block'>
+                    {/* <div className='col-12'> */}
+                    <div className='mb-3'>
+                      <h4>{val.news}</h4>
+                    </div>
+                    <div className='mb-3'>
+                      <p>{val.news_description.substring(0, 280)} [...]</p>
+                    </div>
+                    <div>
+                      <button
+                        onClick={() => {
+                          setStep(step + 1);
+                          setNewsData(val);
+                        }}
+                      >
+                        Read More
+                      </button>
                     </div>
                   </div>
                 );

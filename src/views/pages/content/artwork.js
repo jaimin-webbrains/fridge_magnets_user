@@ -86,7 +86,7 @@ function Artwork(props) {
             </button>
           </div>
           <div className='my-4'>
-            <span>
+            <span className='cateogoryDescp'>
               <div
                 dangerouslySetInnerHTML={{
                   __html: pdata.description,

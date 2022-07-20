@@ -55,8 +55,8 @@ export default function Detail(prop) {
               Next
             </button>
           </div>
-          <div className='my-4 '>
-            <span>
+          <div className=''>
+            <span className='cateogoryDescp'>
               <div
                 dangerouslySetInnerHTML={{
                   __html: pdata.description,

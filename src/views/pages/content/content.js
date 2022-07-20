@@ -137,6 +137,7 @@ function Content(props) {
   useEffect(() => {
     step === 1 && dispatch(image());
   }, [step]);
+  console.log("kkjj", product);
   return (
     <div>
       {step === 1 ? (
@@ -330,6 +331,18 @@ function Content(props) {
         </div> */}
             </div>
           </div>
+          {history.location.pathname.includes(`${slug}`) ? (
+            <div className=''>
+              <span className='cateogoryDescp'>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: product[0]?.description,
+                  }}
+                  className='notes-text'
+                />
+              </span>
+            </div>
+          ) : null}
 
           {!history.location.pathname.includes("/size") ? (
             <div className='row '>

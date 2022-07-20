@@ -51,9 +51,12 @@ function NewsDetails(props) {
         <div className='row my-4'>
           <div className='col-12 '>
             <div className='row justify-content-between'>
-              <span className='entry-tag'>WSM-Blogs</span>
+              <span className='entry-tag list'>WSM-Blogs</span>
               <div className='icon-style'>
-                <i class='fab fa-facebook-f'></i>
+                <i
+                  class='fab fa-facebook-f'
+                  title='share on facebook on top'
+                ></i>
                 <i class='fab fa-twitter'></i>
                 <i class='fab fa-linkedin-in'></i>
                 <i class='fab fa-tumblr'></i>

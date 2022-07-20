@@ -1,4 +1,5 @@
 import About_us from "views/pages/AboutUs/about_us";
+import contact_us from "views/pages/Contact_Us/contact_us";
 
 import content from "views/pages/content/content";
 import Content from "views/pages/content/content";
@@ -20,8 +21,10 @@ const dashboardRoutes = [
   { path: "/printing-products/:slug/:brand", component: content },
 
   { path: "/news", component: News },
+  // { path: "/news/:slug", component: newsdetail },
   { path: "/about-us", component: About_us },
   { path: "/gallery", component: Gallery },
+  { path: "/contact-us", component: contact_us },
 
   // { path: "/categories/add", component: categoriesAddModal },
 

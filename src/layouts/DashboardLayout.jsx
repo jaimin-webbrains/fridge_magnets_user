@@ -35,14 +35,14 @@ const DashboardLayout = (props) => {
     if (!scrollRef) {
       scrollTo();
     }
-
+    console.log(document.getElementById("my").scrollTop, "hjkjk");
     console.log(btnshow.current.offsetTop - 100, "kjghv");
     // eslint-disable-next-line
-  }, [scrollRef.current]);
-  console.log(show, "hjkjk");
+  }, [scrollRef.current, document.body.scrollTop]);
+
   return (
     <>
-      <div className='container-fuild full-height' ref={scrollRef}>
+      <div className='container-fuild full-height' ref={scrollRef} id='my'>
         <HeaderUser />
         {history.location.pathname.includes("/gallery") ? (
           <div className='row mb-4'>
