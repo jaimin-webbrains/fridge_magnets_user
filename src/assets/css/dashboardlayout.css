@@ -558,8 +558,15 @@ margin-bottom: 30px;
   display: inline-block;
   vertical-align: middle;
 }
-
-
+.prodSingImg {
+  height: 280px !important;
+  object-fit: cover;
+}
+@media only screen and (min-width: 992px){
+.prodSingImg {
+    height: 280px !important;
+}
+}
 @media only screen and (max-width: 1412px) {
  .collpase span{
   white-space: break-spaces;
@@ -595,6 +602,11 @@ margin-bottom: 30px;
     height: 250px;
   }
 }
+@media only screen and (min-width: 600px) {
+  .prodSingImg {
+    height: 280px !important;
+}
+}
 @media only screen and (max-width: 600px) {
   .myimgstyle{
     height: 150px;
@@ -620,4 +632,7 @@ margin-bottom: 30px;
     /* padding: 10px 50px; */
     padding: 35px 20px 10px 20px;
   }
+  .prodSingImg {
+    height: auto !important;
+}
 }

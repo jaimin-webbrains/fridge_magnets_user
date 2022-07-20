@@ -162,7 +162,7 @@ function Content(props) {
                       <>
                         <div className='col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-4'>
                           <div
-                            className='card'
+                            className='card '
                             onClick={() => {
                               setStep(step + 1);
                               setPdata({
@@ -184,13 +184,15 @@ function Content(props) {
                             }}
                             style={{ cursor: "pointer" }}
                           >
-                            <img
-                              className='card-img-top'
-                              src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${val?.product_image}`}
-                              alt='Card cap'
-                              width='280px'
-                              height='90%'
-                            />
+                            <div className='prodSingImg'>
+                              <img
+                                className='card-img-top'
+                                src={`${process.env.REACT_APP_BACKEND_UPLOAD_PATH}/${val?.product_image}`}
+                                alt='Card cap'
+                                width='100%'
+                                height='100%'
+                              />
+                            </div>
                             <div className='prdsize'>
                               <p>{val.size}</p>
                             </div>
@@ -211,7 +213,7 @@ function Content(props) {
                       <>
                         <div className='col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-4'>
                           <div
-                            className='card'
+                            className='card prodSingImg'
                             onClick={() => {
                               setStep(step + 1);
                               setPdata({
