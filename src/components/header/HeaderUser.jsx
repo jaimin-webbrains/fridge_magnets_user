@@ -38,7 +38,7 @@ function HeaderUser(props) {
   return (
     <>
       <div className="sticky-nav">
-        <div className="row">
+        <div className="row" onClick={() => props.history.push("/home")}>
           {/* <a> */}
 
           <img
@@ -84,7 +84,7 @@ function HeaderUser(props) {
                   </li>
                   <li className="nav-item">
                     <Link
-                      class={
+                      className={
                         history.location.pathname.includes("home") ||
                         history.location.pathname.includes("/categories/")
                           ? "nav-link is-active"

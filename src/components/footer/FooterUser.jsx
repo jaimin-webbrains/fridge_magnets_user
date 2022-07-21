@@ -16,7 +16,6 @@ function FooterUser(props) {
   // const { pathname } = useLocation();
   // window.addEventListener("scroll", function() {
   //   const scrollFromTop = window.pageYOffset + 100;
-  //   console.log(scrollFromTop, "jhjjh");
   // });
   useEffect(() => {
     window.scrollTo({ top: 100, left: 0, behavior: "smooth" });
@@ -122,7 +121,6 @@ function FooterUser(props) {
 }
 
 const mapStateToProps = state => {
-  console.log("hjhjhj", state);
   return {
     ...state.themeChanger,
     token: state.auth.accessToken,

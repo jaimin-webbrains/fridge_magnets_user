@@ -51,7 +51,6 @@ function ContactUs(props) {
     };
     if (isValid) {
       fetching();
-      console.log("khjkk");
       await addContactData(token, data).then(data => {
         if (data.success) {
           // setdata(data.message);
@@ -64,7 +63,6 @@ function ContactUs(props) {
       });
     }
   };
-  console.log("values", values);
   return (
     <>
       <div className="apus-breadscrumb1">
@@ -76,9 +74,9 @@ function ContactUs(props) {
       <div className="container">
         <div className="row mt-4 mb-5">
           <div className="col-lg-6 col-md-6 col-sm-12">
-            <div class="widget-text-heading cnth3 center">
-              <h3 class="title">Let us know what you’re looking for ! </h3>
-              <div class="des">
+            <div className="widget-text-heading cnth3 center">
+              <h3 className="title">Let us know what you’re looking for ! </h3>
+              <div className="des">
                 Our staff will call back later and answer your questions.{" "}
               </div>
             </div>

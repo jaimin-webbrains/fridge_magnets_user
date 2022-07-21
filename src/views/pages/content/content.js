@@ -28,7 +28,6 @@ function Content(props) {
   const { slug, brand } = useParams();
   const history = useHistory();
   const location = useLocation();
-  // console.log("hgh", useParams());
   const [product, setProduct] = useState([]);
   const [productBrand, setProductBrand] = useState([]);
 
@@ -37,7 +36,6 @@ function Content(props) {
   const [alldata, setAlldata] = useState([]);
 
   const scrollToRef = ref => {
-    console.log("scroll", ref.current.offsetTop);
     // document.body.scrollTop = 30;
     window.scrollTo(0, ref.current.offsetTop - 100);
   };
@@ -137,13 +135,13 @@ function Content(props) {
   useEffect(() => {
     step === 1 && dispatch(image());
   }, [step]);
-  console.log("kkjj", product);
   return (
     <div>
       {step === 1 ? (
         <>
           <div ref={scroll1}>
-            {history.location.pathname.includes(`/${slug}`) ? (
+            {history.location.pathname.includes(`/${slug}`) &&
+            !history.location.pathname.includes("size") ? (
               <div className="isCatNameTag">
                 <h4 className="p-title">{slug?.replace(/-/g, " ")}</h4>
               </div>
@@ -196,7 +194,7 @@ function Content(props) {
                             <div className="prdsize">
                               <p>{val.size}</p>
                             </div>
-                            <div className="card-body  text-center">
+                            <div className="card-body  text-center img_txt">
                               <h5 className="card-title">{val.product_name}</h5>
                               <h5>{val.parent_category_name}</h5>
                             </div>
@@ -244,7 +242,7 @@ function Content(props) {
                             <div className="prdsize">
                               <p>{val.size}</p>
                             </div>
-                            <div className="card-body  text-center">
+                            <div className="card-body  text-center img_txt">
                               <h5 className="card-title">{val.product_name}</h5>
                               <h5>{val.parent_category_name}</h5>
                             </div>
@@ -330,7 +328,8 @@ function Content(props) {
         </div> */}
             </div>
           </div>
-          {history.location.pathname.includes(`${slug}`) ? (
+          {history.location.pathname.includes(`${slug}`) &&
+          !history.location.pathname.includes("size") ? (
             <div className="">
               <span className="cateogoryDescp">
                 <div

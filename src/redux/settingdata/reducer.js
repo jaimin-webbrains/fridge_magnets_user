@@ -1,15 +1,14 @@
 import settingAction from "./actions";
 
 const initState = {
-  sdata: [],
+  sdata: []
 };
 
 export default function rootReducer(state = initState, action) {
   switch (action.type) {
     case settingAction.SETTINGDATA:
-      console.log(action.payload, "hhikhkk");
       return {
-        sdata: action.payload,
+        sdata: action.payload
       };
     default:
       return state;

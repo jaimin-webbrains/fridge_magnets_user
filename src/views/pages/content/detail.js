@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Detail(prop) {
   const { step, setStep, product, alldata, setAlldata, pdata } = prop.data;
-
   const ans = pdata?.pquantity?.split(",");
-  setAlldata(Object.assign(alldata, {}, { quantity: ans[0] }));
+  // setAlldata(Object.assign(alldata, {}, { quantity: ans[0] }));
+
+  function selectElement(id, valueToSelect) {
+    let element = document.getElementById(id);
+    element.value = valueToSelect;
+  }
 
   // console.log(pdata, "hhkh");
   console.log(alldata, "alldata");
@@ -23,10 +27,9 @@ export default function Detail(prop) {
           <div className="my-2">
             <h4 className="main-title">How many are you wanting ?</h4>
             <select
+              value={alldata.quantity}
               onChange={e => {
-                setAlldata(
-                  Object.assign(alldata, {}, { quantity: e.target.value })
-                );
+                setAlldata({ ...alldata, quantity: e.target.value });
               }}
             >
               {ans.map(val => {
@@ -48,6 +51,9 @@ export default function Detail(prop) {
               type="button"
               class="btn btn-primary m-2"
               onClick={() => {
+                if (alldata.quantity == undefined) {
+                  setAlldata({ ...alldata, quantity: ans[0] });
+                }
                 setStep(step + 1);
               }}
             >

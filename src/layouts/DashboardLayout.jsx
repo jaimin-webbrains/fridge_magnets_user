@@ -35,8 +35,6 @@ const DashboardLayout = props => {
     if (!scrollRef) {
       scrollTo();
     }
-    console.log(document.getElementById("my").scrollTop, "hjkjk");
-    console.log(btnshow.current.offsetTop - 100, "kjghv");
     // eslint-disable-next-line
   }, [scrollRef.current, document.body.scrollTop]);
 
@@ -91,7 +89,7 @@ const DashboardLayout = props => {
             }}
             className={show ? "add-fix-top active" : "add-fix-top"}
           >
-            <i class="fas fa-angle-up"></i>
+            <i className="fas fa-angle-up"></i>
           </a>
         </div>
       </div>
