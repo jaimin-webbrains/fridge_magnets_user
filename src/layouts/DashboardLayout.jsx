@@ -12,7 +12,7 @@ import SideBarUser from "components/sidebar/SideBarUser";
 import FooterUser from "components/footer/FooterUser";
 import { useState } from "react";
 
-const DashboardLayout = (props) => {
+const DashboardLayout = props => {
   const history = useHistory();
   // console.log("jhjgg", history.location.pathname.includes("/gallery"));
   const [show, setshow] = useState(false);
@@ -42,22 +42,22 @@ const DashboardLayout = (props) => {
 
   return (
     <>
-      <div className='container-fuild full-height' ref={scrollRef} id='my'>
+      <div className="container-fuild full-height" ref={scrollRef} id="my">
         <HeaderUser />
         {history.location.pathname.includes("/gallery") ? (
-          <div className='row mb-4'>
+          <div className="row mb-4">
             <img
-              src='https://wholesale-magnets.com.au/wp-content/uploads/2020/07/rsz_11wholesale_magnets_website-05_2-1.png'
-              className='myimg'
-              alt=''
+              src="https://wholesale-magnets.com.au/wp-content/uploads/2020/07/rsz_11wholesale_magnets_website-05_2-1.png"
+              className="myimg"
+              alt=""
             />
           </div>
         ) : null}
-        <div className='row mt-3 content'>
-          <div className='col-9 mx-auto'>
-            <div className='row instant-price-main'>
+        <div className="row mt-3 content">
+          <div className="col-9 mx-auto main-block">
+            <div className="row instant-price-main">
               <SideBarUser />
-              <div className='col-lg-8 col-md-12 col-sm-12'>
+              <div className="col-lg-8 col-md-12 col-sm-12">
                 <Switch>
                   <ProtectedRoute {...props}>
                     {dashboardRoutes.map((prop, key) => {
@@ -91,7 +91,7 @@ const DashboardLayout = (props) => {
             }}
             className={show ? "add-fix-top active" : "add-fix-top"}
           >
-            <i class='fas fa-angle-up'></i>
+            <i class="fas fa-angle-up"></i>
           </a>
         </div>
       </div>
@@ -99,7 +99,7 @@ const DashboardLayout = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   // return {
   //   ...state.themeChanger,
   //   LanguageSwitcher: state.LanguageSwitcher,

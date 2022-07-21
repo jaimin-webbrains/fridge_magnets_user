@@ -9,9 +9,11 @@ const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
 
 function AboutUs(props) {
+  const { settingdata } = props;
+  console.log("jhjhkh", settingdata.phone_no);
   return (
     <>
-      <div className="apus-breadscrumb">
+      <div className="apus-breadscrumb1">
         <img
           src="http://wholesale-magnets.com.au/wp-content/uploads/2020/07/rsz_11wholesale_magnets_website-05_2-2.png"
           alt=""
@@ -101,7 +103,21 @@ function AboutUs(props) {
           <p>
             Use this site to get an instant price on your next magnet campaign
             or if you prefer, simply call us on
-            <strong> 1300 135 906 </strong>
+            <strong>
+              {" "}
+              <a
+                href={`tel:${settingdata?.phone_no}`}
+                style={{ color: "#000", fontSize: "17px" }}
+              >
+                {`${settingdata?.phone_no?.substring(
+                  0,
+                  4
+                )} ${settingdata?.phone_no?.substring(
+                  4,
+                  7
+                )} ${settingdata?.phone_no?.substring(7, 10)}`}
+              </a>{" "}
+            </strong>
             to discuss.
           </p>
         </div>
@@ -115,7 +131,8 @@ const mapStateToProps = state => {
     ...state.themeChanger,
     token: state.auth.accessToken,
     user: state.auth.user,
-    isFetching: state.navigation.isFetching
+    isFetching: state.navigation.isFetching,
+    settingdata: state.settingdata.sdata
   };
 };
 
