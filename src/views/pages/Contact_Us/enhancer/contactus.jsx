@@ -14,19 +14,19 @@ const formikEnhancer = withFormik({
       .min(9, "Mobile Number must be at least 9 digits")
       .max(10, "Mobile Number must be at most 10 digits")
       .required("Please Enter Mobile Number"),
-    messages: Yup.string().required("Please Enter Name"),
+    messages: Yup.string().required("Please Enter Message")
     // .matches(/^[a-zA-Z ]*$/, "Please Enter valid Name"),
   }),
   validateOnMount: true,
-  mapPropsToValues: (props) => ({
+  mapPropsToValues: props => ({
     name: "",
     email: "",
     mobile: "",
-    messages: "",
+    messages: ""
   }),
-  handleSubmit: (values) => {},
+  handleSubmit: values => {},
   displayName: "CustomValidationForm",
-  enableReinitialize: true,
+  enableReinitialize: true
 });
 
 export default formikEnhancer;
