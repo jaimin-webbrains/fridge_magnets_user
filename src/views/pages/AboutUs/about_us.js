@@ -11,14 +11,14 @@ const { setuser } = AuthActions;
 function AboutUs(props) {
   return (
     <>
-      <div className='apus-breadscrumb'>
+      <div className="apus-breadscrumb">
         <img
-          src='http://wholesale-magnets.com.au/wp-content/uploads/2020/07/rsz_11wholesale_magnets_website-05_2-2.png'
-          alt=''
+          src="http://wholesale-magnets.com.au/wp-content/uploads/2020/07/rsz_11wholesale_magnets_website-05_2-2.png"
+          alt=""
         />
       </div>
-      <div className='container'>
-        <div className='row about my-4'>
+      <div className="container">
+        <div className="row about my-4">
           <p>
             Wholesale Magnets have been in the fridge magnet business since
             2008, every year providing their customers with millions of fridge
@@ -101,7 +101,7 @@ function AboutUs(props) {
           <p>
             Use this site to get an instant price on your next magnet campaign
             or if you prefer, simply call us on
-            <strong>1300 135 906</strong>
+            <strong> 1300 135 906 </strong>
             to discuss.
           </p>
         </div>
@@ -110,12 +110,12 @@ function AboutUs(props) {
   );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     ...state.themeChanger,
     token: state.auth.accessToken,
     user: state.auth.user,
-    isFetching: state.navigation.isFetching,
+    isFetching: state.navigation.isFetching
   };
 };
 
