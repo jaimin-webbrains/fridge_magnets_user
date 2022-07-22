@@ -14,7 +14,6 @@ import { useState } from "react";
 
 const DashboardLayout = props => {
   const history = useHistory();
-  // console.log("jhjgg", history.location.pathname.includes("/gallery"));
   const [show, setshow] = useState(false);
   const scrollRef = useRef();
   const btnshow = useRef();
@@ -87,7 +86,8 @@ const DashboardLayout = props => {
             onClick={() => {
               scrollTo();
             }}
-            className={show ? "add-fix-top active" : "add-fix-top"}
+            className="add-fix-top active"
+            // className={show ? "add-fix-top active" : "add-fix-top"}
           >
             <i className="fas fa-angle-up"></i>
           </a>

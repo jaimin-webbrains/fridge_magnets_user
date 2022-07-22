@@ -6,17 +6,54 @@ import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import AuthActions from "redux/auth/actions";
+import { getCategories } from "services/categoryServices";
 
 const { success, error, fetching } = NavigationActions;
 const { setuser } = AuthActions;
 
 function FooterUser(props) {
-  const { settingdata } = props;
+  const { settingdata, token } = props;
   const [pathname, setpathname] = useState(true);
   // const { pathname } = useLocation();
   // window.addEventListener("scroll", function() {
   //   const scrollFromTop = window.pageYOffset + 100;
   // });
+
+  const [parentcate, setparentcate] = useState([]);
+  const [subcate, setsubcate] = useState([]);
+  const [subprinting, setsubprinting] = useState([]);
+
+  const getcategorise = async () => {
+    await getCategories(token).then(data => {
+      const ans = data.data?.filter(val => {
+        return val.parent_id === 0;
+      });
+      const subcat = data.data?.filter(val => {
+        return val.parent_id === 1;
+      });
+      const subcatprinting = data.data?.filter(val => {
+        return val.parent_id === 2;
+      });
+      setsubprinting(subcatprinting);
+      setparentcate(ans);
+      setsubcate(subcat);
+
+      if (data.success) {
+        success();
+        // setCategoryOptions(
+        //   data.data.map((val) => ({ value: val.id, label: val.name }))
+        // );
+      } else {
+        error(data.message);
+      }
+    });
+  };
+  useEffect(() => {
+    getcategorise();
+  }, []);
+
+  console.log("subcat====>>>>>>>>", subcate);
+
   useEffect(() => {
     window.scrollTo({ top: 100, left: 0, behavior: "smooth" });
   }, [pathname]);
@@ -45,8 +82,19 @@ function FooterUser(props) {
             <li>
               <Link to="/categories">FRIDGE MAGNETS</Link>
             </li>
-            <li>BUSINESS CARD MAGNETS</li>
-            <li>CALENDAR MAGNETS</li>
+
+            {subcate.map((val, index) => {
+              return index < 2 ? (
+                <li className="text-uppercase">
+                  <Link to={`/categories/${val.name}`}>{val.name}</Link>
+                </li>
+              ) : (
+                <></>
+              );
+            })}
+            {/* <li>BUSINESS CARD MAGNETS</li>
+            <li>CALENDAR MAGNETS</li> */}
+
             <li>GRAPHIC DESIGN</li>
             <li>
               <Link to="/printing-products">PRINTING & MORE</Link>

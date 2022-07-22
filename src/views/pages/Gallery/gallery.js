@@ -76,7 +76,9 @@ function Gallery(props) {
             {parentcate.map(val => {
               return (
                 <option
-                  className={val.parent_id === 0 ? "text-bold" : ""}
+                  className={
+                    val.parent_id === 0 ? "text-bold disabled_color" : ""
+                  }
                   disabled={val.parent_id === 0 ? true : null}
                 >
                   {val.name}

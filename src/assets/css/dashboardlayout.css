@@ -689,6 +689,24 @@ nav ul li a {
   }
 }
 
+@media screen and (max-width: 1098px) {
+  .apus-breadscrumb1 img,
+  .apus-breadscrumb img {
+    height: auto;
+  }
+}
+/* 
+option:disabled,
+option[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: red;
+} */
+select option:disabled {
+  color: red !important;
+  /* font-weight: bold; */
+}
+
 @media screen and (max-width: 1250px) {
   .myimgstyle {
     height: 250px;
